@@ -1,0 +1,150 @@
+{
+  "experiment_id": 9,
+  "semente": 20261025,
+  "status": "concluido",
+  "manifesto": {
+    "nome": "r1-compat160:S4",
+    "database": "so_exp",
+    "regimes": [
+      "quente",
+      "frio"
+    ],
+    "aquecimentos": 2,
+    "repeticoes": {
+      "quente": 20,
+      "frio": 8
+    },
+    "ordem": "ABA",
+    "semente": 20261025,
+    "cache_planos": "escopo",
+    "estatisticas_tabelas": [
+      "dbo.Users",
+      "dbo.Posts"
+    ],
+    "microssegundos": true,
+    "sessao": [
+      "SET NOCOUNT ON",
+      "SET LANGUAGE us_english",
+      "SET ARITHABORT ON",
+      "SET STATISTICS IO ON",
+      "SET STATISTICS TIME ON"
+    ],
+    "variantes": [
+      {
+        "nome": "original",
+        "sql": "SELECT u.Id, u.DisplayName FROM dbo.Users u\nWHERE u.Reputation >= 20000 AND (SELECT COUNT(*) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) > 100",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "original",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita",
+        "sql": "SELECT u.Id, u.DisplayName FROM dbo.Users u JOIN dbo.Posts p ON p.OwnerUserId = u.Id\nWHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName HAVING COUNT(*) > 100",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "reescrita",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "indice",
+        "sql": "SELECT u.Id, u.DisplayName FROM dbo.Users u\nWHERE u.Reputation >= 20000 AND (SELECT COUNT(*) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) > 100",
+        "ddl_aplicar": "CREATE INDEX ix_exp_posts_owner ON dbo.Posts (OwnerUserId)",
+        "ddl_reverter": "DROP INDEX ix_exp_posts_owner ON dbo.Posts",
+        "kind": "indice",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita+indice",
+        "sql": "SELECT u.Id, u.DisplayName FROM dbo.Users u JOIN dbo.Posts p ON p.OwnerUserId = u.Id\nWHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName HAVING COUNT(*) > 100",
+        "ddl_aplicar": "CREATE INDEX ix_exp_posts_owner ON dbo.Posts (OwnerUserId)",
+        "ddl_reverter": "DROP INDEX ix_exp_posts_owner ON dbo.Posts",
+        "kind": "prescricao",
+        "repeticoes": null,
+        "aquecimentos": null
+      }
+    ],
+    "blocos_planejados": [
+      "A1",
+      "B",
+      "C",
+      "D",
+      "A2"
+    ]
+  },
+  "ordem_executada": [
+    {
+      "seq": 1,
+      "regime": "quente",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 87
+    },
+    {
+      "seq": 2,
+      "regime": "quente",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 88
+    },
+    {
+      "seq": 3,
+      "regime": "quente",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 89
+    },
+    {
+      "seq": 4,
+      "regime": "quente",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 90
+    },
+    {
+      "seq": 5,
+      "regime": "quente",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 91
+    },
+    {
+      "seq": 6,
+      "regime": "frio",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 92
+    },
+    {
+      "seq": 7,
+      "regime": "frio",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 93
+    },
+    {
+      "seq": 8,
+      "regime": "frio",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 94
+    },
+    {
+      "seq": 9,
+      "regime": "frio",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 95
+    },
+    {
+      "seq": 10,
+      "regime": "frio",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 96
+    }
+  ]
+}

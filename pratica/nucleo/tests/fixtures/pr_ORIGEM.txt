@@ -1,0 +1,8 @@
+Fixtures das camadas Analise e Prescricao (tests/test_schema.py, test_analise_indices.py, test_prescricao.py).
+Todos os planos sao REAIS (SQL Server 2022 CU27 em Docker, linha de base sem indices nao clusterizados, compat. 160, MAXDOP 1), copiados em 25/10/2026 de
+experimento/planos/<ID>/original.{real,estimado}.sqlplan (gerados por experimento/salvar_planos.py):
+  pr_<ID>_real.sqlplan       original.real.sqlplan das 19 consultas do catalogo (F1-F5, S1-S5, C1-C4, V1-V5)
+  pr_<ID>_estimado.sqlplan   original.estimado.sqlplan de F1, F4, S1, V4 e C1
+  pr_schema_so2010.json      instantaneo de metadados do banco base StackOverflow2010 (experimento/schema_so2010.json): so PKs clusterizadas, sem densidades
+Planos de variantes COM indice (Key Lookup, Nested Loops correlacionado) estao nos fixtures dx_* (ver dx_ORIGEM.txt).
+Esquemas "derivados" (indice ou densidade acrescentados ao instantaneo real) e casos sinteticos sao montados dentro dos testes e rotulados como tais.

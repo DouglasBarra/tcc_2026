@@ -1,0 +1,129 @@
+/* Tokens do sistema visual (revisão de 04/11/2026): caderno de pesquisa.
+   Claro = papel quente e tinta azul; escuro = carvão quente. Um acento só; cor de dado com significado.
+   Contraste verificado em src/__testes__/contraste.test.js (texto >= 4,5:1). */
+:root {
+  --fonte-ui: 'Source Sans 3', 'Source Sans Pro', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --fonte-titulo: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  --fonte-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --raio: 6px;
+  --raio-g: 8px;
+  --h-topo: 60px;
+  --w-trilho: 92px;
+  --sombra-1: 0 1px 0 rgb(0 0 0 / 0.25);
+  --sombra-2: 0 10px 30px rgb(0 0 0 / 0.45);
+
+  color-scheme: dark;
+  --bg: #141412;
+  --bg-2: #1b1b18;
+  --bg-3: #252420;
+  --bg-trilho: #10100e;
+  --borda: #34322c;
+  --borda-forte: #5d594f;
+  --texto: #ece8df;
+  --texto-2: #aba597;
+  --acento: #93b2e6;
+  --acento-2: #e0a56a;
+  --acento-fundo: #23304a;
+  --sobre-acento: #10141c;
+  --ok: #82c79c;
+  --alerta: #e0b25a;
+  --erro: #f08a80;
+  --info: #93b2e6;
+  --ok-fundo: #1d2e23;
+  --alerta-fundo: #33291a;
+  --erro-fundo: #3a211e;
+  --info-fundo: #1e2839;
+  --foco: #93b2e6;
+  --sql-keyword: #93b2e6;
+  --sql-string: #a8cfa0;
+  --sql-number: #e0b25a;
+  --sql-comment: #918c80;
+  --sql-ident: #ece8df;
+  --sql-type: #bda7e8;
+  --serie-1: #93b2e6;
+  --serie-2: #e59a62;
+  --serie-3: #82c79c;
+  --serie-4: #bda7e8;
+  --serie-5: #e0b25a;
+  --serie-6: #f08a80;
+}
+
+:root[data-tema='claro'] {
+  color-scheme: light;
+  --sombra-1: 0 1px 0 rgb(40 30 10 / 0.04);
+  --sombra-2: 0 10px 30px rgb(40 30 10 / 0.12);
+  --bg: #f6f4ef;
+  --bg-2: #fffdf9;
+  --bg-3: #efebe2;
+  --bg-trilho: #efebe2;
+  --borda: #e1dbcf;
+  --borda-forte: #9b958a;
+  --texto: #1d1c1a;
+  --texto-2: #5a564e;
+  --acento: #1f4e9c;
+  --acento-2: #8a4b14;
+  --acento-fundo: #e2e8f3;
+  --sobre-acento: #ffffff;
+  --ok: #2c6e49;
+  --alerta: #8a5a00;
+  --erro: #b42318;
+  --info: #1f4e9c;
+  --ok-fundo: #e3eee5;
+  --alerta-fundo: #f5e9d0;
+  --erro-fundo: #f7e0dc;
+  --info-fundo: #e2e8f3;
+  --foco: #1f4e9c;
+  --sql-keyword: #1f4e9c;
+  --sql-string: #2c6e49;
+  --sql-number: #8a4b00;
+  --sql-comment: #6b665c;
+  --sql-ident: #1d1c1a;
+  --sql-type: #6b4fa0;
+  --serie-1: #1f4e9c;
+  --serie-2: #b5541c;
+  --serie-3: #2c6e49;
+  --serie-4: #6b4fa0;
+  --serie-5: #8a5a00;
+  --serie-6: #b42318;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-tema]) {
+    color-scheme: light;
+    --sombra-1: 0 1px 0 rgb(40 30 10 / 0.04);
+    --sombra-2: 0 10px 30px rgb(40 30 10 / 0.12);
+    --bg: #f6f4ef;
+    --bg-2: #fffdf9;
+    --bg-3: #efebe2;
+    --bg-trilho: #efebe2;
+    --borda: #e1dbcf;
+    --borda-forte: #9b958a;
+    --texto: #1d1c1a;
+    --texto-2: #5a564e;
+    --acento: #1f4e9c;
+    --acento-2: #8a4b14;
+    --acento-fundo: #e2e8f3;
+    --sobre-acento: #ffffff;
+    --ok: #2c6e49;
+    --alerta: #8a5a00;
+    --erro: #b42318;
+    --info: #1f4e9c;
+    --ok-fundo: #e3eee5;
+    --alerta-fundo: #f5e9d0;
+    --erro-fundo: #f7e0dc;
+    --info-fundo: #e2e8f3;
+    --foco: #1f4e9c;
+    --sql-keyword: #1f4e9c;
+    --sql-string: #2c6e49;
+    --sql-number: #8a4b00;
+    --sql-comment: #6b665c;
+    --sql-ident: #1d1c1a;
+    --sql-type: #6b4fa0;
+    --serie-1: #1f4e9c;
+    --serie-2: #b5541c;
+    --serie-3: #2c6e49;
+    --serie-4: #6b4fa0;
+    --serie-5: #8a5a00;
+    --serie-6: #b42318;
+  }
+}

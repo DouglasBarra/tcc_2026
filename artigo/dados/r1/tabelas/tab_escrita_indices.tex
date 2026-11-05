@@ -1,0 +1,28 @@
+% gerado por gerar_tabelas_extras.py; nao editar a mao
+{\footnotesize\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrrrrrr}
+\toprule
+ &  &  & \multicolumn{3}{c}{Leituras lógicas} & \multicolumn{3}{c}{Bytes de log} \\
+\cmidrule(lr){4-6}\cmidrule(lr){7-9}
+Índice & Tabela & Págs. & \texttt{INS} & \texttt{UPD} & \texttt{DEL} & \texttt{INS} & \texttt{UPD} & \texttt{DEL} \\
+\midrule
+badges\_userid & Badges & 1.914 & 2,12 & 354 & 171 & 4,59 & 2,83 & 1,77 \\
+comments\_postid\_cob & Comments & 8.652 & 1,47 & 235 & 191 & 1,26 & 2,90 & 1,44 \\
+comments\_userid & Comments & 6.724 & 1,18 & 115 & 135 & 1,86 & 1,00 & 1,24 \\
+comments\_userid\_cob & Comments & 10.560 & 1,47 & 115 & 191 & 1,26 & 1,00 & 1,26 \\
+posts\_creationdate & Posts & 8.330 & 1,41 & 57,5 & 46,7 & 1,06 & 2,90 & 1,07 \\
+posts\_owner & Posts & 6.470 & 1,32 & 56,9 & 32,9 & 1,68 & 2,83 & 0,95 \\
+posts\_owner\_cob & Posts & 12.023 & 1,41 & 57,5 & 46,7 & 1,07 & 3,03 & 0,96 \\
+posts\_owner\_score & Posts & 8.333 & 1,41 & 57,5 & 46,7 & 1,06 & 2,90 & 0,74 \\
+users\_displayname & Users & 1.282 & 2,62 & 155 & 86,6 & 13,6 & 2,52 & 0,75 \\
+users\_location\_cob & Users & 1.772 & 2,69 & 71,8 & 86,6 & 14,1 & 0,00 & 0,65 \\
+users\_reputation & Users & 1.279 & 2,63 & 160 & 86,5 & 13,9 & 3,18 & 0,66 \\
+votes\_creationdate & Votes & 27.638 & 1,80 & 376 & 538 & 1,87 & 2,96 & 1,88 \\
+votes\_postid & Votes & 17.589 & 1,61 & 376 & 537 & 1,80 & 2,83 & 1,82 \\
+votes\_postid\_cob & Votes & 27.624 & 1,61 & 376 & 537 & 1,86 & 2,96 & 1,88 \\
+\bottomrule
+\end{tabular}\par
+\vspace{3pt}
+\begin{minipage}{\linewidth}\footnotesize
+Razão com/sem o índice, mediana das repetições de 1.000 linhas por operação (\texttt{INS} = \texttt{INSERT}, \texttt{UPD} = \texttt{UPDATE}, \texttt{DEL} = \texttt{DELETE}), dentro de transação desfeita; quando o mesmo índice foi medido por mais de uma consulta, mediana entre as consultas. Sem limiar de aceitação: o custo é reportado, não julgado.
+\end{minipage}}

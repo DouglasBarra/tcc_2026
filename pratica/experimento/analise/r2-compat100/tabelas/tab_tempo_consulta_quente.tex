@@ -1,0 +1,34 @@
+% tab_tempo_consulta; regime quente; experimentos [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20]; criterios_sha 23e5e61d4e23e46b
+% requer \usepackage{booktabs}; arquivo gerado por tcclab.relatorio (nao editar a mao)
+{\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrrrr}
+\toprule
+ &  & \multicolumn{3}{c}{CPU (ms)} & \multicolumn{3}{c}{Decorrido (ms)} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}
+Consulta & Tratamento & antes $\to$ depois & Razão & IC95\% & antes $\to$ depois & Razão & IC95\% \\
+\midrule
+F1 & prescricao & 1.947,5 $\to$ 0 & 0,000257$^{*}$ & [0,000255; 0,000524] & 2.244 $\to$ 0 & 0,000223$^{*}$ & [0,000221; 0,000231] \\
+F2 & prescricao & 41 $\to$ 0 & 0,0122$^{*}$ & [0,0122; 0,0122] & 41 $\to$ 0 & 0,0122$^{*}$ & [0,0122; 0,0122] \\
+F3 & prescricao & 865,5 $\to$ 1 & 0,00116 & [0,00115; 0,00231] & 865,5 $\to$ 1 & 0,00116 & [0,00115; 0,00116] \\
+F4 & prescricao & 1.885,5 $\to$ 91 & 0,0483 & [0,0471; 0,0488] & 2.195 $\to$ 90 & 0,0410 & [0,0402; 0,0419] \\
+S1 & prescricao & 7.458 $\to$ 176 & 0,0236 & [0,0235; 0,0239] & 8.428 $\to$ 176 & 0,0209 & [0,0208; 0,0211] \\
+S2 & prescricao & 20.240,5 $\to$ 1.820,5 & 0,0899 & [0,0893; 0,0908] & 21.370,5 $\to$ 2.162 & 0,101 & [0,100; 0,102] \\
+S3 & prescricao & 3.951,5 $\to$ 2.467 & 0,624 & [0,620; 0,633] & 4.404 $\to$ 2.799,5 & 0,636 & [0,631; 0,643] \\
+S4 & prescricao & 2.717,5 $\to$ 139 & 0,0511 & [0,0504; 0,0514] & 3.061 $\to$ 139 & 0,0454 & [0,0449; 0,0457] \\
+C1 & prescricao & 2.014 $\to$ 2 & 0,000993 & [0,000495; 0,00100] & 2.398,5 $\to$ 2 & 0,000834 & [0,000829; 0,000855] \\
+C2 & prescricao & 1.873,5 $\to$ 0 & 0,000267$^{*}$ & [0,000265; 0,000269] & 2.200,5 $\to$ 0 & 0,000227$^{*}$ & [0,000226; 0,000229] \\
+C3 & prescricao & 487,5 $\to$ 2 & 0,00410 & [0,00407; 0,00619] & 552 $\to$ 2 & 0,00362 & [0,00358; 0,00366] \\
+C4 & prescricao & 43,5 $\to$ 1 & 0,0230 & [0,0114; 0,0233] & 45 $\to$ 1 & 0,0222 & [0,0222; 0,0222] \\
+V1 & indice & 438,5 $\to$ 0 & 0,00114$^{*}$ & [0,00114; 0,00114] & 438 $\to$ 0 & 0,00114$^{*}$ & [0,00114; 0,00114] \\
+V2 & indice & 312 $\to$ 0 & 0,00160$^{*}$ & [0,00152; 0,00164] & 331 $\to$ 0 & 0,00151$^{*}$ & [0,00139; 0,00157] \\
+V3 & indice & 49 $\to$ 0 & 0,0102$^{*}$ & [0,0102; 0,0102] & 48 $\to$ 0 & 0,0104$^{*}$ & [0,0103; 0,0104] \\
+V4 & indice & 1.813,5 $\to$ 0 & 0,000276$^{*}$ & [0,000270; 0,000278] & 2.141,5 $\to$ 0 & 0,000233$^{*}$ & [0,000230; 0,000237] \\
+V5 & indice & 24 $\to$ 2 & 0,0833 & [0,0833; 0,128] & 24 $\to$ 3 & 0,125 & [0,125; 0,125] \\
+\bottomrule
+\end{tabular}\par
+\vspace{3pt}
+\begin{minipage}{\linewidth}\footnotesize
+Regime quente. Medianas das repetições; razão = mediana depois/antes. O tempo decorrido não é comparável ao tempo de CPU quando o plano é paralelo.\par
+$^{*}$ Mediana igual a zero (resolução de 1 ms): razão com piso de 0,5 (cota).
+\end{minipage}
+}

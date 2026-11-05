@@ -1,0 +1,1680 @@
+{
+  "F1": {
+    "antipadrao": "AP1",
+    "titulo": "YEAR/MONTH sobre Posts.CreationDate (um mes, 0,52% das linhas)",
+    "sql_original": "SELECT COUNT(*) AS N FROM dbo.Posts WHERE YEAR(CreationDate) = 2008 AND MONTH(CreationDate) = 8",
+    "sql_reescrita": "SELECT COUNT(*) AS N FROM dbo.Posts WHERE CreationDate >= '20080801' AND CreationDate < '20080901'",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x43D34A6D4F6FA92C",
+        "custo": 598.832,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x43D34A6D4F6FA92C",
+        "custo": 598.832,
+        "leituras_plano": 800856,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0xB98BD1387C1C9099",
+        "custo": 598.426,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.6593,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0xB98BD1387C1C9099",
+        "custo": 598.426,
+        "leituras_plano": 800856,
+        "indices_ausentes": [
+          {
+            "impacto": 99.6593,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      }
+    }
+  },
+  "F2": {
+    "antipadrao": "AP1",
+    "titulo": "UPPER sobre Users.DisplayName (1 linha; colacao ja ignora maiusculas)",
+    "sql_original": "SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE UPPER(DisplayName) = 'JON SKEET'",
+    "sql_reescrita": "SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE DisplayName = 'Jon Skeet'",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x35C7C53B4F37BA51",
+        "custo": 5.82552,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x35C7C53B4F37BA51",
+        "custo": 5.82552,
+        "leituras_plano": 7405,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0xEA0611C85807F1D7",
+        "custo": 5.79558,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9349,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "EQUALITY": [
+                "[DisplayName]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0xEA0611C85807F1D7",
+        "custo": 5.79558,
+        "leituras_plano": 7405,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9349,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "EQUALITY": [
+                "[DisplayName]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      }
+    }
+  },
+  "F3": {
+    "antipadrao": "AP1",
+    "titulo": "DATEDIFF sobre Votes.CreationDate (um dia, 0,17% das linhas)",
+    "sql_original": "SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE DATEDIFF(day, '20100615', CreationDate) = 0 GROUP BY VoteTypeId",
+    "sql_reescrita": "SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE CreationDate >= '20100615' AND CreationDate < '20100616' GROUP BY VoteTypeId",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x3113F63929EA9F18",
+        "custo": 51.7812,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x3113F63929EA9F18",
+        "custo": 51.7812,
+        "leituras_plano": 46704,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0x4D550E2C4F7612C1",
+        "custo": 54.7168,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 86.9547,
+            "tabela": "[dbo].[Votes]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ],
+              "INCLUDE": [
+                "[VoteTypeId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0x4D550E2C4F7612C1",
+        "custo": 54.7168,
+        "leituras_plano": 46704,
+        "indices_ausentes": [
+          {
+            "impacto": 86.9547,
+            "tabela": "[dbo].[Votes]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ],
+              "INCLUDE": [
+                "[VoteTypeId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      }
+    }
+  },
+  "F4": {
+    "antipadrao": "AP1",
+    "titulo": "YEAR sobre Posts.CreationDate (um ano, 58% das linhas): baixa seletividade",
+    "sql_original": "SELECT COUNT(*) AS N FROM dbo.Posts WHERE YEAR(CreationDate) = 2010",
+    "sql_reescrita": "SELECT COUNT(*) AS N FROM dbo.Posts WHERE CreationDate >= '20100101' AND CreationDate < '20110101'",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xB81A11FCE83B1B7A",
+        "custo": 597.226,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xB81A11FCE83B1B7A",
+        "custo": 597.226,
+        "leituras_plano": 800856,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0xB98BD1387C1C9099",
+        "custo": 598.426,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.6593,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0xB98BD1387C1C9099",
+        "custo": 598.426,
+        "leituras_plano": 800856,
+        "indices_ausentes": [
+          {
+            "impacto": 99.6593,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      }
+    }
+  },
+  "F5": {
+    "antipadrao": "AP1",
+    "titulo": "CONVERT(date, ...) sobre Votes.CreationDate: caso em que o otimizador pode tratar como sargavel (controle)",
+    "sql_original": "SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE CONVERT(date, CreationDate) = '20100615' GROUP BY VoteTypeId",
+    "sql_reescrita": "SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE CreationDate >= '20100615' AND CreationDate < '20100616' GROUP BY VoteTypeId",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x3113F63929EA9F18",
+        "custo": 51.7177,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 86.1132,
+            "tabela": "[dbo].[Votes]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ],
+              "INCLUDE": [
+                "[VoteTypeId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x3113F63929EA9F18",
+        "custo": 51.7177,
+        "leituras_plano": 46704,
+        "indices_ausentes": [
+          {
+            "impacto": 86.1132,
+            "tabela": "[dbo].[Votes]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ],
+              "INCLUDE": [
+                "[VoteTypeId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0x4D550E2C4F7612C1",
+        "custo": 54.7168,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 86.9547,
+            "tabela": "[dbo].[Votes]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ],
+              "INCLUDE": [
+                "[VoteTypeId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0x4D550E2C4F7612C1",
+        "custo": 54.7168,
+        "leituras_plano": 46704,
+        "indices_ausentes": [
+          {
+            "impacto": 86.9547,
+            "tabela": "[dbo].[Votes]",
+            "colunas": {
+              "INEQUALITY": [
+                "[CreationDate]"
+              ],
+              "INCLUDE": [
+                "[VoteTypeId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      }
+    }
+  },
+  "S1": {
+    "antipadrao": "AP2",
+    "titulo": "3 subconsultas escalares sobre Posts por usuario (4.020 usuarios)",
+    "sql_original": "SELECT u.Id, u.DisplayName,\n  (SELECT COUNT(*) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) AS Qtd,\n  (SELECT MAX(p.Score) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) AS MaxScore,\n  (SELECT SUM(p.ViewCount) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) AS Views\nFROM dbo.Users u WHERE u.Reputation >= 20000",
+    "sql_reescrita": "SELECT u.Id, u.DisplayName, COUNT(p.Id) AS Qtd, MAX(p.Score) AS MaxScore, SUM(p.ViewCount) AS Views\nFROM dbo.Users u LEFT JOIN dbo.Posts p ON p.OwnerUserId = u.Id\nWHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xBAE543818511B579",
+        "custo": 1795.43,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Hash Match:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xBAE543818511B579",
+        "custo": 1795.43,
+        "leituras_plano": 2409973,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Hash Match:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0xCFC13885595F50B2",
+        "custo": 602.439,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0xCFC13885595F50B2",
+        "custo": 602.439,
+        "leituras_plano": 808261,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      }
+    }
+  },
+  "S2": {
+    "antipadrao": "AP2",
+    "titulo": "2 subconsultas escalares sobre Votes por post de um usuario (11.354 posts)",
+    "sql_original": "SELECT p.Id,\n  (SELECT COUNT(*) FROM dbo.Votes v WHERE v.PostId = p.Id) AS NVotos,\n  (SELECT MAX(v.CreationDate) FROM dbo.Votes v WHERE v.PostId = p.Id) AS UltimoVoto\nFROM dbo.Posts p WHERE p.OwnerUserId = 22656",
+    "sql_reescrita": "SELECT p.Id, COUNT(v.Id) AS NVotos, MAX(v.CreationDate) AS UltimoVoto\nFROM dbo.Posts p LEFT JOIN dbo.Votes v ON v.PostId = p.Id\nWHERE p.OwnerUserId = 22656 GROUP BY p.Id",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x78E88FD012B3AA7B",
+        "custo": 688.878,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 86.6509,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x78E88FD012B3AA7B",
+        "custo": 688.878,
+        "leituras_plano": 894264,
+        "indices_ausentes": [
+          {
+            "impacto": 86.6509,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0xF95B8F794EDC0CB9",
+        "custo": 642.899,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 92.848,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0xF95B8F794EDC0CB9",
+        "custo": 642.899,
+        "leituras_plano": 847560,
+        "indices_ausentes": [
+          {
+            "impacto": 92.848,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      }
+    }
+  },
+  "S3": {
+    "antipadrao": "AP2",
+    "titulo": "2 subconsultas escalares sobre Comments por post de um usuario (11.354 posts)",
+    "sql_original": "SELECT p.Id,\n  (SELECT COUNT(*) FROM dbo.Comments c WHERE c.PostId = p.Id) AS NComentarios,\n  (SELECT MAX(c.Score) FROM dbo.Comments c WHERE c.PostId = p.Id) AS MaxScoreComentario\nFROM dbo.Posts p WHERE p.OwnerUserId = 22656",
+    "sql_reescrita": "SELECT p.Id, COUNT(c.Id) AS NComentarios, MAX(c.Score) AS MaxScoreComentario\nFROM dbo.Posts p LEFT JOIN dbo.Comments c ON c.PostId = p.Id\nWHERE p.OwnerUserId = 22656 GROUP BY p.Id",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xC810BF0C3B98E721",
+        "custo": 857.177,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 69.6378,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xC810BF0C3B98E721",
+        "custo": 857.177,
+        "leituras_plano": 1138570,
+        "indices_ausentes": [
+          {
+            "impacto": 69.6378,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0x13E52230D2861B7D",
+        "custo": 727.06,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 82.1004,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0x13E52230D2861B7D",
+        "custo": 727.06,
+        "leituras_plano": 969713,
+        "indices_ausentes": [
+          {
+            "impacto": 82.1004,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      }
+    }
+  },
+  "S4": {
+    "antipadrao": "AP2",
+    "titulo": "subconsulta correlacionada no WHERE (usuarios com mais de 100 posts)",
+    "sql_original": "SELECT u.Id, u.DisplayName FROM dbo.Users u\nWHERE u.Reputation >= 20000 AND (SELECT COUNT(*) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) > 100",
+    "sql_reescrita": "SELECT u.Id, u.DisplayName FROM dbo.Users u JOIN dbo.Posts p ON p.OwnerUserId = u.Id\nWHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName HAVING COUNT(*) > 100",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x9B23B0C2E064AA06",
+        "custo": 602.431,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Filter:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x9B23B0C2E064AA06",
+        "custo": 602.431,
+        "leituras_plano": 808261,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Filter:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0x7325C6B0C40CE1D2",
+        "custo": 602.429,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Filter:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0x7325C6B0C40CE1D2",
+        "custo": 602.429,
+        "leituras_plano": 808261,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Filter:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      }
+    }
+  },
+  "S5": {
+    "antipadrao": "AP2",
+    "titulo": "1 subconsulta escalar sobre Badges por usuario: caso em que o otimizador ja converte (controle)",
+    "sql_original": "SELECT u.Id, u.DisplayName, (SELECT COUNT(*) FROM dbo.Badges b WHERE b.UserId = u.Id) AS NBadges\nFROM dbo.Users u WHERE u.Reputation >= 20000",
+    "sql_reescrita": "SELECT u.Id, u.DisplayName, COUNT(b.Id) AS NBadges\nFROM dbo.Users u LEFT JOIN dbo.Badges b ON b.UserId = u.Id\nWHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x41998BF603B09EC2",
+        "custo": 12.4039,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 42.7035,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "INEQUALITY": [
+                "[Reputation]"
+              ],
+              "INCLUDE": [
+                "[DisplayName]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Badges].[PK_Badges__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x41998BF603B09EC2",
+        "custo": 12.4039,
+        "leituras_plano": 13952,
+        "indices_ausentes": [
+          {
+            "impacto": 42.7035,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "INEQUALITY": [
+                "[Reputation]"
+              ],
+              "INCLUDE": [
+                "[DisplayName]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Badges].[PK_Badges__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0x41998BF603B09EC2",
+        "custo": 12.4039,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 42.7035,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "INEQUALITY": [
+                "[Reputation]"
+              ],
+              "INCLUDE": [
+                "[DisplayName]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Badges].[PK_Badges__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0x41998BF603B09EC2",
+        "custo": 12.4039,
+        "leituras_plano": 13952,
+        "indices_ausentes": [
+          {
+            "impacto": 42.7035,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "INEQUALITY": [
+                "[Reputation]"
+              ],
+              "INCLUDE": [
+                "[DisplayName]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]",
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Badges].[PK_Badges__Id]"
+        ]
+      }
+    }
+  },
+  "C1": {
+    "antipadrao": "AP3",
+    "titulo": "SELECT * em Posts por OwnerUserId (11.354 linhas, 0,3%)",
+    "sql_original": "SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656",
+    "sql_reescrita": "SELECT Id, Score, CreationDate FROM dbo.Posts WHERE OwnerUserId = 22656",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x25255CFFBD7EC1FD",
+        "custo": 595.133,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9912,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INCLUDE": [
+                "[AcceptedAnswerId]",
+                "[AnswerCount]",
+                "[Body]",
+                "[ClosedDate]",
+                "[CommentCount]",
+                "[CommunityOwnedDate]",
+                "[CreationDate]",
+                "[FavoriteCount]",
+                "[LastActivityDate]",
+                "[LastEditDate]",
+                "[LastEditorDisplayName]",
+                "[LastEditorUserId]",
+                "[ParentId]",
+                "[PostTypeId]",
+                "[Score]",
+                "[Tags]",
+                "[Title]",
+                "[ViewCount]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x25255CFFBD7EC1FD",
+        "custo": 595.133,
+        "leituras_plano": 800856,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9912,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INCLUDE": [
+                "[AcceptedAnswerId]",
+                "[AnswerCount]",
+                "[Body]",
+                "[ClosedDate]",
+                "[CommentCount]",
+                "[CommunityOwnedDate]",
+                "[CreationDate]",
+                "[FavoriteCount]",
+                "[LastActivityDate]",
+                "[LastEditDate]",
+                "[LastEditorDisplayName]",
+                "[LastEditorUserId]",
+                "[ParentId]",
+                "[PostTypeId]",
+                "[Score]",
+                "[Tags]",
+                "[Title]",
+                "[ViewCount]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0x25255CFFBD7EC1FD",
+        "custo": 595.133,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9994,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INCLUDE": [
+                "[CreationDate]",
+                "[Score]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0x25255CFFBD7EC1FD",
+        "custo": 595.133,
+        "leituras_plano": 800856,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9994,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INCLUDE": [
+                "[CreationDate]",
+                "[Score]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      }
+    }
+  },
+  "C2": {
+    "antipadrao": "AP3",
+    "titulo": "SELECT * em Posts por OwnerUserId (53 linhas)",
+    "sql_original": "SELECT * FROM dbo.Posts WHERE OwnerUserId = 100",
+    "sql_reescrita": "SELECT Id, Score, CreationDate FROM dbo.Posts WHERE OwnerUserId = 100",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x25255CFFBD7EC1FD",
+        "custo": 595.133,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9912,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INCLUDE": [
+                "[AcceptedAnswerId]",
+                "[AnswerCount]",
+                "[Body]",
+                "[ClosedDate]",
+                "[CommentCount]",
+                "[CommunityOwnedDate]",
+                "[CreationDate]",
+                "[FavoriteCount]",
+                "[LastActivityDate]",
+                "[LastEditDate]",
+                "[LastEditorDisplayName]",
+                "[LastEditorUserId]",
+                "[ParentId]",
+                "[PostTypeId]",
+                "[Score]",
+                "[Tags]",
+                "[Title]",
+                "[ViewCount]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x25255CFFBD7EC1FD",
+        "custo": 595.133,
+        "leituras_plano": 800856,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9912,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INCLUDE": [
+                "[AcceptedAnswerId]",
+                "[AnswerCount]",
+                "[Body]",
+                "[ClosedDate]",
+                "[CommentCount]",
+                "[CommunityOwnedDate]",
+                "[CreationDate]",
+                "[FavoriteCount]",
+                "[LastActivityDate]",
+                "[LastEditDate]",
+                "[LastEditorDisplayName]",
+                "[LastEditorUserId]",
+                "[ParentId]",
+                "[PostTypeId]",
+                "[Score]",
+                "[Tags]",
+                "[Title]",
+                "[ViewCount]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0x25255CFFBD7EC1FD",
+        "custo": 595.133,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9994,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INCLUDE": [
+                "[CreationDate]",
+                "[Score]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0x25255CFFBD7EC1FD",
+        "custo": 595.133,
+        "leituras_plano": 800856,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9994,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INCLUDE": [
+                "[CreationDate]",
+                "[Score]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      }
+    }
+  },
+  "C3": {
+    "antipadrao": "AP3",
+    "titulo": "SELECT * em Comments por UserId (13.360 linhas, 0,34%)",
+    "sql_original": "SELECT * FROM dbo.Comments WHERE UserId = 22656",
+    "sql_reescrita": "SELECT Id, PostId, Score FROM dbo.Comments WHERE UserId = 22656",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xD30931FDA804EAF0",
+        "custo": 128.879,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9897,
+            "tabela": "[dbo].[Comments]",
+            "colunas": {
+              "EQUALITY": [
+                "[UserId]"
+              ],
+              "INCLUDE": [
+                "[CreationDate]",
+                "[PostId]",
+                "[Score]",
+                "[Text]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xD30931FDA804EAF0",
+        "custo": 128.879,
+        "leituras_plano": 168857,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9897,
+            "tabela": "[dbo].[Comments]",
+            "colunas": {
+              "EQUALITY": [
+                "[UserId]"
+              ],
+              "INCLUDE": [
+                "[CreationDate]",
+                "[PostId]",
+                "[Score]",
+                "[Text]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0xD30931FDA804EAF0",
+        "custo": 128.879,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.997,
+            "tabela": "[dbo].[Comments]",
+            "colunas": {
+              "EQUALITY": [
+                "[UserId]"
+              ],
+              "INCLUDE": [
+                "[PostId]",
+                "[Score]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0xD30931FDA804EAF0",
+        "custo": 128.879,
+        "leituras_plano": 168857,
+        "indices_ausentes": [
+          {
+            "impacto": 99.997,
+            "tabela": "[dbo].[Comments]",
+            "colunas": {
+              "EQUALITY": [
+                "[UserId]"
+              ],
+              "INCLUDE": [
+                "[PostId]",
+                "[Score]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      }
+    }
+  },
+  "C4": {
+    "antipadrao": "AP3",
+    "titulo": "SELECT * em Users por Location (3.656 linhas, 1,2%)",
+    "sql_original": "SELECT * FROM dbo.Users WHERE Location = 'United States'",
+    "sql_reescrita": "SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE Location = 'United States'",
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xEA0611C85807F1D7",
+        "custo": 5.79558,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.3612,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "EQUALITY": [
+                "[Location]"
+              ],
+              "INCLUDE": [
+                "[AboutMe]",
+                "[Age]",
+                "[CreationDate]",
+                "[DisplayName]",
+                "[DownVotes]",
+                "[EmailHash]",
+                "[LastAccessDate]",
+                "[Reputation]",
+                "[UpVotes]",
+                "[Views]",
+                "[WebsiteUrl]",
+                "[AccountId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xEA0611C85807F1D7",
+        "custo": 5.79558,
+        "leituras_plano": 7405,
+        "indices_ausentes": [
+          {
+            "impacto": 99.3612,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "EQUALITY": [
+                "[Location]"
+              ],
+              "INCLUDE": [
+                "[AboutMe]",
+                "[Age]",
+                "[CreationDate]",
+                "[DisplayName]",
+                "[DownVotes]",
+                "[EmailHash]",
+                "[LastAccessDate]",
+                "[Reputation]",
+                "[UpVotes]",
+                "[Views]",
+                "[WebsiteUrl]",
+                "[AccountId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "reescrita.estimado": {
+        "query_plan_hash": "0xEA0611C85807F1D7",
+        "custo": 5.79558,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9349,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "EQUALITY": [
+                "[Location]"
+              ],
+              "INCLUDE": [
+                "[DisplayName]",
+                "[Reputation]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "reescrita.real": {
+        "query_plan_hash": "0xEA0611C85807F1D7",
+        "custo": 5.79558,
+        "leituras_plano": 7405,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9349,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "EQUALITY": [
+                "[Location]"
+              ],
+              "INCLUDE": [
+                "[DisplayName]",
+                "[Reputation]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      }
+    }
+  },
+  "V1": {
+    "antipadrao": "AP4",
+    "titulo": "filtro por Votes.PostId (7 linhas em 10,1 milhoes)",
+    "sql_original": "SELECT COUNT(*) AS N FROM dbo.Votes WHERE PostId = 1000000",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x11054D0497653EB4",
+        "custo": 50.4957,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9923,
+            "tabela": "[dbo].[Votes]",
+            "colunas": {
+              "EQUALITY": [
+                "[PostId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x11054D0497653EB4",
+        "custo": 50.4957,
+        "leituras_plano": 46704,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9923,
+            "tabela": "[dbo].[Votes]",
+            "colunas": {
+              "EQUALITY": [
+                "[PostId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      }
+    }
+  },
+  "V2": {
+    "antipadrao": "AP4",
+    "titulo": "filtro por Comments.UserId (13.360 linhas, 0,34%)",
+    "sql_original": "SELECT COUNT(*) AS N FROM dbo.Comments WHERE UserId = 22656",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xAC1B7BA7530DCDBD",
+        "custo": 130.747,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9909,
+            "tabela": "[dbo].[Comments]",
+            "colunas": {
+              "EQUALITY": [
+                "[UserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xAC1B7BA7530DCDBD",
+        "custo": 130.747,
+        "leituras_plano": 168857,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9909,
+            "tabela": "[dbo].[Comments]",
+            "colunas": {
+              "EQUALITY": [
+                "[UserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      }
+    }
+  },
+  "V3": {
+    "antipadrao": "AP4",
+    "titulo": "filtro por Badges.UserId (2.821 linhas; tabela pequena, 6,5 mil paginas)",
+    "sql_original": "SELECT COUNT(*) AS N FROM dbo.Badges WHERE UserId = 22656",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x5A5F4CD9FFA54F32",
+        "custo": 6.57642,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9173,
+            "tabela": "[dbo].[Badges]",
+            "colunas": {
+              "EQUALITY": [
+                "[UserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Badges].[PK_Badges__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x5A5F4CD9FFA54F32",
+        "custo": 6.57642,
+        "leituras_plano": 6547,
+        "indices_ausentes": [
+          {
+            "impacto": 99.9173,
+            "tabela": "[dbo].[Badges]",
+            "colunas": {
+              "EQUALITY": [
+                "[UserId]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Badges].[PK_Badges__Id]"
+        ]
+      }
+    }
+  },
+  "V4": {
+    "antipadrao": "AP4",
+    "titulo": "filtro composto em Posts: igualdade (OwnerUserId) e intervalo (Score); controle de ordem das colunas",
+    "sql_original": "SELECT COUNT(*) AS N FROM dbo.Posts WHERE OwnerUserId = 22656 AND Score > 10",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xB98BD1387C1C9099",
+        "custo": 598.417,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 99.999,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INEQUALITY": [
+                "[Score]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xB98BD1387C1C9099",
+        "custo": 598.417,
+        "leituras_plano": 800856,
+        "indices_ausentes": [
+          {
+            "impacto": 99.999,
+            "tabela": "[dbo].[Posts]",
+            "colunas": {
+              "EQUALITY": [
+                "[OwnerUserId]"
+              ],
+              "INEQUALITY": [
+                "[Score]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Stream Aggregate:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      }
+    }
+  },
+  "V5": {
+    "antipadrao": "AP4",
+    "titulo": "filtro por Users.Reputation (17.212 linhas, 5,7%): seletividade media",
+    "sql_original": "SELECT Id, DisplayName FROM dbo.Users WHERE Reputation >= 5000",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xEA0611C85807F1D7",
+        "custo": 5.79558,
+        "leituras_plano": null,
+        "indices_ausentes": [
+          {
+            "impacto": 89.1842,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "INEQUALITY": [
+                "[Reputation]"
+              ],
+              "INCLUDE": [
+                "[DisplayName]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xEA0611C85807F1D7",
+        "custo": 5.79558,
+        "leituras_plano": 7405,
+        "indices_ausentes": [
+          {
+            "impacto": 89.1842,
+            "tabela": "[dbo].[Users]",
+            "colunas": {
+              "INEQUALITY": [
+                "[Reputation]"
+              ],
+              "INCLUDE": [
+                "[DisplayName]"
+              ]
+            }
+          }
+        ],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[Users].[PK_Users_Id]"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+##### (c2) colunas listadas user 22656 - com indice cobrindo
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 1 ms, elapsed time = 1 ms.
+Table 'Posts'. Scan count 1, logical reads 40, physical reads 0, read-ahead reads 0.
+   CPU time = 5 ms,  elapsed time = 5 ms.

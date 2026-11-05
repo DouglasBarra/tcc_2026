@@ -1,0 +1,137 @@
+%==========================================================================
+% Artigo científico UNESC (TCC final)
+% Estrutura NOVA derivada do main.tex do projeto (knowledge/fontes/overleaf/main.tex).
+% O preâmbulo, o título, os autores e os rodapés são idênticos ao original.
+% Acréscimos em relação ao original: pacote xcolor e macro \PENDENTE
+% (marcações em vermelho para o que depende de dados, da orientadora ou do autor)
+% e os \input das seções.
+%
+% Template original:
+% v0.0 versão em 20/09/2023 por Marlon Oliveira
+% v1.0 versão em 25/06/2025 por Marlon Oliveira
+%==========================================================================
+
+%==========================================================================
+% Pacotes utilizados pela UNESC - não delete as linhas abaixo
+%==========================================================================
+\documentclass{UNESC}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}%\usepackage[latin1]{inputenc}
+\renewcommand{\rmdefault}{phv} % Arial
+\renewcommand{\sfdefault}{phv} % Arial
+\usepackage[brazilian]{babel}
+\usepackage{graphicx}
+%\usepackage{subfigure}
+\usepackage{hyperref}
+\usepackage{quoting}
+\usepackage[labelsep=none]{caption}
+\DeclareCaptionLabelFormat{figuracomtraco}{#1~#2 -}
+\captionsetup[figure]{labelformat=figuracomtraco, labelsep=space}
+\captionsetup[table]{labelformat=simple, labelsep=space, textformat=simple}
+\DeclareCaptionLabelFormat{tabelacomtraco}{#1~#2 -}
+\captionsetup[table]{labelformat=tabelacomtraco}
+\captionsetup{labelsep=none}
+% ACRÉSCIMO 04/11/2026 (orientações fixadas do prof. Marlon): legenda com recuo
+% pendente e legenda e "Fonte:" alinhadas ao início da tabela/figura.
+\captionsetup{format=hang, justification=raggedright, singlelinecheck=false}
+\newlength{\largurafl}
+\newlength{\larguraorigfl}
+% \flutuante{conteúdo}{legenda+label}{fonte}: mede a largura do conteúdo (notas com
+% \linewidth valem zero na medição) e empilha legenda, conteúdo, notas e fonte nessa largura.
+% ACRÉSCIMO 04/11/2026: se o conteúdo (tabela e notas) for mais largo que o texto, ele é
+% reduzido para caber em \textwidth, em vez de invadir a margem direita e ser cortado.
+\newcommand{\flutuante}[3]{%
+  \begingroup\setlength{\linewidth}{0pt}\settowidth{\largurafl}{#1}\global\largurafl=\largurafl\endgroup
+  \ifdim\largurafl>\textwidth
+    \larguraorigfl=\largurafl
+    \largurafl=\textwidth
+    \begin{minipage}{\largurafl}#2%
+    \resizebox{\largurafl}{!}{\begin{minipage}{\larguraorigfl}#1\end{minipage}}\par\vspace{0.2cm}%
+    {\footnotesize #3\par}\end{minipage}%
+  \else
+    \begin{minipage}{\largurafl}#2#1\par\vspace{0.2cm}%
+    {\footnotesize #3\par}\end{minipage}%
+  \fi}
+%\renewcommand{\thefigure}{\arabic{figure} - }
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{comment}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage{array}
+\usepackage{booktabs}% tabelas geradas por tcclab relatorio (ALINHAMENTOS.md)
+
+% ACRÉSCIMO (único pacote novo): cores para a macro \PENDENTE
+\usepackage{xcolor}
+% Para conferir o texto sem as marcações, troque a definição abaixo por
+%   \newcommand{\PENDENTE}[1]{}
+% (o texto deve fazer sentido sem elas) e, no fim, remova as chamadas.
+% Versão limpa (para a orientadora/entrega): \versaolimpatrue esconde as marcações.
+% As perguntas que elas continham estão em PERGUNTAS-ORIENTADORA.md.
+\newif\ifversaolimpa
+\versaolimpatrue
+\ifversaolimpa
+  \newcommand{\PENDENTE}[1]{}
+\else
+  \newcommand{\PENDENTE}[1]{\textcolor{red}{\textbf{[PENDENTE: #1]}}}
+\fi
+
+\hypersetup{
+  setpagesize  = false,
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = black,   % Colour of internal links
+  citecolor    = black    % Colour of citations
+}
+\urlstyle{same}
+\usepackage{setspace}
+
+\usepackage[alf,recuo=0.0cm,abnt-emphasize=bf]{abntex2cite}
+
+%\captionsetup[figure]{justification=raggedright}
+
+
+%==========================================================================
+% Dados do artigo: título, autores e filiação
+%==========================================================================
+\title{BOAS PRÁTICAS DE INDEXAÇÃO E OTIMIZAÇÃO DE CONSULTAS EM SQL SERVER: UMA ABORDAGEM METODOLÓGICA BASEADA EM MÉTRICAS DE PERFORMANCE}
+\author
+{
+   Douglas Gonçalves E Barra\footnote{Curso de Ciência da Computação, Universidade do Extremo Sul Catarinense (Unesc), Criciúma - Santa Catarina - Brasil. douglasbarra11@unesc.net},
+   %Nome Completo do corientador(a)\footnote{Corientador(a), Curso de Ciência da Computação, Universidade do Extremo Sul Catarinense (Unesc), Criciúma - Santa Catarina - Brasil. email@unesc.net}
+   Ana Cláudia Garcia Barbosa, Ma.\footnote{Orientador(a), Curso de Ciência da Computação, Universidade do Extremo Sul Catarinense (Unesc), Criciúma - Santa Catarina - Brasil. agb@unesc.net}
+}
+%==========================================================================
+% Início do texto do artigo
+%==========================================================================
+\begin{document}
+
+\onehalfspacing
+
+\maketitle
+
+% Resumo, Abstract e palavras-chave (ver README.md para ajustar ao template)
+\input{secoes/00-resumo}
+
+\input{secoes/01-introducao}
+
+% Trabalhos correlatos: movidos para o fim da Introdução (texto) e para a seção 4.5 (Tabela 1)
+% em 05/11/2026; a regra do prof. Marlon admite só 4 seções. Original em versoes/2026-11-05-antes-correlatos/.
+
+\input{secoes/03-materiais-metodos}
+
+\input{secoes/04-resultados-discussao}
+
+\input{secoes/05-conclusao}
+
+\input{secoes/07-declaracao-ia} % obrigatória, fora da contagem de páginas
+
+% Sem Cronograma e sem Assinaturas (não existem no artigo final).
+
+\bibliographystyle{abntex2-unesc}
+\renewcommand{\refname}{REFERÊNCIAS}
+\bibliography{referencias}
+
+\input{secoes/06-apendice} % Apêndice A (depois das referências, ABNT)
+
+
+\end{document}

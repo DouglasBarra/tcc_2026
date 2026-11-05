@@ -1,0 +1,8 @@
+consulta,modo,id,regra,antipadrao,gravidade,nivel,fontes,no_plano,linha_sql,trecho_sql,evidencia,notas
+H1,sql,S2-1,S2,AP1,alta,indicio,sql,,1,"LEFT(DisplayName, 4) = 'Jon '","LEFT sobre a coluna Users.DisplayName em WHERE (linha 1): LEFT(DisplayName, 4) = 'Jon '",
+H2,sql,S2-1,S2,AP1,alta,indicio,sql,,1,YEAR(CreationDate) = 2009,YEAR sobre a coluna Comments.CreationDate em WHERE (linha 1): YEAR(CreationDate) = 2009,
+H3,sql,S2-1,S2,AP1,alta,indicio,sql,,1,"ISNULL(AcceptedAnswerId, 0) = 0","ISNULL sobre a coluna Posts.AcceptedAnswerId em WHERE (linha 1): ISNULL(AcceptedAnswerId, 0) = 0",
+H4,sql,S2-1,S2,AP1,alta,indicio,sql,,1,CAST(Reputation AS varchar(10)) = '1',CAST/varchar sobre a coluna Users.Reputation em WHERE (linha 1): CAST(Reputation AS varchar(10)) = '1',
+H5,sql,S3-1,S3,AP2,media,indicio,sql,,1,(SELECT TOP (1) c.Text FROM dbo.Comments c WHERE c.PostId = p.Id ORDER BY c.Score DESC),Subconsulta escalar sobre Comments correlacionada com p.Id (linha 1): (SELECT TOP (1) c.Text FROM dbo.Comments c WHERE c.PostId = p.Id ORDER BY c.Score DESC),
+H7,sql,S1-1,S1,AP3,alta,indicio,sql,,1,SELECT * FROM dbo.Badges,SELECT * sobre dbo.Badges (linha 1): nenhuma coluna listada.,
+H8,sql,S1-1,S1,AP3,alta,indicio,sql,,1,SELECT * FROM dbo.PostLinks,SELECT * sobre dbo.PostLinks (linha 1): nenhuma coluna listada.,

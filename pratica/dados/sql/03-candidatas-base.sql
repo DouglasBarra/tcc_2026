@@ -1,0 +1,11 @@
+SET NOCOUNT ON;
+USE StackOverflow2010_teste;
+SET STATISTICS IO, TIME ON;
+PRINT '##### (a1) YEAR(CreationDate) em Users - sem indice';
+SELECT COUNT(*) FROM dbo.Users WHERE YEAR(CreationDate) = 2010;
+PRINT '##### (a2) sargavel em Users - sem indice';
+SELECT COUNT(*) FROM dbo.Users WHERE CreationDate >= '20100101' AND CreationDate < '20110101';
+PRINT '##### (a3) YEAR(CreationDate) em Posts - sem indice';
+SELECT COUNT(*) FROM dbo.Posts WHERE YEAR(CreationDate) = 2010;
+PRINT '##### (a4) sargavel em Posts - sem indice';
+SELECT COUNT(*) FROM dbo.Posts WHERE CreationDate >= '20100101' AND CreationDate < '20110101';

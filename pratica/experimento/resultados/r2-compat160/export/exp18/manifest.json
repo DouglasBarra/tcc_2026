@@ -1,0 +1,101 @@
+{
+  "experiment_id": 18,
+  "semente": 20261025,
+  "status": "concluido",
+  "manifesto": {
+    "nome": "r2-compat160:V3",
+    "database": "so_exp",
+    "regimes": [
+      "quente",
+      "frio"
+    ],
+    "aquecimentos": 2,
+    "repeticoes": {
+      "quente": 20,
+      "frio": 8
+    },
+    "ordem": "ABA",
+    "semente": 20261025,
+    "cache_planos": "escopo",
+    "estatisticas_tabelas": [
+      "dbo.Badges"
+    ],
+    "microssegundos": true,
+    "sessao": [
+      "SET NOCOUNT ON",
+      "SET LANGUAGE us_english",
+      "SET ARITHABORT ON",
+      "SET STATISTICS IO ON",
+      "SET STATISTICS TIME ON"
+    ],
+    "variantes": [
+      {
+        "nome": "original",
+        "sql": "SELECT COUNT(*) AS N FROM dbo.Badges WHERE UserId = 22656",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "original",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "indice",
+        "sql": "SELECT COUNT(*) AS N FROM dbo.Badges WHERE UserId = 22656",
+        "ddl_aplicar": "CREATE INDEX ix_exp_badges_userid ON dbo.Badges (UserId)",
+        "ddl_reverter": "DROP INDEX ix_exp_badges_userid ON dbo.Badges",
+        "kind": "indice",
+        "repeticoes": null,
+        "aquecimentos": null
+      }
+    ],
+    "blocos_planejados": [
+      "A1",
+      "B",
+      "A2"
+    ]
+  },
+  "ordem_executada": [
+    {
+      "seq": 1,
+      "regime": "quente",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 179
+    },
+    {
+      "seq": 2,
+      "regime": "quente",
+      "bloco": "B",
+      "variante": "indice",
+      "run_id": 180
+    },
+    {
+      "seq": 3,
+      "regime": "quente",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 181
+    },
+    {
+      "seq": 4,
+      "regime": "frio",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 182
+    },
+    {
+      "seq": 5,
+      "regime": "frio",
+      "bloco": "B",
+      "variante": "indice",
+      "run_id": 183
+    },
+    {
+      "seq": 6,
+      "regime": "frio",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 184
+    }
+  ]
+}

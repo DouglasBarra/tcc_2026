@@ -1,0 +1,9 @@
+SET NOCOUNT ON; USE StackOverflow2010_teste; SET STATISTICS IO ON;
+PRINT '##### MAXDOP 1 x3'; 
+SELECT COUNT(*) FROM dbo.Posts WHERE YEAR(CreationDate)=2010 OPTION (MAXDOP 1);
+SELECT COUNT(*) FROM dbo.Posts WHERE YEAR(CreationDate)=2010 OPTION (MAXDOP 1);
+SELECT COUNT(*) FROM dbo.Posts WHERE YEAR(CreationDate)=2010 OPTION (MAXDOP 1);
+PRINT '##### paralelo x3';
+SELECT COUNT(*) FROM dbo.Posts WHERE YEAR(CreationDate)=2010;
+SELECT COUNT(*) FROM dbo.Posts WHERE YEAR(CreationDate)=2010;
+SELECT COUNT(*) FROM dbo.Posts WHERE YEAR(CreationDate)=2010;

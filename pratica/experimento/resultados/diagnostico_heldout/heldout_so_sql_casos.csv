@@ -1,0 +1,14 @@
+consulta,titulo,modo,arquivo_plano,esperado,tolerado,proibido,apontadas,apontadas_confirmadas,resultado,omissoes,falsos_positivos,proibidos_violados,toleradas,resultado_no_alcance,omissoes_no_alcance,regras_disparadas,informativos,sql_analisavel,regras_ignoradas
+H1,LEFT sobre DisplayName,sql,,AP1,AP4,AP2 AP3,AP1,-,acerto,-,-,-,-,acerto,-,S2,-,True,P1 P2 P3 P4 P5 P6
+H2,YEAR sobre Comments.CreationDate,sql,,AP1,AP4,AP2 AP3,AP1,-,acerto,-,-,-,-,acerto,-,S2,-,True,P1 P2 P3 P4 P5 P6
+H3,ISNULL sobre coluna anulavel no filtro,sql,,AP1,AP4,AP2 AP3,AP1,-,acerto,-,-,-,-,acerto,-,S2,-,True,P1 P2 P3 P4 P5 P6
+H4,CAST da coluna para texto no filtro,sql,,AP1,AP4,AP2 AP3,AP1,-,acerto,-,-,-,-,acerto,-,S2,-,True,P1 P2 P3 P4 P5 P6
+H5,subconsulta escalar correlacionada com TOP 1 e ORDER BY,sql,,AP2,AP4,AP1 AP3,AP2,-,acerto,-,-,-,-,acerto,-,S3,-,True,P1 P2 P3 P4 P5 P6
+H6,"EXISTS correlacionado (semijuncao, NAO e subconsulta escalar) sobre coluna sem indice",sql,,AP4,-,AP1 AP2 AP3,-,-,omissao,AP4,-,-,-,acerto,-,-,-,True,P1 P2 P3 P4 P5 P6
+H7,SELECT * em Badges por UserId,sql,,AP3 AP4,-,AP1 AP2,AP3,-,omissao,AP4,-,-,-,acerto,-,S1,-,True,P1 P2 P3 P4 P5 P6
+H8,SELECT * em PostLinks por PostId,sql,,AP3 AP4,-,AP1 AP2,AP3,-,omissao,AP4,-,-,-,acerto,-,S1,-,True,P1 P2 P3 P4 P5 P6
+H9,filtro de igualdade em Posts.ParentId sem indice,sql,,AP4,-,AP1 AP2 AP3,-,-,omissao,AP4,-,-,-,acerto,-,-,-,True,P1 P2 P3 P4 P5 P6
+H10,filtro composto de igualdade em Votes sem indice,sql,,AP4,-,AP1 AP2 AP3,-,-,omissao,AP4,-,-,-,acerto,-,-,-,True,P1 P2 P3 P4 P5 P6
+H11,junção entre chaves primarias com intervalo,sql,,-,-,AP1 AP2 AP3 AP4,-,-,limpa_correta,-,-,-,-,limpa_correta,-,-,-,True,P1 P2 P3 P4 P5 P6
+H12,contagem total de Users (varredura legitima sem filtro),sql,,-,-,AP1 AP2 AP3 AP4,-,-,limpa_correta,-,-,-,-,limpa_correta,-,-,-,True,P1 P2 P3 P4 P5 P6
+H13,busca de tres chaves primarias com colunas listadas,sql,,-,-,AP1 AP2 AP3 AP4,-,-,limpa_correta,-,-,-,-,limpa_correta,-,-,-,True,P1 P2 P3 P4 P5 P6

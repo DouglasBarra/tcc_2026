@@ -1,0 +1,11 @@
+# Somente configuracao do pytest do backend (a interface nao e um pacote instalavel).
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+pythonpath = ["backend"]
+markers = [
+    "fixture_sintetica: usa dados SINTETICOS criados no teste (nunca aparecem na interface)",
+]
+filterwarnings = [
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated:DeprecationWarning",
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated:Warning",
+]

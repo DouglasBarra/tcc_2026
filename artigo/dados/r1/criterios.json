@@ -1,0 +1,69 @@
+{
+  "criterios": {
+    "alfa": 0.05,
+    "nivel_ic": 0.95,
+    "reamostragens": 10000,
+    "semente": 20261005,
+    "alternativa": "two-sided",
+    "metricas_teste": [
+      "logical_reads",
+      "cpu_ms",
+      "elapsed_ms"
+    ],
+    "metricas_resumo": [
+      "logical_reads",
+      "physical_reads",
+      "read_ahead_reads",
+      "cpu_ms",
+      "elapsed_ms",
+      "cpu_us",
+      "elapsed_us"
+    ],
+    "n_min_consultas": 6,
+    "metrica_criterio": "logical_reads",
+    "reducao_minima_pct": 20.0,
+    "degradacao_escrita_max_pct": null,
+    "metrica_escrita": "logical_reads",
+    "kind_baseline": "original",
+    "kinds_prescricao": [
+      "prescricao",
+      "indice"
+    ],
+    "kind_nativo": "nativo",
+    "regime_principal": "quente",
+    "piso_zero": 0.5,
+    "limite_deriva_pct": 25.0,
+    "papeis_principais": [
+      "principal"
+    ],
+    "fase": "measured"
+  },
+  "criterios_sha": "23e5e61d4e23e46b",
+  "experimentos": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "banco": "tcclab.sqlite",
+  "banco_sha256": "e9dce00ec1200d42e5039e5e8e61714d4e6dd964b7c438a15b30e9bf2e517e3c",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "tukey": "1,5 x IQR (fixo em stats.py)",
+  "metodo_ic": "bootstrap percentil, semente fixa por comparacao = [semente, crc32(chave)]"
+}

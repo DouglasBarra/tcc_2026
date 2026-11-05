@@ -1,0 +1,16 @@
+SET NOCOUNT ON;
+USE StackOverflow2010_teste;
+SET STATISTICS IO, TIME ON;
+PRINT '##### (a1) YEAR(CreationDate)=2010 Users - com indice'; SELECT COUNT(*) FROM dbo.Users WHERE YEAR(CreationDate) = 2010;
+PRINT '##### (a2) sargavel 2010 Users - com indice'; SELECT COUNT(*) FROM dbo.Users WHERE CreationDate >= '20100101' AND CreationDate < '20110101';
+PRINT '##### (a3) YEAR=2010 Posts - com indice'; SELECT COUNT(*) FROM dbo.Posts WHERE YEAR(CreationDate) = 2010;
+PRINT '##### (a4) sargavel 2010 Posts - com indice'; SELECT COUNT(*) FROM dbo.Posts WHERE CreationDate >= '20100101' AND CreationDate < '20110101';
+PRINT '##### (a5) YEAR+MONTH Posts ago/2008 - COM indice'; SELECT COUNT(*) FROM dbo.Posts WHERE YEAR(CreationDate) = 2008 AND MONTH(CreationDate) = 8;
+PRINT '##### (a6) sargavel ago/2008 Posts - com indice'; SELECT COUNT(*) FROM dbo.Posts WHERE CreationDate >= '20080801' AND CreationDate < '20080901';
+PRINT '##### (b1) correlacionada - com indice'; SELECT u.Id, u.DisplayName, (SELECT COUNT(*) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) AS Qtd FROM dbo.Users u WHERE u.Reputation >= 20000;
+PRINT '##### (b2) JOIN+GROUP BY - com indice'; SELECT u.Id, u.DisplayName, COUNT(p.Id) AS Qtd FROM dbo.Users u LEFT JOIN dbo.Posts p ON p.OwnerUserId = u.Id WHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName;
+PRINT '##### (c1) SELECT * user 22656 - com IX(OwnerUserId)'; SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656;
+PRINT '##### (c1b) SELECT * user 100 - com IX(OwnerUserId)'; SELECT * FROM dbo.Posts WHERE OwnerUserId = 100;
+PRINT '##### (c2) colunas listadas user 22656 - com IX(OwnerUserId) nao cobrindo'; SELECT Id, Score, CreationDate FROM dbo.Posts WHERE OwnerUserId = 22656;
+PRINT '##### (d1) Comments UserId - com indice'; SELECT COUNT(*) FROM dbo.Comments WHERE UserId = 22656;
+PRINT '##### (d2) Votes PostId - com indice'; SELECT COUNT(*) FROM dbo.Votes WHERE PostId = 1000000;

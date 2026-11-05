@@ -1,0 +1,130 @@
+{
+  "experiment_id": 11,
+  "semente": 20261025,
+  "status": "concluido",
+  "manifesto": {
+    "nome": "r1-compat100:C1",
+    "database": "so_exp",
+    "regimes": [
+      "quente"
+    ],
+    "aquecimentos": 2,
+    "repeticoes": {
+      "quente": 20,
+      "frio": 8
+    },
+    "ordem": "ABA",
+    "semente": 20261025,
+    "cache_planos": "escopo",
+    "estatisticas_tabelas": [
+      "dbo.Posts"
+    ],
+    "microssegundos": true,
+    "sessao": [
+      "SET NOCOUNT ON",
+      "SET LANGUAGE us_english",
+      "SET ARITHABORT ON",
+      "SET STATISTICS IO ON",
+      "SET STATISTICS TIME ON"
+    ],
+    "variantes": [
+      {
+        "nome": "original",
+        "sql": "SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "original",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita",
+        "sql": "SELECT Id, Score, CreationDate FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "reescrita",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "indice",
+        "sql": "SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": "CREATE INDEX ix_exp_posts_owner ON dbo.Posts (OwnerUserId)",
+        "ddl_reverter": "DROP INDEX ix_exp_posts_owner ON dbo.Posts",
+        "kind": "indice",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita+indice",
+        "sql": "SELECT Id, Score, CreationDate FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": "CREATE INDEX ix_exp_posts_owner_cob ON dbo.Posts (OwnerUserId) INCLUDE (Score, CreationDate)",
+        "ddl_reverter": "DROP INDEX ix_exp_posts_owner_cob ON dbo.Posts",
+        "kind": "prescricao",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "nativo",
+        "sql": "SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": "CREATE INDEX ix_exp_nativo_posts ON [dbo].[Posts] ([OwnerUserId]) INCLUDE ([AcceptedAnswerId], [AnswerCount], [Body], [ClosedDate], [CommentCount], [CommunityOwnedDate], [CreationDate], [FavoriteCount], [LastActivityDate], [LastEditDate], [LastEditorDisplayName], [LastEditorUserId], [ParentId], [PostTypeId], [Score], [Tags], [Title], [ViewCount])",
+        "ddl_reverter": "DROP INDEX ix_exp_nativo_posts ON [dbo].[Posts]",
+        "kind": "nativo",
+        "repeticoes": null,
+        "aquecimentos": null
+      }
+    ],
+    "blocos_planejados": [
+      "A1",
+      "B",
+      "C",
+      "D",
+      "E",
+      "A2"
+    ]
+  },
+  "ordem_executada": [
+    {
+      "seq": 1,
+      "regime": "quente",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 55
+    },
+    {
+      "seq": 2,
+      "regime": "quente",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 56
+    },
+    {
+      "seq": 3,
+      "regime": "quente",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 57
+    },
+    {
+      "seq": 4,
+      "regime": "quente",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 58
+    },
+    {
+      "seq": 5,
+      "regime": "quente",
+      "bloco": "E",
+      "variante": "nativo",
+      "run_id": 59
+    },
+    {
+      "seq": 6,
+      "regime": "quente",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 60
+    }
+  ]
+}

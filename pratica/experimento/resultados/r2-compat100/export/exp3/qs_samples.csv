@@ -1,0 +1,6 @@
+run_id,plan_id,query_id,query_plan_hash,count_executions,execucoes_esperadas,avg_duration_us,avg_cpu_us,avg_logical_io_reads,avg_physical_io_reads,intervalos
+11,1,1,0x3113F63929EA9F18,20,20,917344.25,917182.25,46704.0,0.0,2
+12,2,2,0x4D550E2C4F7612C1,20,20,311966.05,311923.30000000005,46704.0,0.0,2
+13,24,1,0xEBFC1D4718CE0627,20,20,843527.65,843461.4,27638.0,0.0,1
+14,26,2,0xBF19B03C708AD841,20,20,1851.75,1851.45,50.0,0.0,1
+15,1,1,0x3113F63929EA9F18,20,20,862017.2,861960.55,46704.0,0.0,4

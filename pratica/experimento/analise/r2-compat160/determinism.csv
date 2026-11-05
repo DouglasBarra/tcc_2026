@@ -1,0 +1,151 @@
+experiment_id,query_id,consulta,variante,kind,regime,n,minimo,mediana,maximo,dp,valores_distintos,deterministico,planos_distintos,dop,read_ahead_distintos,alerta,run_ids,difere_entre_regimes,medianas_por_regime
+1,F1,F1,original,original,frio,16,800856.0,800856.0,800856.0,0.0,1,True,1,0,8,,6;10,False,frio=800856;quente=800856
+1,F1,F1,original,original,quente,40,800856.0,800856.0,800856.0,0.0,1,True,1,0,40,,1;5,False,frio=800856;quente=800856
+1,F1,F1,reescrita,reescrita,frio,8,800856.0,800856.0,800856.0,0.0,1,True,1,0,4,,7,False,frio=800856;quente=800856
+1,F1,F1,reescrita,reescrita,quente,20,800856.0,800856.0,800856.0,0.0,1,True,1,0,20,,2,False,frio=800856;quente=800856
+1,F1,F1,indice,indice,frio,8,8330.0,8330.0,8330.0,0.0,1,True,1,0,2,,8,False,frio=8330;quente=8330
+1,F1,F1,indice,indice,quente,20,8330.0,8330.0,8330.0,0.0,1,True,1,0,1,,3,False,frio=8330;quente=8330
+1,F1,F1,reescrita+indice,prescricao,frio,8,47.0,47.0,47.0,0.0,1,True,1,0,1,,9,False,frio=47;quente=47
+1,F1,F1,reescrita+indice,prescricao,quente,20,47.0,47.0,47.0,0.0,1,True,1,0,1,,4,False,frio=47;quente=47
+2,F2,F2,original,original,frio,16,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,16;20,False,frio=7405;quente=7405
+2,F2,F2,original,original,quente,40,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,11;15,False,frio=7405;quente=7405
+2,F2,F2,reescrita,reescrita,frio,8,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,17,False,frio=7405;quente=7405
+2,F2,F2,reescrita,reescrita,quente,20,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,12,False,frio=7405;quente=7405
+2,F2,F2,indice,indice,frio,8,1282.0,1282.0,1282.0,0.0,1,True,1,0,1,,18,False,frio=1282;quente=1282
+2,F2,F2,indice,indice,quente,20,1282.0,1282.0,1282.0,0.0,1,True,1,0,1,,13,False,frio=1282;quente=1282
+2,F2,F2,reescrita+indice,prescricao,frio,8,3.0,3.0,3.0,0.0,1,True,1,0,1,,19,False,frio=3;quente=3
+2,F2,F2,reescrita+indice,prescricao,quente,20,3.0,3.0,3.0,0.0,1,True,1,0,1,,14,False,frio=3;quente=3
+4,F3,F3,original,original,frio,16,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,36;40,False,frio=46704;quente=46704
+4,F3,F3,original,original,quente,40,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,31;35,False,frio=46704;quente=46704
+4,F3,F3,reescrita,reescrita,frio,8,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,37,False,frio=46704;quente=46704
+4,F3,F3,reescrita,reescrita,quente,20,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,32,False,frio=46704;quente=46704
+4,F3,F3,indice,indice,frio,8,27638.0,27638.0,27638.0,0.0,1,True,1,0,1,,38,False,frio=27638;quente=27638
+4,F3,F3,indice,indice,quente,20,27638.0,27638.0,27638.0,0.0,1,True,1,0,1,,33,False,frio=27638;quente=27638
+4,F3,F3,reescrita+indice,prescricao,frio,8,50.0,50.0,50.0,0.0,1,True,1,0,1,,39,False,frio=50;quente=50
+4,F3,F3,reescrita+indice,prescricao,quente,20,50.0,50.0,50.0,0.0,1,True,1,0,1,,34,False,frio=50;quente=50
+5,F4,F4,original,original,frio,16,800856.0,800856.0,800856.0,0.0,1,True,1,0,4,,46;50,False,frio=800856;quente=800856
+5,F4,F4,original,original,quente,40,800856.0,800856.0,800856.0,0.0,1,True,1,0,25,,41;45,False,frio=800856;quente=800856
+5,F4,F4,reescrita,reescrita,frio,8,800856.0,800856.0,800856.0,0.0,1,True,1,0,3,,47,False,frio=800856;quente=800856
+5,F4,F4,reescrita,reescrita,quente,20,800856.0,800856.0,800856.0,0.0,1,True,1,0,6,,42,False,frio=800856;quente=800856
+5,F4,F4,indice,indice,frio,8,8330.0,8330.0,8330.0,0.0,1,True,1,0,3,,48,False,frio=8330;quente=8330
+5,F4,F4,indice,indice,quente,20,8330.0,8330.0,8330.0,0.0,1,True,1,0,1,,43,False,frio=8330;quente=8330
+5,F4,F4,reescrita+indice,prescricao,frio,8,4839.0,4839.0,4839.0,0.0,1,True,1,0,1,,49,False,frio=4839;quente=4839
+5,F4,F4,reescrita+indice,prescricao,quente,20,4839.0,4839.0,4839.0,0.0,1,True,1,0,1,,44,False,frio=4839;quente=4839
+6,F5,F5,original,original,frio,16,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,56;60,False,frio=46704;quente=46704
+6,F5,F5,original,original,quente,40,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,51;55,False,frio=46704;quente=46704
+6,F5,F5,reescrita,reescrita,frio,8,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,57,False,frio=46704;quente=46704
+6,F5,F5,reescrita,reescrita,quente,20,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,52,False,frio=46704;quente=46704
+6,F5,F5,indice,indice,frio,8,50.0,50.0,50.0,0.0,1,True,1,0,1,,58,False,frio=50;quente=50
+6,F5,F5,indice,indice,quente,20,50.0,50.0,50.0,0.0,1,True,1,0,1,,53,False,frio=50;quente=50
+6,F5,F5,reescrita+indice,prescricao,frio,8,50.0,50.0,50.0,0.0,1,True,1,0,1,,59,False,frio=50;quente=50
+6,F5,F5,reescrita+indice,prescricao,quente,20,50.0,50.0,50.0,0.0,1,True,1,0,1,,54,False,frio=50;quente=50
+7,S1,S1,original,original,frio,16,2409973.0,2409973.0,2409973.0,0.0,1,True,1,0,7,,67;72,False,frio=2.40997e+06;quente=2.40997e+06
+7,S1,S1,original,original,quente,40,2409973.0,2409973.0,2409973.0,0.0,1,True,1,0,3,,61;66,False,frio=2.40997e+06;quente=2.40997e+06
+7,S1,S1,reescrita,reescrita,frio,8,808261.0,808261.0,808261.0,0.0,1,True,1,0,4,,68,False,frio=808261;quente=808261
+7,S1,S1,reescrita,reescrita,quente,20,808261.0,808261.0,808261.0,0.0,1,True,1,0,1,,62,False,frio=808261;quente=808261
+7,S1,S1,indice,indice,frio,8,70823.0,70938.5,73061.0,977.8064280389476,8,False,1,0,7,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (7 valor(es) distinto(s))",69,True,frio=70938.5;quente=57988
+7,S1,S1,indice,indice,quente,20,57988.0,57988.0,57988.0,0.0,1,True,1,0,1,,63,True,frio=70938.5;quente=57988
+7,S1,S1,reescrita+indice,prescricao,frio,8,36924.0,36971.5,38255.0,457.7450943795809,7,False,1,0,6,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (6 valor(es) distinto(s))",70,True,frio=36971.5;quente=24239
+7,S1,S1,reescrita+indice,prescricao,quente,20,24239.0,24239.0,24242.0,1.332784974957958,2,False,1,0,1,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))",64,True,frio=36971.5;quente=24239
+7,S1,S1,contraexemplo: reescrita + indice nao cobrindo,contraexemplo,frio,2,4964675.0,4964675.0,4964675.0,0.0,1,True,1,0,2,,71,False,frio=4.96468e+06;quente=4.96468e+06
+7,S1,S1,contraexemplo: reescrita + indice nao cobrindo,contraexemplo,quente,3,4964675.0,4964675.0,4964675.0,0.0,1,True,1,0,2,,65,False,frio=4.96468e+06;quente=4.96468e+06
+8,S2,S2,original,original,frio,16,894264.0,894264.0,894264.0,0.0,1,True,1,0,4,,79;84,False,frio=894264;quente=894264
+8,S2,S2,original,original,quente,40,894264.0,894264.0,894264.0,0.0,1,True,1,0,2,,73;78,False,frio=894264;quente=894264
+8,S2,S2,reescrita,reescrita,frio,8,847560.0,847560.0,847560.0,0.0,1,True,1,0,2,,80,False,frio=847560;quente=847560
+8,S2,S2,reescrita,reescrita,quente,20,847560.0,847560.0,847560.0,0.0,1,True,1,0,1,,74,False,frio=847560;quente=847560
+8,S2,S2,indice,indice,frio,8,915580.0,916809.5,916858.0,438.53438943175905,8,False,1,0,5,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (5 valor(es) distinto(s))",81,True,frio=916810;quente=873692
+8,S2,S2,indice,indice,quente,20,873686.0,873692.0,873692.0,3.0157481397002077,2,False,1,0,1,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))",75,True,frio=916810;quente=873692
+8,S2,S2,reescrita+indice,prescricao,frio,8,880391.0,880411.5,880497.0,34.369577494389674,8,False,1,0,6,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (6 valor(es) distinto(s))",82,True,frio=880412;quente=837274
+8,S2,S2,reescrita+indice,prescricao,quente,20,837271.0,837274.0,837274.0,1.5078740698501039,2,False,1,0,1,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))",76,True,frio=880412;quente=837274
+8,S2,S2,nativo,nativo,frio,8,93431.0,93431.0,93431.0,0.0,1,True,1,0,2,,83,False,frio=93431;quente=93431
+8,S2,S2,nativo,nativo,quente,20,93431.0,93431.0,93431.0,0.0,1,True,1,0,1,,77,False,frio=93431;quente=93431
+9,S3,S3,original,original,frio,16,1138570.0,1138570.0,1138570.0,0.0,1,True,1,0,16,,91;96,False,frio=1.13857e+06;quente=1.13857e+06
+9,S3,S3,original,original,quente,40,1138570.0,1138570.0,1138570.0,0.0,1,True,1,0,27,,85;90,False,frio=1.13857e+06;quente=1.13857e+06
+9,S3,S3,reescrita,reescrita,frio,8,969713.0,969713.0,969713.0,0.0,1,True,1,0,3,,92,False,frio=969713;quente=969713
+9,S3,S3,reescrita,reescrita,quente,20,969713.0,969713.0,969713.0,0.0,1,True,1,0,1,,86,False,frio=969713;quente=969713
+9,S3,S3,indice,indice,frio,8,818160.0,818160.0,818160.0,0.0,1,True,1,0,3,,93,False,frio=818160;quente=818160
+9,S3,S3,indice,indice,quente,20,818160.0,818160.0,818160.0,0.0,1,True,1,0,1,,87,False,frio=818160;quente=818160
+9,S3,S3,reescrita+indice,prescricao,frio,8,809506.0,809506.0,809506.0,0.0,1,True,1,0,2,,94,False,frio=809506;quente=809506
+9,S3,S3,reescrita+indice,prescricao,quente,20,809506.0,809506.0,809506.0,0.0,1,True,1,0,1,,88,False,frio=809506;quente=809506
+9,S3,S3,nativo,nativo,frio,8,337737.0,337737.0,337737.0,0.0,1,True,1,0,2,,95,False,frio=337737;quente=337737
+9,S3,S3,nativo,nativo,quente,20,337737.0,337737.0,337737.0,0.0,1,True,1,0,1,,89,False,frio=337737;quente=337737
+10,S4,S4,original,original,frio,16,808261.0,808261.0,808261.0,0.0,1,True,1,0,4,,102;106,False,frio=808261;quente=808261
+10,S4,S4,original,original,quente,40,808261.0,808261.0,808261.0,0.0,1,True,1,0,1,,97;101,False,frio=808261;quente=808261
+10,S4,S4,reescrita,reescrita,frio,8,808261.0,808261.0,808261.0,0.0,1,True,1,0,3,,103,False,frio=808261;quente=808261
+10,S4,S4,reescrita,reescrita,quente,20,808261.0,808261.0,808261.0,0.0,1,True,1,0,1,,98,False,frio=808261;quente=808261
+10,S4,S4,indice,indice,frio,8,13875.0,13875.0,13875.0,0.0,1,True,1,0,1,,104,False,frio=13875;quente=13875
+10,S4,S4,indice,indice,quente,20,13875.0,13875.0,13875.0,0.0,1,True,1,0,1,,99,False,frio=13875;quente=13875
+10,S4,S4,reescrita+indice,prescricao,frio,8,33099.0,33632.5,37246.0,1802.6232818946314,8,False,1,0,6,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (6 valor(es) distinto(s))",105,True,frio=33632.5;quente=22636
+10,S4,S4,reescrita+indice,prescricao,quente,20,22636.0,22636.0,22639.0,1.332784974957958,2,False,1,0,1,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))",100,True,frio=33632.5;quente=22636
+11,S5,S5,original,original,frio,16,13952.0,13952.0,13952.0,0.0,1,True,1,0,1,,113;118,False,frio=13952;quente=13952
+11,S5,S5,original,original,quente,40,13952.0,13952.0,13952.0,0.0,1,True,1,0,1,,107;112,False,frio=13952;quente=13952
+11,S5,S5,reescrita,reescrita,frio,8,13952.0,13952.0,13952.0,0.0,1,True,1,0,1,,114,False,frio=13952;quente=13952
+11,S5,S5,reescrita,reescrita,quente,20,13952.0,13952.0,13952.0,0.0,1,True,1,0,1,,108,False,frio=13952;quente=13952
+11,S5,S5,indice,indice,frio,8,9319.0,9319.0,9319.0,0.0,1,True,1,0,1,,115,False,frio=9319;quente=9319
+11,S5,S5,indice,indice,quente,20,9319.0,9319.0,9319.0,0.0,1,True,1,0,1,,109,False,frio=9319;quente=9319
+11,S5,S5,reescrita+indice,prescricao,frio,8,9319.0,9319.0,9319.0,0.0,1,True,1,0,1,,116,False,frio=9319;quente=9319
+11,S5,S5,reescrita+indice,prescricao,quente,20,9319.0,9319.0,9319.0,0.0,1,True,1,0,1,,110,False,frio=9319;quente=9319
+11,S5,S5,nativo,nativo,frio,8,6570.0,6570.0,6570.0,0.0,1,True,1,0,1,,117,False,frio=6570;quente=6570
+11,S5,S5,nativo,nativo,quente,20,6570.0,6570.0,6570.0,0.0,1,True,1,0,1,,111,False,frio=6570;quente=6570
+12,C1,C1,original,original,frio,16,800856.0,800856.0,800856.0,0.0,1,True,1,0,2,,125;130,False,frio=800856;quente=800856
+12,C1,C1,original,original,quente,40,800856.0,800856.0,800856.0,0.0,1,True,1,0,1,,119;124,False,frio=800856;quente=800856
+12,C1,C1,reescrita,reescrita,frio,8,800856.0,800856.0,800856.0,0.0,1,True,1,0,2,,126,False,frio=800856;quente=800856
+12,C1,C1,reescrita,reescrita,quente,20,800856.0,800856.0,800856.0,0.0,1,True,1,0,1,,120,False,frio=800856;quente=800856
+12,C1,C1,indice,indice,frio,8,77592.0,77838.5,79066.0,475.0298486862243,8,False,1,0,3,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (3 valor(es) distinto(s))",127,True,frio=77838.5;quente=46157
+12,C1,C1,indice,indice,quente,20,46157.0,46157.0,46157.0,0.0,1,True,1,0,1,,121,True,frio=77838.5;quente=46157
+12,C1,C1,reescrita+indice,prescricao,frio,8,41.0,41.0,41.0,0.0,1,True,1,0,1,,128,False,frio=41;quente=41
+12,C1,C1,reescrita+indice,prescricao,quente,20,41.0,41.0,41.0,0.0,1,True,1,0,1,,122,False,frio=41;quente=41
+12,C1,C1,nativo,nativo,frio,8,2845.0,2845.0,2845.0,0.0,1,True,1,0,2,,129,False,frio=2845;quente=2845
+12,C1,C1,nativo,nativo,quente,20,2845.0,2845.0,2845.0,0.0,1,True,1,0,1,,123,False,frio=2845;quente=2845
+13,C2,C2,original,original,frio,16,800856.0,800856.0,800856.0,0.0,1,True,1,0,2,,137;142,False,frio=800856;quente=800856
+13,C2,C2,original,original,quente,40,800856.0,800856.0,800856.0,0.0,1,True,1,0,1,,131;136,False,frio=800856;quente=800856
+13,C2,C2,reescrita,reescrita,frio,8,800856.0,800856.0,800856.0,0.0,1,True,1,0,2,,138,False,frio=800856;quente=800856
+13,C2,C2,reescrita,reescrita,quente,20,800856.0,800856.0,800856.0,0.0,1,True,1,0,1,,132,False,frio=800856;quente=800856
+13,C2,C2,indice,indice,frio,8,381.0,381.0,427.0,15.890248582070704,3,False,1,0,1,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))",139,True,frio=381;quente=227
+13,C2,C2,indice,indice,quente,20,227.0,227.0,227.0,0.0,1,True,1,0,1,,133,True,frio=381;quente=227
+13,C2,C2,reescrita+indice,prescricao,frio,8,3.0,3.0,3.0,0.0,1,True,1,0,1,,140,False,frio=3;quente=3
+13,C2,C2,reescrita+indice,prescricao,quente,20,3.0,3.0,3.0,0.0,1,True,1,0,1,,134,False,frio=3;quente=3
+13,C2,C2,nativo,nativo,frio,8,14.0,14.0,14.0,0.0,1,True,1,0,1,,141,False,frio=14;quente=14
+13,C2,C2,nativo,nativo,quente,20,14.0,14.0,14.0,0.0,1,True,1,0,1,,135,False,frio=14;quente=14
+14,C3,C3,original,original,frio,16,168857.0,168857.0,168857.0,0.0,1,True,1,0,2,,149;154,False,frio=168857;quente=168857
+14,C3,C3,original,original,quente,40,168857.0,168857.0,168857.0,0.0,1,True,1,0,1,,143;148,False,frio=168857;quente=168857
+14,C3,C3,reescrita,reescrita,frio,8,168857.0,168857.0,168857.0,0.0,1,True,1,0,1,,150,False,frio=168857;quente=168857
+14,C3,C3,reescrita,reescrita,quente,20,168857.0,168857.0,168857.0,0.0,1,True,1,0,1,,144,False,frio=168857;quente=168857
+14,C3,C3,indice,indice,frio,8,85266.0,85780.5,86139.0,266.7711699994157,8,False,1,0,1,"dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))",151,True,frio=85780.5;quente=54311
+14,C3,C3,indice,indice,quente,20,54311.0,54311.0,54311.0,0.0,1,True,1,0,1,,145,True,frio=85780.5;quente=54311
+14,C3,C3,reescrita+indice,prescricao,frio,8,40.0,40.0,40.0,0.0,1,True,1,0,1,,152,False,frio=40;quente=40
+14,C3,C3,reescrita+indice,prescricao,quente,20,40.0,40.0,40.0,0.0,1,True,1,0,1,,146,False,frio=40;quente=40
+14,C3,C3,nativo,nativo,frio,8,615.0,615.0,615.0,0.0,1,True,1,0,1,,153,False,frio=615;quente=615
+14,C3,C3,nativo,nativo,quente,20,615.0,615.0,615.0,0.0,1,True,1,0,1,,147,False,frio=615;quente=615
+15,C4,C4,original,original,frio,16,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,161;166,False,frio=7405;quente=7405
+15,C4,C4,original,original,quente,40,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,155;160,False,frio=7405;quente=7405
+15,C4,C4,reescrita,reescrita,frio,8,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,162,False,frio=7405;quente=7405
+15,C4,C4,reescrita,reescrita,quente,20,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,156,False,frio=7405;quente=7405
+15,C4,C4,indice,indice,frio,8,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,163,False,frio=7405;quente=7405
+15,C4,C4,indice,indice,quente,20,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,157,False,frio=7405;quente=7405
+15,C4,C4,reescrita+indice,prescricao,frio,8,32.0,32.0,32.0,0.0,1,True,1,0,1,,164,False,frio=32;quente=32
+15,C4,C4,reescrita+indice,prescricao,quente,20,32.0,32.0,32.0,0.0,1,True,1,0,1,,158,False,frio=32;quente=32
+15,C4,C4,nativo,nativo,frio,8,164.0,164.0,164.0,0.0,1,True,1,0,1,,165,False,frio=164;quente=164
+15,C4,C4,nativo,nativo,quente,20,164.0,164.0,164.0,0.0,1,True,1,0,1,,159,False,frio=164;quente=164
+16,V1,V1,original,original,frio,16,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,170;172,False,frio=46704;quente=46704
+16,V1,V1,original,original,quente,40,46704.0,46704.0,46704.0,0.0,1,True,1,0,1,,167;169,False,frio=46704;quente=46704
+16,V1,V1,indice,indice,frio,8,3.0,3.0,3.0,0.0,1,True,1,0,1,,171,False,frio=3;quente=3
+16,V1,V1,indice,indice,quente,20,3.0,3.0,3.0,0.0,1,True,1,0,1,,168,False,frio=3;quente=3
+17,V2,V2,original,original,frio,16,168857.0,168857.0,168857.0,0.0,1,True,1,0,1,,176;178,False,frio=168857;quente=168857
+17,V2,V2,original,original,quente,40,168857.0,168857.0,168857.0,0.0,1,True,1,0,1,,173;175,False,frio=168857;quente=168857
+17,V2,V2,indice,indice,frio,8,27.0,27.0,27.0,0.0,1,True,1,0,1,,177,False,frio=27;quente=27
+17,V2,V2,indice,indice,quente,20,27.0,27.0,27.0,0.0,1,True,1,0,1,,174,False,frio=27;quente=27
+18,V3,V3,original,original,frio,16,6547.0,6547.0,6547.0,0.0,1,True,1,0,1,,182;184,False,frio=6547;quente=6547
+18,V3,V3,original,original,quente,40,6547.0,6547.0,6547.0,0.0,1,True,1,0,1,,179;181,False,frio=6547;quente=6547
+18,V3,V3,indice,indice,frio,8,9.0,9.0,9.0,0.0,1,True,1,0,1,,183,False,frio=9;quente=9
+18,V3,V3,indice,indice,quente,20,9.0,9.0,9.0,0.0,1,True,1,0,1,,180,False,frio=9;quente=9
+19,V4,V4,original,original,frio,16,800856.0,800856.0,800856.0,0.0,1,True,1,0,2,,189;192,False,frio=800856;quente=800856
+19,V4,V4,original,original,quente,40,800856.0,800856.0,800856.0,0.0,1,True,1,0,1,,185;188,False,frio=800856;quente=800856
+19,V4,V4,indice,indice,frio,8,11.0,11.0,11.0,0.0,1,True,1,0,1,,190,False,frio=11;quente=11
+19,V4,V4,indice,indice,quente,20,11.0,11.0,11.0,0.0,1,True,1,0,1,,186,False,frio=11;quente=11
+19,V4,V4,controle: ordem invertida das colunas,controle_ordem,frio,8,825.0,825.0,825.0,0.0,1,True,1,0,1,,191,False,frio=825;quente=825
+19,V4,V4,controle: ordem invertida das colunas,controle_ordem,quente,20,825.0,825.0,825.0,0.0,1,True,1,0,1,,187,False,frio=825;quente=825
+20,V5,V5,original,original,frio,16,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,196;198,False,frio=7405;quente=7405
+20,V5,V5,original,original,quente,40,7405.0,7405.0,7405.0,0.0,1,True,1,0,1,,193;195,False,frio=7405;quente=7405
+20,V5,V5,indice,indice,frio,8,82.0,82.0,82.0,0.0,1,True,1,0,1,,197,False,frio=82;quente=82
+20,V5,V5,indice,indice,quente,20,82.0,82.0,82.0,0.0,1,True,1,0,1,,194,False,frio=82;quente=82

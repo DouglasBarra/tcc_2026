@@ -1,0 +1,56 @@
+{
+ "Brazilian": [
+  {
+   "numero": 3613,
+   "texto": "Tempo de análise e compilação do SQL Server: \n   Tempo de CPU = 3 ms, tempo decorrido = 4 ms."
+  },
+  {
+   "numero": 3613,
+   "texto": "Tempo de análise e compilação do SQL Server: \n   Tempo de CPU = 0 ms, tempo decorrido = 0 ms."
+  },
+  {
+   "numero": 3615,
+   "texto": "Tabela 'm0_sanidade'. Contagem de leitura 1, leitura lógica 5737, leitura física 0, leitura do servidor de página 0, leitura de leitura com antecedência 0, leitura de leitura com antecedência 0, leitura lógica do servidor de página 0, leitura física do servidor de página 0, leitura de leitura com antecedência 0, leitura de leitura com antecedência 0, leitura de leitura com antecedência 0."
+  },
+  {
+   "numero": 3612,
+   "texto": "\n Tempos de Execução do SQL Server:\n Tempo de CPU = 15 ms, tempo decorrido = 14 ms."
+  }
+ ],
+ "German": [
+  {
+   "numero": 3613,
+   "texto": "SQL Server-Analyse- und Kompilierzeit: \n, CPU-Zeit = 2 ms, verstrichene Zeit = 2 ms."
+  },
+  {
+   "numero": 3613,
+   "texto": "SQL Server-Analyse- und Kompilierzeit: \n, CPU-Zeit = 0 ms, verstrichene Zeit = 0 ms."
+  },
+  {
+   "numero": 3615,
+   "texto": "Tabelle: „m0_sanidade“. Anzahl von Überprüfungen: 1, logische Lesevorgänge: 5737, physische Lesevorgänge: 0, Lesevorgänge Auslagerungsserver: 0, Read-Ahead-Lesevorgänge: 0, Read-Ahead-Lesevorgänge Auslagerungsserver: 0, logische LOB-Lesevorgänge: 0, physische LOB-Lesevorgänge: 0, LOB-Lesevorgänge Auslagerungsserver: 0, LOB-Read-Ahead-Lesevorgänge: 0, LOB-Read-Ahead-Lesevorgänge Auslagerungsserver: 0."
+  },
+  {
+   "numero": 3612,
+   "texto": "\n SQL Server-Ausführungszeiten: \n, CPU-Zeit = 16 ms, verstrichene Zeit = 16 ms."
+  }
+ ],
+ "French": [
+  {
+   "numero": 3613,
+   "texto": "Temps d'analyse et de compilation de SQL Server : \n, Temps UC = 3 ms, temps écoulé = 4 ms."
+  },
+  {
+   "numero": 3613,
+   "texto": "Temps d'analyse et de compilation de SQL Server : \n, Temps UC = 0 ms, temps écoulé = 0 ms."
+  },
+  {
+   "numero": 3615,
+   "texto": "Table 'm0_sanidade'. Nombre d'analyses '1', lectures logiques 5737, lectures physiques 0, lectures de serveur de page 0, lectures anticipées 0, lectures anticipées de serveur de page 0, lectures logiques LOB 0, lectures physiques LOB 0, lectures de serveur de page LOB 0, lectures anticipées LOB 0, lectures anticipées de serveur de page LOB 0."
+  },
+  {
+   "numero": 3612,
+   "texto": "\n SQL Server \\endash Temps d'exécution : \n, Temps UC = 15 ms, temps écoulé = 15 ms."
+  }
+ ]
+}

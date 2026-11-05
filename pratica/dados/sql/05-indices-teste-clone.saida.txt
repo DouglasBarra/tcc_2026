@@ -1,0 +1,22 @@
+##### criar IX_Users_CreationDate
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 727 ms,  elapsed time = 107 ms.
+##### criar IX_Posts_CreationDate
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 27416 ms,  elapsed time = 3742 ms.
+##### criar IX_Posts_OwnerUserId
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 27223 ms,  elapsed time = 3263 ms.
+##### criar IX_Comments_UserId
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 10033 ms,  elapsed time = 1095 ms.
+##### criar IX_Votes_PostId
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 17967 ms,  elapsed time = 1441 ms.
+name mb
+IX_backup_metadata_type_finish_date 0
+IX_Comments_UserId 52
+IX_Posts_CreationDate 65
+IX_Posts_OwnerUserId 50
+IX_Users_CreationDate 5
+IX_Votes_PostId 137

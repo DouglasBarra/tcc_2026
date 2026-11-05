@@ -1,0 +1,326 @@
+% ============================================================
+% TCC - Douglas Barra - UNESC 2025/2026
+% Arquivo de referências bibliográficas (artigo final)
+% Versão CORRIGIDA em 4 out. 2026 a partir de knowledge/fontes/overleaf/referencias.bib
+% (o original não foi alterado). Decisão 15 do autor.
+%
+% Convenções:
+%   % verificada em <data> (<fonte>)  = título, autores, veículo, ano e páginas
+%                                       conferidos na fonte indicada nesta data.
+%   % NÃO VERIFICADA                  = dado não conferido; checar antes de entregar.
+% Nenhuma entrada cita a Microsoft como autora (regra da orientadora).
+% Entradas do original removidas: ver ALINHAMENTOS.md, seção "Bibliografia".
+% ============================================================
+
+% ============================================================
+% INTERNACIONAIS
+% ============================================================
+
+% Troca de wu2023indextuning: o artigo foi publicado em 2024 (IEEE TKDE vol. 36, n. 12,
+% p. 7657-7676). O original não tinha volume, páginas nem DOI.
+% verificada em 4 out. 2026 (Crossref 10.1109/TKDE.2024.3422006; OpenAlex, resumo conferido)
+@article{wu2024indextuning,
+  author    = {Wu, Yang and Zhou, Xuanhe and Zhang, Yong and Li, Guoliang},
+  title     = {Automatic Index Tuning: A Survey},
+  journal   = {IEEE Transactions on Knowledge and Data Engineering},
+  volume    = {36},
+  number    = {12},
+  pages     = {7657--7676},
+  year      = {2024},
+  doi       = {10.1109/TKDE.2024.3422006},
+  url       = {https://doi.org/10.1109/TKDE.2024.3422006},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Troca de wu2024wred: a autoria real é Brucato, Siddiqui, Wu, Narasayya e Chaudhuri
+% (o original dizia "Wu, Wentao and others" e tipo inproceedings).
+% ATENÇÃO (decisão 24, com a orientadora): há coautores de pesquisa da Microsoft.
+% verificada em 4 out. 2026 (Crossref 10.1145/3639305; resumo conferido)
+@article{brucato2024wred,
+  author    = {Brucato, Matteo and Siddiqui, Tarique and Wu, Wentao and Narasayya, Vivek and Chaudhuri, Surajit},
+  title     = {Wred: Workload Reduction for Scalable Index Tuning},
+  journal   = {Proceedings of the ACM on Management of Data},
+  volume    = {2},
+  number    = {1},
+  pages     = {1--26},
+  year      = {2024},
+  doi       = {10.1145/3639305},
+  url       = {https://doi.org/10.1145/3639305},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Acréscimo do DOI e da data de acesso. O conteúdo foi corrigido no texto: o artigo trata
+% da escolha de instâncias de nuvem para processamento analítico (resumo conferido).
+% verificada em 4 out. 2026 (Crossref 10.14778/3461535.3461549; PDF do VLDB aberto)
+@article{leis2021cost,
+  author    = {Leis, Viktor and Kuschewski, Maximilian},
+  title     = {Towards Cost-Optimal Query Processing in the Cloud},
+  journal   = {Proceedings of the VLDB Endowment},
+  volume    = {14},
+  number    = {9},
+  pages     = {1606--1612},
+  year      = {2021},
+  doi       = {10.14778/3461535.3461549},
+  url       = {https://www.vldb.org/pvldb/vol14/p1606-leis.pdf},
+  urlaccessdate = {4 out. 2026}
+}
+
+% CORREÇÃO: no original, a entrada gretscher2025vldb trazia o título "Extensible Query
+% Optimizers in Practice" (que é de Ding, Narasayya e Chaudhuri, Foundations and Trends in
+% Databases, 2024) com a URL deste artigo. O PDF da URL (vol18/p3910-gretscher.pdf) é
+% "How to Optimize SQL Queries? A Comparison Between Split, Holistic, and Hybrid Approaches",
+% de Luca Gretscher e Jens Dittrich.
+% verificada em 4 out. 2026 (Crossref 10.14778/3749646.3749663; PDF aberto e resumo lido)
+@article{gretscher2025vldb,
+  author    = {Gretscher, Luca and Dittrich, Jens},
+  title     = {How to Optimize {SQL} Queries? A Comparison Between Split, Holistic, and Hybrid Approaches},
+  journal   = {Proceedings of the VLDB Endowment},
+  volume    = {18},
+  number    = {11},
+  pages     = {3910--3922},
+  year      = {2025},
+  doi       = {10.14778/3749646.3749663},
+  url       = {https://www.vldb.org/pvldb/vol18/p3910-gretscher.pdf},
+  urlaccessdate = {4 out. 2026}
+}
+
+% verificada em 4 out. 2026 (Crossref 10.14778/2850583.2850594; resumo conferido)
+@article{leis2015good,
+  author    = {Leis, Viktor and Gubichev, Andrey and Mirchev, Atanas and Boncz, Peter and Kemper, Alfons and Neumann, Thomas},
+  title     = {How Good Are Query Optimizers, Really?},
+  journal   = {Proceedings of the VLDB Endowment},
+  volume    = {9},
+  number    = {3},
+  pages     = {204--215},
+  year      = {2015},
+  doi       = {10.14778/2850583.2850594},
+  url       = {https://www.vldb.org/pvldb/vol9/p204-leis.pdf},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Fascículo de dez. 2021 segundo o Crossref; frequentemente citado como 2022.
+% verificada em 4 out. 2026 (Crossref 10.14778/3503585.3503586; resumo conferido)
+@article{han2022cardest,
+  author    = {Han, Yuxing and Wu, Ziniu and Wu, Peizhi and Zhu, Rong and Yang, Jingyi and Tan, Liang Wei and Zeng, Kai and Cong, Gao and Qin, Yanzhao and Pfadler, Andreas and Qian, Zhengping and Zhou, Jingren and Li, Jiangneng and Cui, Bin},
+  title     = {Cardinality Estimation in {DBMS}: A Comprehensive Benchmark Evaluation},
+  journal   = {Proceedings of the VLDB Endowment},
+  volume    = {15},
+  number    = {4},
+  pages     = {752--765},
+  year      = {2021},
+  doi       = {10.14778/3503585.3503586},
+  url       = {https://doi.org/10.14778/3503585.3503586},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Dados do original mantidos; acréscimo do DOI e da data de acesso. O PDF do original
+% (CMU) foi aberto: título, autor e resumo conferem (complexidade O(n^2) de subconsultas
+% correlacionadas). DOI e páginas dos anais do BTW 2025 NÃO VERIFICADOS (não achados no Crossref).
+% verificada em 4 out. 2026 (PDF aberto) -- DOI/páginas NÃO VERIFICADOS
+@inproceedings{neumann2025unnesting,
+  author    = {Neumann, Thomas},
+  title     = {Improving Unnesting of Complex Queries},
+  booktitle = {BTW 2025 -- Datenbanksysteme f{\"u}r Business, Technologie und Web},
+  year      = {2025},
+  address   = {M{\"u}nchen},
+  url       = {https://15799.courses.cs.cmu.edu/spring2025/papers/11-unnesting/neumann-btw2025.pdf},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Substitui a entrada anônima "iastate" e "marcus2023arxiv" (identificador arXiv trocado):
+% o arXiv 2301.10315 é este artigo, não um survey de cardinalidade. Números 25.897 e 10.161
+% minutos (medianas de issues) e 53% contra 14% conferem no preprint; a versão publicada
+% foi conferida por leitura web (não confiável para tabelas): o autor deve conferir a Tabela 2.
+% verificada em 4 out. 2026 (Crossref 10.1007/s10664-023-10295-x; preprint arXiv aberto)
+@article{dacosta2023sql,
+  author    = {Costa, Daniel Alencar da and Grattan, Natalie and Stanger, Nigel and Licorish, Sherlock A.},
+  title     = {Studying the Characteristics of {SQL}-related Development Tasks: An Empirical Study},
+  journal   = {Empirical Software Engineering},
+  volume    = {28},
+  number    = {3},
+  pages     = {69},
+  year      = {2023},
+  doi       = {10.1007/s10664-023-10295-x},
+  url       = {https://doi.org/10.1007/s10664-023-10295-x},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Entrada já existente no original (sirigiri2025sqlperf), agora citada: substitui a entrada
+% sem autoria "researchgate2025sqlperf" (mesmo trabalho) e sustenta o contexto.
+% verificada em 4 out. 2026 (Crossref 10.14419/x2wqqh31; resumo conferido)
+@article{sirigiri2025sqlperf,
+  author    = {Sirigiri, Karthik},
+  title     = {Enhancing {SQL} Query Performance: A Case Study on Optimizing Enterprise Data Processing},
+  journal   = {International Journal of Basic and Applied Sciences},
+  volume    = {14},
+  number    = {5},
+  pages     = {353--360},
+  year      = {2025},
+  doi       = {10.14419/x2wqqh31},
+  url       = {https://www.sciencepubco.com/index.php/IJBAS/article/view/34642},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Entrada já existente no original (saidu2024indexing), agora citada. Sustenta que o índice
+% influencia o tempo de acesso e de inserção. Sem Qualis conferido.
+% verificada em 4 out. 2026 (Crossref 10.46481/jnsps.2024.2155; resumo conferido)
+@article{saidu2024indexing,
+  author    = {Saidu, Isah Charles and Yusuf, Musa and Nemariyi, Florence Chukwuemeka and George, Ayenopwa Comfort},
+  title     = {Indexing Techniques and Structured Queries for Relational Databases Management Systems},
+  journal   = {Journal of the Nigerian Society of Physical Sciences},
+  volume    = {6},
+  number    = {4},
+  pages     = {2155},
+  year      = {2024},
+  doi       = {10.46481/jnsps.2024.2155},
+  url       = {https://journal.nsps.org.ng/index.php/jnsps/article/view/2155},
+  urlaccessdate = {4 out. 2026}
+}
+
+% ============================================================
+% NACIONAIS (JIDM e SBBD), verificadas no relatório 15 e reconferidas no Crossref/SOL
+% ============================================================
+
+% verificada em 4 out. 2026 (Crossref 10.5753/jidm.2021.1984; página do JIDM)
+@article{marins2021outertuning,
+  author    = {Marins, Raphael and Oliveira, Rafael Pereira de and Haeusler, Edward Hermann and Lifschitz, S{\'e}rgio and Schwabe, Daniel and Almeida, Ana Carolina},
+  title     = {Outer-Tuning: an Ontology-based Extensible Framework for Supporting Database Automatic Tuning},
+  journal   = {Journal of Information and Data Management},
+  volume    = {12},
+  number    = {2},
+  year      = {2021},
+  doi       = {10.5753/jidm.2021.1984},
+  url       = {https://journals-sol.sbc.org.br/index.php/jidm/article/view/1984},
+  urlaccessdate = {4 out. 2026}
+}
+
+% verificada em 4 out. 2026 (Crossref 10.5753/sbbd.2021.17874; página da SBC)
+@inproceedings{perciliano2021ondbtuning,
+  author    = {Perciliano, Luciana de S{\'a} Silva and Santos, Veronica dos and Bai{\~a}o, Fernanda and Haeusler, Edward Hermann and Lifschitz, S{\'e}rgio and Almeida, Ana Carolina},
+  title     = {Inferencing Relational Database Tuning Actions with {OnDBTuning} Ontology},
+  booktitle = {Anais do XXXVI Simp{\'o}sio Brasileiro de Banco de Dados (SBBD)},
+  year      = {2021},
+  pages     = {157--168},
+  address   = {Rio de Janeiro},
+  publisher = {Sociedade Brasileira de Computa{\c{c}}{\~a}o},
+  doi       = {10.5753/sbbd.2021.17874},
+  url       = {https://sol.sbc.org.br/index.php/sbbd/article/view/17874},
+  urlaccessdate = {4 out. 2026}
+}
+
+% verificada em 4 out. 2026 (Crossref 10.5753/sbbd.2022.225212; página da SBC)
+@inproceedings{oliveira2022autonomic,
+  author    = {Oliveira, Rafael Pereira de and Bai{\~a}o, Fernanda and Machado, Javam and Almeida, Ana Carolina and Lifschitz, S{\'e}rgio},
+  title     = {Autonomic Combination and Selection of Tuning Actions},
+  booktitle = {Anais do XXXVII Simp{\'o}sio Brasileiro de Banco de Dados (SBBD)},
+  year      = {2022},
+  pages     = {39--51},
+  address   = {B{\'u}zios},
+  publisher = {Sociedade Brasileira de Computa{\c{c}}{\~a}o},
+  doi       = {10.5753/sbbd.2022.225212},
+  url       = {https://sol.sbc.org.br/index.php/sbbd/article/view/21794},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Artigo curto (SBBD 2013 Short Papers). O Crossref não devolveu o DOI; conferido na página do JIDM
+% (título, autores, DOI e resumo). Qualis do veículo, não do ano do artigo.
+% verificada em 4 out. 2026 (página do JIDM)
+@article{araujo2014aresql,
+  author    = {Ara{\'u}jo, Arlino H. M. de and Monteiro, Jos{\'e} Maria and Mac{\^e}do, Jos{\'e} Ant{\^o}nio F. de and Tavares, J{\'u}lio A. and Brayner, Angelo and Lifschitz, S{\'e}rgio},
+  title     = {{ARe-SQL}: An Online, Automatic and Non-Intrusive Approach for Rewriting {SQL} Queries},
+  journal   = {Journal of Information and Data Management},
+  volume    = {5},
+  number    = {1},
+  year      = {2014},
+  note      = {Artigo 28},
+  doi       = {10.5753/jidm.2014.1517},
+  url       = {https://journals-sol.sbc.org.br/index.php/jidm/article/view/1517},
+  urlaccessdate = {4 out. 2026}
+}
+
+% ============================================================
+% LIVROS E REFERÊNCIAS TÉCNICAS (terceiros, não Microsoft)
+% Dados bibliográficos verificados; o CONTEÚDO dos capítulos NÃO foi lido.
+% Antes da entrega, abrir o livro e confirmar os capítulos (ver README.md).
+% ============================================================
+
+% Substitui as citações da documentação do fabricante para métricas, Query Store, estatísticas,
+% índices e antipadrões. Capítulos a confirmar: 6 (métricas), 8-9 (índices), 11 (Query Store),
+% 13 (estatísticas e cardinalidade), 19 (projeto de consultas).
+% verificada em 4 out. 2026 (editora Springer/Apress; Crossref 10.1007/978-1-4842-3888-2) -- conteúdo NÃO lido
+@book{fritchey2018qpt,
+  author    = {Fritchey, Grant},
+  title     = {{SQL Server 2017} Query Performance Tuning: Troubleshoot and Optimize Query Performance},
+  edition   = {5},
+  publisher = {Apress},
+  address   = {Berkeley, CA},
+  year      = {2018},
+  isbn      = {978-1-4842-3888-2},
+  doi       = {10.1007/978-1-4842-3888-2},
+  url       = {https://link.springer.com/book/10.1007/978-1-4842-3888-2},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Sustenta a definição de plano de execução. Dados: página da Redgate e Google Livros (relatório 15).
+% verificada em 4 out. 2026 (relatório 15) -- conteúdo NÃO lido
+@book{fritchey2018plans,
+  author    = {Fritchey, Grant},
+  title     = {{SQL Server} Execution Plans},
+  edition   = {3},
+  publisher = {Red Gate Books},
+  year      = {2018},
+  isbn      = {978-1-910035-24-5},
+  url       = {https://books.google.com.br/books/about/SQL_Server_Execution_Plans.html?id=6oJevwEACAAJ},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Livro prático, não revisado por pares; usar como apoio ao catálogo de antipadrões.
+% verificada em 4 out. 2026 (página da editora Pragmatic Bookshelf) -- conteúdo NÃO lido
+@book{karwin2010antipatterns,
+  author    = {Karwin, Bill},
+  title     = {{SQL} Antipatterns: Avoiding the Pitfalls of Database Programming},
+  publisher = {The Pragmatic Programmers},
+  year      = {2010},
+  isbn      = {978-1-934356-55-5},
+  url       = {https://pragprog.com/titles/bksqla/sql-antipatterns/},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Entrada do original (rusanu2014perf), mantida. Blog técnico (fonte fraca); a página foi aberta e
+% confirma que as leituras lógicas são páginas lidas do cache em memória e "a melhor medida do custo
+% de uma instrução", e descreve o tempo de CPU e o tempo decorrido em sys.dm_exec_query_stats.
+% verificada em 4 out. 2026 (página aberta)
+@misc{rusanu2014perf,
+  author    = {Rusanu, Remus},
+  title     = {How to Analyse {SQL Server} Performance},
+  year      = {2014},
+  url       = {https://rusanu.com/2014/02/24/how-to-analyse-sql-server-performance/},
+  urlaccessdate = {4 out. 2026}
+}
+
+% ============================================================
+% CONJUNTO DE DADOS
+% ============================================================
+
+% verificada em 4 out. 2026 (página aberta; menciona licença CC BY-SA e a versão 2010)
+@misc{ozar2015stackoverflow,
+  author    = {Ozar, Brent},
+  title     = {How to Download the {Stack Overflow} Database},
+  year      = {2015},
+  howpublished = {Blog Brent Ozar Unlimited},
+  url       = {https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/},
+  urlaccessdate = {4 out. 2026}
+}
+
+% Ano 2024: última atualização do despejo indicada na página (relatório 14); a versão 2010 da cópia
+% de Ozar é de 2018. Confirmar a data a citar.
+% verificada em 4 out. 2026 (página do Internet Archive aberta; licença CC BY-SA 4.0)
+@misc{stackexchange2024dump,
+  author    = {{Stack Exchange, Inc.}},
+  title     = {Stack Exchange Data Dump},
+  year      = {2024},
+  howpublished = {Internet Archive},
+  note      = {Licença CC BY-SA 4.0},
+  url       = {https://archive.org/details/stackexchange},
+  urlaccessdate = {4 out. 2026}
+}

@@ -1,0 +1,2 @@
+modo,consultas,com_esperado,limpas,acertos,omissoes,acertos_no_alcance,limpas_corretas,consultas_com_falso_positivo,consultas_com_proibido,total_falsos_positivos,total_proibidos
+sql,13,10,3,5,5,10,3,0,0,0,0

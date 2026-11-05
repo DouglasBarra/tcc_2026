@@ -1,0 +1,12 @@
+.env
+.venv/
+node_modules/
+__pycache__/
+*.7z
+*.bak
+*.mdf
+*.ldf
+extraido/
+backups/
+.DS_Store
+artigo/build/

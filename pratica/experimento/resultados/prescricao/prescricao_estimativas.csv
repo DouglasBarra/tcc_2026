@@ -1,0 +1,34 @@
+tipo,consulta,indice,estimado,medido,erro_relativo,colunas_variaveis,origem
+tamanho_indice_paginas,F1,ix_exp_posts_creationdate,8331,8330,0.0001,False,r1-compat160/escrita_indice
+leituras_logicas,F1,IX_Posts_CreationDate,46,47.0,-0.0109,,r1-compat160 experiment_id 1 variante reescrita+indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,F2,ix_exp_users_displayname,2276,1282,0.7754,True,r1-compat160/escrita_indice
+leituras_logicas,F2,IX_Users_DisplayName_cob,3,3.0,0.0025,,r1-compat160 experiment_id 2 variante reescrita+indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,F3,ix_exp_votes_creationdate,27647,27638,0.0003,False,r1-compat160/escrita_indice
+leituras_logicas,F3,IX_Votes_CreationDate_cob,49,50.0,-0.0138,,r1-compat160 experiment_id 3 variante reescrita+indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,F4,ix_exp_posts_creationdate,8331,8330,0.0001,False,r1-compat160/escrita_indice
+leituras_logicas,F4,IX_Posts_CreationDate,4841,4839.0,0.0004,,r1-compat160 experiment_id 4 variante reescrita+indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,F5,ix_exp_votes_creationdate,27647,27638,0.0003,False,r1-compat160/escrita_indice
+leituras_logicas,F5,IX_Votes_CreationDate_cob,49,50.0,-0.0138,,r1-compat160 experiment_id 5 variante reescrita+indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,S1,ix_exp_posts_owner_cob,10165,10162,0.0003,False,r1-compat160/escrita_indice
+tamanho_indice_paginas,S2,ix_exp_votes_postid_cob,27647,27624,0.0008,False,r1-compat160/escrita_indice
+tamanho_indice_paginas,S3,ix_exp_comments_postid_cob,8657,8652,0.0006,False,r1-compat160/escrita_indice
+tamanho_indice_paginas,S4,ix_exp_posts_owner,6472,6470,0.0003,False,r1-compat160/escrita_indice
+tamanho_indice_paginas,S5,ix_exp_badges_userid,1913,1914,-0.0005,False,r1-compat160/escrita_indice
+tamanho_indice_paginas,C1,ix_exp_posts_owner_cob,12027,12023,0.0003,False,r1-compat160/escrita_indice
+leituras_logicas,C1,IX_Posts_OwnerUserId_cob,40,41.0,-0.0337,,r1-compat160 experiment_id 11 variante reescrita+indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,C2,ix_exp_posts_owner_cob,12027,12023,0.0003,False,r1-compat160/escrita_indice
+leituras_logicas,C2,IX_Posts_OwnerUserId_cob,3,3.0,0.057,,r1-compat160 experiment_id 12 variante reescrita+indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,C3,ix_exp_comments_userid_cob,10563,10560,0.0003,False,r1-compat160/escrita_indice
+leituras_logicas,C3,IX_Comments_UserId_cob,39,40.0,-0.0146,,r1-compat160 experiment_id 13 variante reescrita+indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,C4,ix_exp_users_location_cob,6130,1772,2.4594,True,r1-compat160/escrita_indice
+leituras_logicas,C4,IX_Users_Location_cob,78,32.0,1.433,,r1-compat160 experiment_id 14 variante reescrita+indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,V1,ix_exp_votes_postid,17603,17589,0.0008,False,r1-compat160/escrita_indice
+leituras_logicas,V1,IX_Votes_PostId,3,3.0,0.004,,r1-compat160 experiment_id 15 variante indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,V2,ix_exp_comments_userid,6726,6724,0.0003,False,r1-compat160/escrita_indice
+leituras_logicas,V2,IX_Comments_UserId,26,27.0,-0.0301,,r1-compat160 experiment_id 16 variante indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,V3,ix_exp_badges_userid,1913,1914,-0.0005,False,r1-compat160/escrita_indice
+leituras_logicas,V3,IX_Badges_UserId,8,9.0,-0.1226,,r1-compat160 experiment_id 17 variante indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,V4,ix_exp_posts_owner_score,8331,8333,-0.0002,False,r1-compat160/escrita_indice
+leituras_logicas,V4,IX_Posts_OwnerUserId_Score,10,11.0,-0.0538,,r1-compat160 experiment_id 18 variante indice (índice gerado ≠ necessariamente o do catálogo)
+tamanho_indice_paginas,V5,ix_exp_users_reputation,2276,1279,0.7795,True,r1-compat160/escrita_indice
+leituras_logicas,V5,IX_Users_Reputation_cob,134,82.0,0.6322,,r1-compat160 experiment_id 19 variante indice (índice gerado ≠ necessariamente o do catálogo)

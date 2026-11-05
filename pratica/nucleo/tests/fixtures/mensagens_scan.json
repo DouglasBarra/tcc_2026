@@ -1,0 +1,18 @@
+[
+ {
+  "numero": 3613,
+  "texto": "SQL Server parse and compile time: \n   CPU time = 0 ms, elapsed time = 0 ms."
+ },
+ {
+  "numero": 3613,
+  "texto": "SQL Server parse and compile time: \n   CPU time = 0 ms, elapsed time = 0 ms."
+ },
+ {
+  "numero": 3615,
+  "texto": "Table 'm0_sanidade'. Scan count 1, logical reads 5737, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0."
+ },
+ {
+  "numero": 3612,
+  "texto": "\n SQL Server Execution Times:\n   CPU time = 16 ms,  elapsed time = 16 ms."
+ }
+]

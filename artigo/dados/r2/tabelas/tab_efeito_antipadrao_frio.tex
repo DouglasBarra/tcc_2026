@@ -1,0 +1,34 @@
+% tab_efeito_antipadrao; regime frio; experimentos [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]; criterios_sha 23e5e61d4e23e46b
+% requer \usepackage{booktabs}; arquivo gerado por tcclab.relatorio (nao editar a mao)
+{\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrlrrrrl}
+\toprule
+Estrato & $n$ & Métrica & Redução mediana & IC95\% (bootstrap) & $p$ & $p$ (Holm) &  \\
+\midrule
+Todas & 17 & Leituras lógicas & 99,9\% & [98,9; 100,0] & $<$0,001 & $<$0,001 &  \\
+Todas & 17 & CPU (ms) & 99,1\% & [96,1; 99,8] & $<$0,001 & $<$0,001 &  \\
+Todas & 17 & Decorrido (ms) & 99,2\% & [96,2; 99,9] & $<$0,001 & $<$0,001 &  \\
+\midrule
+AP1 & 4 & Leituras lógicas & 99,9\% & [99,4; 100,0] & 0,125 & 0,375 & $^{\dagger}$ \\
+AP1 & 4 & CPU (ms) & 99,5\% & [98,0; 100,0] & 0,125 & 0,375 & $^{\dagger}$ \\
+AP1 & 4 & Decorrido (ms) & 99,5\% & [98,3; 100,0] & 0,125 & 0,375 & $^{\dagger}$ \\
+\midrule
+AP2 & 4 & Leituras lógicas & 62,4\% & [1,5; 98,5] & 0,125 & 0,375 & $^{\dagger}$ \\
+AP2 & 4 & CPU (ms) & 55,2\% & [8,2; 96,1] & 0,125 & 0,375 & $^{\dagger}$ \\
+AP2 & 4 & Decorrido (ms) & 51,5\% & [9,4; 96,2] & 0,125 & 0,375 & $^{\dagger}$ \\
+\midrule
+AP3 & 4 & Leituras lógicas & 100,0\% & [99,6; 100,0] & 0,125 & 0,375 & $^{\dagger}$ \\
+AP3 & 4 & CPU (ms) & 99,7\% & [97,4; 99,9] & 0,125 & 0,375 & $^{\dagger}$ \\
+AP3 & 4 & Decorrido (ms) & 99,7\% & [97,7; 100,0] & 0,125 & 0,375 & $^{\dagger}$ \\
+\midrule
+AP4 & 5 & Leituras lógicas & 100,0\% & [98,9; 100,0] & 0,062 & 0,188 & $^{\dagger}$ \\
+AP4 & 5 & CPU (ms) & 99,7\% & [93,3; 100,0] & 0,062 & 0,188 & $^{\dagger}$ \\
+AP4 & 5 & Decorrido (ms) & 99,9\% & [90,9; 100,0] & 0,062 & 0,188 & $^{\dagger}$ \\
+\bottomrule
+\end{tabular}\par
+\vspace{3pt}
+\begin{minipage}{\linewidth}\footnotesize
+Regime frio. Redução mediana = (1 $-$ mediana das razões depois/antes entre consultas) $\times$ 100; $p$: Wilcoxon de postos sinalizados sobre o log da razão (bilateral), Holm sobre 3 métricas, $\alpha$ = 0,05. Sem correção entre estratos.\par
+$^{\dagger}$ Exploratório: menos de 6 consultas ou $p$ mínimo atingível acima de $\alpha$ (o teste não pode rejeitar $H_0$).
+\end{minipage}
+}

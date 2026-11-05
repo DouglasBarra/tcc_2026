@@ -1,0 +1,272 @@
+{
+  "L1": {
+    "antipadrao": "NENHUM",
+    "titulo": "busca por chave primaria em Users",
+    "sql_original": "SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE Id = 22656",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x9733737E5989BD0C",
+        "custo": 0.0032831,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Seek:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x9733737E5989BD0C",
+        "custo": 0.0032831,
+        "leituras_plano": 3,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Seek:[dbo].[Users].[PK_Users_Id]"
+        ]
+      }
+    }
+  },
+  "L2": {
+    "antipadrao": "NENHUM",
+    "titulo": "busca por chave primaria em Posts com colunas listadas",
+    "sql_original": "SELECT Id, Title, Score FROM dbo.Posts WHERE Id = 4",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x72CB61359A3DB983",
+        "custo": 0.0032831,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Seek:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x72CB61359A3DB983",
+        "custo": 0.0032831,
+        "leituras_plano": 4,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Seek:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      }
+    }
+  },
+  "L3": {
+    "antipadrao": "NENHUM",
+    "titulo": "intervalo da chave primaria em Comments",
+    "sql_original": "SELECT Id, PostId, Score FROM dbo.Comments WHERE Id BETWEEN 1000 AND 1100",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x3AA503E4D015A1D8",
+        "custo": 0.00482728,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Seek:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x3AA503E4D015A1D8",
+        "custo": 0.00482728,
+        "leituras_plano": 7,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Seek:[dbo].[Comments].[PK_Comments__Id]"
+        ]
+      }
+    }
+  },
+  "L4": {
+    "antipadrao": "NENHUM",
+    "titulo": "contagem total de Votes (varredura legitima, sem filtro)",
+    "sql_original": "SELECT COUNT(*) AS N FROM dbo.Votes",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xFCEE0043234DFD1D",
+        "custo": 46.143,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xFCEE0043234DFD1D",
+        "custo": 46.143,
+        "leituras_plano": 46704,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Scan:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      }
+    }
+  },
+  "L5": {
+    "antipadrao": "NENHUM",
+    "titulo": "junção por chaves primarias (duas buscas)",
+    "sql_original": "SELECT p.Id, p.Title, u.DisplayName FROM dbo.Posts p JOIN dbo.Users u ON u.Id = p.OwnerUserId WHERE p.Id = 4",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x8D206EB9036065EC",
+        "custo": 0.00657038,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Nested Loops:",
+          "Clustered Index Seek:[dbo].[Posts].[PK_Posts__Id]",
+          "Clustered Index Seek:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x8D206EB9036065EC",
+        "custo": 0.00657038,
+        "leituras_plano": 7,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Nested Loops:",
+          "Clustered Index Seek:[dbo].[Posts].[PK_Posts__Id]",
+          "Clustered Index Seek:[dbo].[Users].[PK_Users_Id]"
+        ]
+      }
+    }
+  },
+  "L6": {
+    "antipadrao": "NENHUM",
+    "titulo": "subconsulta NAO correlacionada com busca por chave",
+    "sql_original": "SELECT Id, DisplayName FROM dbo.Users WHERE Id IN (SELECT OwnerUserId FROM dbo.Posts WHERE Id = 4)",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xCDC6C9B800CCCE3D",
+        "custo": 0.00657038,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Nested Loops:",
+          "Clustered Index Seek:[dbo].[Posts].[PK_Posts__Id]",
+          "Clustered Index Seek:[dbo].[Users].[PK_Users_Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xCDC6C9B800CCCE3D",
+        "custo": 0.00657038,
+        "leituras_plano": 7,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Nested Loops:",
+          "Clustered Index Seek:[dbo].[Posts].[PK_Posts__Id]",
+          "Clustered Index Seek:[dbo].[Users].[PK_Users_Id]"
+        ]
+      }
+    }
+  },
+  "L7": {
+    "antipadrao": "NENHUM",
+    "titulo": "TOP ordenado pela chave primaria",
+    "sql_original": "SELECT TOP (10) Id, Title FROM dbo.Posts ORDER BY Id",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xEA77FD20C55DDFA9",
+        "custo": 0.00472038,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Top:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xEA77FD20C55DDFA9",
+        "custo": 0.00472038,
+        "leituras_plano": 15,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Top:",
+          "Clustered Index Scan:[dbo].[Posts].[PK_Posts__Id]"
+        ]
+      }
+    }
+  },
+  "L8": {
+    "antipadrao": "NENHUM",
+    "titulo": "tabela minuscula inteira (varredura legitima)",
+    "sql_original": "SELECT Id, Name FROM dbo.VoteTypes",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0x57E3ACDD676B0615",
+        "custo": 0.0032985,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[VoteTypes].[PK_VoteType__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0x57E3ACDD676B0615",
+        "custo": 0.0032985,
+        "leituras_plano": 2,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Clustered Index Scan:[dbo].[VoteTypes].[PK_VoteType__Id]"
+        ]
+      }
+    }
+  },
+  "L9": {
+    "antipadrao": "NENHUM",
+    "titulo": "predicado sargavel em intervalo da chave primaria, com agregacao",
+    "sql_original": "SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE Id >= 1000 AND Id < 2000 GROUP BY VoteTypeId",
+    "sql_reescrita": null,
+    "planos": {
+      "original.estimado": {
+        "query_plan_hash": "0xDC869D27319396AC",
+        "custo": 0.0279483,
+        "leituras_plano": null,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Seek:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      },
+      "original.real": {
+        "query_plan_hash": "0xDC869D27319396AC",
+        "custo": 0.0279483,
+        "leituras_plano": 7,
+        "indices_ausentes": [],
+        "avisos": [],
+        "operadores": [
+          "Compute Scalar:",
+          "Hash Match:",
+          "Clustered Index Seek:[dbo].[Votes].[PK_Votes__Id]"
+        ]
+      }
+    }
+  }
+}

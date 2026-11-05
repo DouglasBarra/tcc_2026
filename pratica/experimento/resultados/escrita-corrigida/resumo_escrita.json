@@ -1,0 +1,762 @@
+[
+ {
+  "indice": "ix_exp_posts_creationdate",
+  "origem": "framework",
+  "tabela": "dbo.Posts",
+  "paginas": 8330,
+  "criacao_ms": 3344.3,
+  "qids": "F1+F4",
+  "insert_logical_reads": [
+   7808.0,
+   11000.0,
+   1.408811475409836
+  ],
+  "insert_log_bytes": [
+   1870740.0,
+   1986740.0,
+   1.062007547815303
+  ],
+  "update_logical_reads": [
+   208.0,
+   6581.0,
+   31.639423076923077
+  ],
+  "update_log_bytes": [
+   120120.0,
+   348120.0,
+   2.898101898101898
+  ],
+  "delete_logical_reads": [
+   208.0,
+   3279.0,
+   15.764423076923077
+  ],
+  "delete_log_bytes": [
+   1564652.0,
+   1676652.0,
+   1.0715814123523952
+  ]
+ },
+ {
+  "indice": "ix_exp_users_displayname",
+  "origem": "framework",
+  "tabela": "dbo.Users",
+  "paginas": 1282,
+  "criacao_ms": 414.9,
+  "qids": "F2",
+  "insert_logical_reads": [
+   2717.5,
+   7115.0,
+   2.6182152713891442
+  ],
+  "insert_log_bytes": [
+   80532.0,
+   1096264.0,
+   13.612775045944469
+  ],
+  "update_logical_reads": [
+   71.0,
+   6386.0,
+   89.94366197183099
+  ],
+  "update_log_bytes": [
+   147860.0,
+   416304.0,
+   2.815528202353578
+  ],
+  "delete_logical_reads": [
+   71.0,
+   3142.0,
+   44.25352112676056
+  ],
+  "delete_log_bytes": [
+   532976.0,
+   664200.0,
+   1.2462099606736514
+  ]
+ },
+ {
+  "indice": "ix_exp_votes_creationdate",
+  "origem": "framework",
+  "tabela": "dbo.Votes",
+  "paginas": 27638,
+  "criacao_ms": 4721.3,
+  "qids": "F3+F5",
+  "insert_logical_reads": [
+   5255.5,
+   9445.5,
+   1.7972600133193797
+  ],
+  "insert_log_bytes": [
+   140144.0,
+   261340.0,
+   1.8647962096129695
+  ],
+  "update_logical_reads": [
+   8.0,
+   6383.0,
+   797.875
+  ],
+  "update_log_bytes": [
+   120120.0,
+   356120.0,
+   2.964701964701965
+  ],
+  "delete_logical_reads": [
+   8.0,
+   3070.5,
+   383.8125
+  ],
+  "delete_log_bytes": [
+   132120.0,
+   248120.0,
+   1.877989706327581
+  ]
+ },
+ {
+  "indice": "ix_exp_posts_owner_cob",
+  "origem": "framework",
+  "tabela": "dbo.Posts",
+  "paginas": 12023,
+  "criacao_ms": 6219.4,
+  "qids": "C1+C2",
+  "insert_logical_reads": [
+   7806.5,
+   11054.5,
+   1.4160635367962595
+  ],
+  "insert_log_bytes": [
+   1870532.0,
+   1990740.0,
+   1.0642640703286552
+  ],
+  "update_logical_reads": [
+   208.0,
+   6465.0,
+   31.08173076923077
+  ],
+  "update_log_bytes": [
+   120120.0,
+   356120.0,
+   2.964701964701965
+  ],
+  "delete_logical_reads": [
+   208.0,
+   3279.0,
+   15.764423076923077
+  ],
+  "delete_log_bytes": [
+   1564652.0,
+   1680652.0,
+   1.0741378913649808
+  ]
+ },
+ {
+  "indice": "ix_exp_posts_owner",
+  "origem": "framework_extra",
+  "tabela": "dbo.Posts",
+  "paginas": 6470,
+  "criacao_ms": 6044.2,
+  "qids": "S1+S4+C1+C2+S2+S3",
+  "insert_logical_reads": [
+   7808.0,
+   10274.0,
+   1.3158299180327868
+  ],
+  "insert_log_bytes": [
+   1870740.0,
+   3136596.0,
+   1.6766605728214503
+  ],
+  "update_logical_reads": [
+   208.0,
+   6493.0,
+   31.216346153846153
+  ],
+  "update_log_bytes": [
+   120120.0,
+   340120.0,
+   2.8315018315018317
+  ],
+  "delete_logical_reads": [
+   208.0,
+   3279.0,
+   15.764423076923077
+  ],
+  "delete_log_bytes": [
+   1564652.0,
+   1672652.0,
+   1.0690249333398099
+  ]
+ },
+ {
+  "indice": "ix_exp_votes_postid_cob",
+  "origem": "framework",
+  "tabela": "dbo.Votes",
+  "paginas": 27624,
+  "criacao_ms": 8822.5,
+  "qids": "S2",
+  "insert_logical_reads": [
+   5255.5,
+   8450.0,
+   1.6078394063362191
+  ],
+  "insert_log_bytes": [
+   140144.0,
+   260144.0,
+   1.8562621303801803
+  ],
+  "update_logical_reads": [
+   8.0,
+   6383.0,
+   797.875
+  ],
+  "update_log_bytes": [
+   120120.0,
+   356120.0,
+   2.964701964701965
+  ],
+  "delete_logical_reads": [
+   8.0,
+   3070.5,
+   383.8125
+  ],
+  "delete_log_bytes": [
+   132120.0,
+   248120.0,
+   1.877989706327581
+  ]
+ },
+ {
+  "indice": "ix_exp_comments_postid_cob",
+  "origem": "framework",
+  "tabela": "dbo.Comments",
+  "paginas": 8652,
+  "criacao_ms": 2387.2,
+  "qids": "S3",
+  "insert_logical_reads": [
+   6778.0,
+   9971.0,
+   1.471082915314252
+  ],
+  "insert_log_bytes": [
+   453728.0,
+   569728.0,
+   1.2556597785457366
+  ],
+  "update_logical_reads": [
+   44.0,
+   6363.0,
+   144.61363636363637
+  ],
+  "update_log_bytes": [
+   120120.0,
+   348120.0,
+   2.898101898101898
+  ],
+  "delete_logical_reads": [
+   44.0,
+   3115.0,
+   70.79545454545455
+  ],
+  "delete_log_bytes": [
+   410468.0,
+   522468.0,
+   1.2728592728300379
+  ]
+ },
+ {
+  "indice": "ix_exp_badges_userid",
+  "origem": "framework",
+  "tabela": "dbo.Badges",
+  "paginas": 1914,
+  "criacao_ms": 744.0,
+  "qids": "S5+V3",
+  "insert_logical_reads": [
+   2836.0,
+   6025.0,
+   2.1244710860366713
+  ],
+  "insert_log_bytes": [
+   31216.0,
+   143216.0,
+   4.587903639159405
+  ],
+  "update_logical_reads": [
+   9.0,
+   6009.0,
+   667.6666666666666
+  ],
+  "update_log_bytes": [
+   120120.0,
+   340120.0,
+   2.8315018315018317
+  ],
+  "delete_logical_reads": [
+   9.0,
+   3009.0,
+   334.3333333333333
+  ],
+  "delete_log_bytes": [
+   140120.0,
+   248120.0,
+   1.7707679132172425
+  ]
+ },
+ {
+  "indice": "ix_exp_posts_owner_cob",
+  "origem": "framework",
+  "tabela": "dbo.Posts",
+  "paginas": 12023,
+  "criacao_ms": 6219.4,
+  "qids": "C1+C2",
+  "insert_logical_reads": [
+   7806.5,
+   11013.0,
+   1.4107474540447063
+  ],
+  "insert_log_bytes": [
+   1871220.0,
+   1995220.0,
+   1.0662669274590908
+  ],
+  "update_logical_reads": [
+   208.0,
+   6493.0,
+   31.216346153846153
+  ],
+  "update_log_bytes": [
+   120120.0,
+   364120.0,
+   3.0313020313020314
+  ],
+  "delete_logical_reads": [
+   208.0,
+   3279.0,
+   15.764423076923077
+  ],
+  "delete_log_bytes": [
+   1564652.0,
+   1684652.0,
+   1.0766943703775664
+  ]
+ },
+ {
+  "indice": "ix_exp_comments_userid_cob",
+  "origem": "framework",
+  "tabela": "dbo.Comments",
+  "paginas": 10560,
+  "criacao_ms": 4895.3,
+  "qids": "C3",
+  "insert_logical_reads": [
+   6778.0,
+   9969.0,
+   1.4707878430215402
+  ],
+  "insert_log_bytes": [
+   453728.0,
+   573728.0,
+   1.2644756329783482
+  ],
+  "update_logical_reads": [
+   44.0,
+   6044.0,
+   137.36363636363637
+  ],
+  "update_log_bytes": [
+   120192.0,
+   356192.0,
+   2.963525026624068
+  ],
+  "delete_logical_reads": [
+   44.0,
+   3044.0,
+   69.18181818181819
+  ],
+  "delete_log_bytes": [
+   410468.0,
+   526468.0,
+   1.282604246859682
+  ]
+ },
+ {
+  "indice": "ix_exp_comments_userid",
+  "origem": "framework",
+  "tabela": "dbo.Comments",
+  "paginas": 6724,
+  "criacao_ms": 4375.5,
+  "qids": "C3+V2",
+  "insert_logical_reads": [
+   6778.0,
+   7973.0,
+   1.1763056948952493
+  ],
+  "insert_log_bytes": [
+   453728.0,
+   842612.0,
+   1.857086183792933
+  ],
+  "update_logical_reads": [
+   44.0,
+   6044.0,
+   137.36363636363637
+  ],
+  "update_log_bytes": [
+   120192.0,
+   340192.0,
+   2.8304046858359957
+  ],
+  "delete_logical_reads": [
+   44.0,
+   3044.0,
+   69.18181818181819
+  ],
+  "delete_log_bytes": [
+   410468.0,
+   518468.0,
+   1.2631142988003936
+  ]
+ },
+ {
+  "indice": "ix_exp_users_location_cob",
+  "origem": "framework",
+  "tabela": "dbo.Users",
+  "paginas": 1772,
+  "criacao_ms": 302.0,
+  "qids": "C4",
+  "insert_logical_reads": [
+   2717.5,
+   7285.0,
+   2.6807727690892365
+  ],
+  "insert_log_bytes": [
+   80532.0,
+   1135352.0,
+   14.098147320319873
+  ],
+  "update_logical_reads": [
+   71.0,
+   6071.0,
+   85.50704225352112
+  ],
+  "update_log_bytes": [
+   141096.0,
+   469736.0,
+   3.329194307421897
+  ],
+  "delete_logical_reads": [
+   71.0,
+   3071.0,
+   43.25352112676056
+  ],
+  "delete_log_bytes": [
+   532976.0,
+   694316.0,
+   1.3027153192639067
+  ]
+ },
+ {
+  "indice": "ix_exp_users_location",
+  "origem": "framework",
+  "tabela": "dbo.Users",
+  "paginas": 847,
+  "criacao_ms": 288.5,
+  "qids": "C4",
+  "insert_logical_reads": [
+   5686.0,
+   7326.0,
+   1.2884277172001406
+  ],
+  "insert_log_bytes": [
+   595376.0,
+   1105740.0,
+   1.8572129209104835
+  ],
+  "update_logical_reads": [
+   71.0,
+   6071.0,
+   85.50704225352112
+  ],
+  "update_log_bytes": [
+   141096.0,
+   420996.0,
+   2.9837557407722404
+  ],
+  "delete_logical_reads": [
+   71.0,
+   3071.0,
+   43.25352112676056
+  ],
+  "delete_log_bytes": [
+   532976.0,
+   669816.0,
+   1.2567470205037374
+  ]
+ },
+ {
+  "indice": "ix_exp_votes_postid",
+  "origem": "framework",
+  "tabela": "dbo.Votes",
+  "paginas": 17589,
+  "criacao_ms": 7829.7,
+  "qids": "V1",
+  "insert_logical_reads": [
+   5255.5,
+   8446.0,
+   1.6070782989249357
+  ],
+  "insert_log_bytes": [
+   140144.0,
+   252144.0,
+   1.7991779883548351
+  ],
+  "update_logical_reads": [
+   8.0,
+   6383.0,
+   797.875
+  ],
+  "update_log_bytes": [
+   120120.0,
+   340120.0,
+   2.8315018315018317
+  ],
+  "delete_logical_reads": [
+   8.0,
+   3070.5,
+   383.8125
+  ],
+  "delete_log_bytes": [
+   132120.0,
+   240120.0,
+   1.8174386920980927
+  ]
+ },
+ {
+  "indice": "ix_exp_posts_owner_score",
+  "origem": "framework",
+  "tabela": "dbo.Posts",
+  "paginas": 8333,
+  "criacao_ms": 6552.1,
+  "qids": "V4",
+  "insert_logical_reads": [
+   7806.5,
+   10998.5,
+   1.4088900275411516
+  ],
+  "insert_log_bytes": [
+   1871220.0,
+   1987220.0,
+   1.061991641816569
+  ],
+  "update_logical_reads": [
+   208.0,
+   6499.0,
+   31.245192307692307
+  ],
+  "update_log_bytes": [
+   120120.0,
+   348120.0,
+   2.898101898101898
+  ],
+  "delete_logical_reads": [
+   208.0,
+   3279.0,
+   15.764423076923077
+  ],
+  "delete_log_bytes": [
+   1564652.0,
+   1676652.0,
+   1.0715814123523952
+  ]
+ },
+ {
+  "indice": "ix_exp_posts_score_owner",
+  "origem": "framework_extra",
+  "tabela": "dbo.Posts",
+  "paginas": 8333,
+  "criacao_ms": 7664.3,
+  "qids": "V4",
+  "insert_logical_reads": [
+   7808.0,
+   10999.0,
+   1.4086834016393444
+  ],
+  "insert_log_bytes": [
+   1871220.0,
+   1987220.0,
+   1.061991641816569
+  ],
+  "update_logical_reads": [
+   208.0,
+   6467.0,
+   31.091346153846153
+  ],
+  "update_log_bytes": [
+   120120.0,
+   348120.0,
+   2.898101898101898
+  ],
+  "delete_logical_reads": [
+   208.0,
+   3279.0,
+   15.764423076923077
+  ],
+  "delete_log_bytes": [
+   1564652.0,
+   1676652.0,
+   1.0715814123523952
+  ]
+ },
+ {
+  "indice": "ix_exp_users_reputation",
+  "origem": "framework",
+  "tabela": "dbo.Users",
+  "paginas": 1279,
+  "criacao_ms": 252.9,
+  "qids": "V5+S5",
+  "insert_logical_reads": [
+   2717.5,
+   7119.0,
+   2.6196872125114994
+  ],
+  "insert_log_bytes": [
+   80532.0,
+   1117256.0,
+   13.873441613271742
+  ],
+  "update_logical_reads": [
+   71.0,
+   6071.0,
+   85.50704225352112
+  ],
+  "update_log_bytes": [
+   120120.0,
+   386568.0,
+   3.2181818181818183
+  ],
+  "delete_logical_reads": [
+   71.0,
+   3071.0,
+   43.25352112676056
+  ],
+  "delete_log_bytes": [
+   532976.0,
+   664200.0,
+   1.2462099606736514
+  ]
+ },
+ {
+  "indice": "ix_exp_nativo_posts (C1+C2)",
+  "origem": "nativo",
+  "tabela": "[dbo].[Posts]",
+  "paginas": 863949,
+  "criacao_ms": 47510.9,
+  "qids": "C1+C2",
+  "insert_logical_reads": [
+   7806.5,
+   13733.0,
+   1.7591750464356626
+  ],
+  "insert_log_bytes": [
+   1871220.0,
+   3647620.0,
+   1.9493271769220082
+  ],
+  "update_logical_reads": [
+   208.0,
+   8708.0,
+   41.86538461538461
+  ],
+  "update_log_bytes": [
+   120120.0,
+   3332448.0,
+   27.742657342657342
+  ],
+  "delete_logical_reads": [
+   208.0,
+   4270.5,
+   20.53125
+  ],
+  "delete_log_bytes": [
+   1564652.0,
+   3119816.0,
+   1.993936031782147
+  ]
+ },
+ {
+  "indice": "ix_exp_nativo_comments (C3)",
+  "origem": "nativo",
+  "tabela": "[dbo].[Comments]",
+  "paginas": 167145,
+  "criacao_ms": 10507.8,
+  "qids": "C3",
+  "insert_logical_reads": [
+   6778.0,
+   11371.0,
+   1.6776335202124522
+  ],
+  "insert_log_bytes": [
+   453728.0,
+   864076.0,
+   1.9043920586783272
+  ],
+  "update_logical_reads": [
+   44.0,
+   8044.0,
+   182.8181818181818
+  ],
+  "update_log_bytes": [
+   120192.0,
+   936888.0,
+   7.794928115015974
+  ],
+  "delete_logical_reads": [
+   44.0,
+   4044.0,
+   91.9090909090909
+  ],
+  "delete_log_bytes": [
+   410468.0,
+   816816.0,
+   1.9899626767494665
+  ]
+ },
+ {
+  "indice": "ix_exp_nativo_users (C4)",
+  "origem": "nativo",
+  "tabela": "[dbo].[Users]",
+  "paginas": 7354,
+  "criacao_ms": 783.8,
+  "qids": "C4",
+  "insert_logical_reads": [
+   2717.5,
+   7069.0,
+   2.6012879484820606
+  ],
+  "insert_log_bytes": [
+   80532.0,
+   1469972.0,
+   18.25326578254607
+  ],
+  "update_logical_reads": [
+   71.0,
+   6071.0,
+   85.50704225352112
+  ],
+  "update_log_bytes": [
+   141096.0,
+   1208120.0,
+   8.562397233089527
+  ],
+  "delete_logical_reads": [
+   71.0,
+   3071.0,
+   43.25352112676056
+  ],
+  "delete_log_bytes": [
+   532976.0,
+   1063516.0,
+   1.9954294377232746
+  ]
+ }
+]

@@ -1,0 +1,125 @@
+{
+  "experiment_id": 18,
+  "semente": 20261025,
+  "status": "concluido",
+  "manifesto": {
+    "nome": "r1-compat160:V4",
+    "database": "so_exp",
+    "regimes": [
+      "quente",
+      "frio"
+    ],
+    "aquecimentos": 2,
+    "repeticoes": {
+      "quente": 20,
+      "frio": 8
+    },
+    "ordem": "ABA",
+    "semente": 20261025,
+    "cache_planos": "escopo",
+    "estatisticas_tabelas": [
+      "dbo.Posts"
+    ],
+    "microssegundos": true,
+    "sessao": [
+      "SET NOCOUNT ON",
+      "SET LANGUAGE us_english",
+      "SET ARITHABORT ON",
+      "SET STATISTICS IO ON",
+      "SET STATISTICS TIME ON"
+    ],
+    "variantes": [
+      {
+        "nome": "original",
+        "sql": "SELECT COUNT(*) AS N FROM dbo.Posts WHERE OwnerUserId = 22656 AND Score > 10",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "original",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "indice",
+        "sql": "SELECT COUNT(*) AS N FROM dbo.Posts WHERE OwnerUserId = 22656 AND Score > 10",
+        "ddl_aplicar": "CREATE INDEX ix_exp_posts_owner_score ON dbo.Posts (OwnerUserId, Score)",
+        "ddl_reverter": "DROP INDEX ix_exp_posts_owner_score ON dbo.Posts",
+        "kind": "indice",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "controle: ordem invertida das colunas",
+        "sql": "SELECT COUNT(*) AS N FROM dbo.Posts WHERE OwnerUserId = 22656 AND Score > 10",
+        "ddl_aplicar": "CREATE INDEX ix_exp_posts_score_owner ON dbo.Posts (Score, OwnerUserId)",
+        "ddl_reverter": "DROP INDEX ix_exp_posts_score_owner ON dbo.Posts",
+        "kind": "controle_ordem",
+        "repeticoes": null,
+        "aquecimentos": null
+      }
+    ],
+    "blocos_planejados": [
+      "A1",
+      "B",
+      "C",
+      "A2"
+    ]
+  },
+  "ordem_executada": [
+    {
+      "seq": 1,
+      "regime": "quente",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 175
+    },
+    {
+      "seq": 2,
+      "regime": "quente",
+      "bloco": "B",
+      "variante": "indice",
+      "run_id": 176
+    },
+    {
+      "seq": 3,
+      "regime": "quente",
+      "bloco": "C",
+      "variante": "controle: ordem invertida das colunas",
+      "run_id": 177
+    },
+    {
+      "seq": 4,
+      "regime": "quente",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 178
+    },
+    {
+      "seq": 5,
+      "regime": "frio",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 179
+    },
+    {
+      "seq": 6,
+      "regime": "frio",
+      "bloco": "B",
+      "variante": "indice",
+      "run_id": 180
+    },
+    {
+      "seq": 7,
+      "regime": "frio",
+      "bloco": "C",
+      "variante": "controle: ordem invertida das colunas",
+      "run_id": 181
+    },
+    {
+      "seq": 8,
+      "regime": "frio",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 182
+    }
+  ]
+}

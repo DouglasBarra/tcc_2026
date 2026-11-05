@@ -1,0 +1,96 @@
+% =====================================================================
+% 4 RESULTADOS E DISCUSSÃO
+% Números da rodada R1 (cenário quente), lidos de dados/r2/ (tabelas e figura geradas por
+% tcclab relatorio e artigo/gerar_tabelas_extras.py; nada é digitado à mão nas tabelas).
+% Os números do texto vêm de dados/r2/numeros-do-artigo.md e dos CSV; ao trocar para a R2,
+% conferir cada um (as leituras lógicas devem ser idênticas; os tempos mudam).
+% \PENDENTE marca o que depende da R2, da medição corrigida do custo de escrita e da iteração 2.
+% Escrever no pretérito. Interpretar, não recitar a tabela.
+% =====================================================================
+
+\section{RESULTADOS E DISCUSSÃO}\label{sec:rd}
+
+\subsection{Visão geral da execução}\label{sec:visao}
+
+Foram executadas 19 consultas, 17 principais e 2 de controle, em quatro classes de antipadrão: função aplicada à coluna filtrada, subconsulta correlacionada, \texttt{SELECT *} e varredura completa por falta de índice. Cada consulta foi medida em 20 repetições no cenário quente e em 8 no frio. A equivalência de resultado entre as versões original e otimizada foi confirmada nas 14 consultas que têm reescrita, e nenhuma consulta foi excluída. O servidor registrou a versão 16.0.4295.3 (RTM-CU27), e as nove tabelas somam 19,3 milhões de linhas.
+
+As leituras lógicas foram idênticas entre as repetições em 138 dos 150 grupos de consulta, variante e cenário. Nos 13 restantes, todos com busca por chave (\textit{key lookup}) ou laços aninhados, a variação foi de no máximo 6 páginas no cenário quente e de cerca de 12\% no frio, atribuída ao pré-carregamento assíncrono de páginas (\textit{read-ahead}), hipótese que não foi isolada; por isso a análise principal usa o cenário quente, e o frio é reportado à parte. A primeira execução completa do protocolo, R1, com o computador em uso por outras tarefas, e a segunda, R2, sem outra carga, deram as mesmas medianas de leituras lógicas no cenário quente em todos os 56 pares de consulta e braço, e a análise usa a R2, cujos tempos são os mais confiáveis. No cenário frio, 48 dos 56 pares coincidiram, e os demais diferiram em até 2,6\%.
+
+\subsection{Resultados por antipadrão}\label{sec:resultados-antipadrao}
+
+A Tabela~\ref{tab:bracos}, no Apêndice A, traz as leituras lógicas medianas de cada consulta no cenário quente, por braço do experimento, e a Tabela~\ref{tab:efeito} consolida o efeito da prescrição por classe nas três métricas. A Figura~\ref{fig:razao}, também no Apêndice A, mostra a razão entre as medições depois e antes de cada consulta, nas três métricas, em escala logarítmica.
+
+Na classe de função sobre coluna filtrada (F1 a F4), a reescrita isolada não alterou as leituras lógicas, porque sem índice o plano continua a varrer a tabela inteira, com 800.856 páginas em F1 e F4. O índice isolado reduziu 99\% em F1 e F4, mas apenas 40,8\% em F3, em que o filtro com \texttt{DATEDIFF} impede a busca e o plano percorre o índice inteiro. A prescrição, que combina os dois, reduziu de 99,4\% a 100\%. Em F4, de seletividade baixa, pois o filtro cobre 58\% das linhas, o ganho de 99,4\% não decorre da seletividade: o índice de uma coluna ocupa 8.330 páginas, contra 800.856 da tabela, e basta para contar as linhas.
+
+A classe de subconsulta correlacionada teve o menor efeito, com redução mediana de 63,1\%. Em S1, com três subconsultas sobre a mesma tabela, a reescrita para junção reduziu 66,5\%, o índice que cobre as colunas lidas, 97,6\%, e a prescrição, 99,0\%. Em S4, a reescrita para junção com \texttt{HAVING} piorou o resultado do índice isolado, que leu 13.875 páginas contra 22.636 da prescrição. Em S2 e S3, a prescrição reduziu apenas 6,4\% e 28,9\%. A prescrição indexou a tabela interna da junção (\texttt{Votes} e \texttt{Comments}), mas a maior parte das leituras vinha da varredura de \texttt{Posts} pelo filtro externo, em \texttt{OwnerUserId}, que o índice sugerido pelo recurso nativo cobriu e reduziu em 89,6\% e 70,3\%. Pela regra de iteração do \textit{framework}, S2 não atingiu o critério e retornaria ao diagnóstico. Na segunda volta do \textit{framework}, uma análise pós-hoc e não pré-registrada, o índice em \texttt{OwnerUserId} foi acrescentado à prescrição: S2 passou de 6,4\% para 95,9\% (36.441 páginas) e S3, de 28,9\% para 99,2\% (8.673), e o tempo de execução de S2 caiu de 2,9 s para 34 ms. A segunda volta corrigiu, portanto, a prescrição das duas consultas.
+
+Na classe de \texttt{SELECT *}, a reescrita isolada, que lista só as colunas necessárias, também não alterou as leituras. O índice apenas na chave, mantendo \texttt{SELECT *}, reduziu 94,2\% em C1, 100\% em C2 e 67,8\% em C3, e nada em C4, de seletividade de 1,2\%, em que o otimizador preferiu a varredura. A prescrição, que lista as colunas e inclui no índice as que a consulta lê, reduziu de 99,6\% a 100\%, com 41, 3, 40 e 32 páginas lidas. Na classe de varredura por índice ausente, o índice reduziu de 99,9\% a 100\% em V1 a V4 e 98,9\% em V5, de seletividade média.
+
+\begin{table}[H]
+\centering
+\flutuante{%
+\input{dados/r2/tabelas/tab_efeito_antipadrao_quente}%
+}{\caption{Efeito da prescrição por classe e métrica, cenário quente}
+\label{tab:efeito}}{Fonte: Do autor.}
+\end{table}
+
+Os controles confirmaram que o otimizador absorve parte dos antipadrões. Em F5, com \texttt{CONVERT} da coluna para data, o índice sem reescrita já leu 50 páginas, as mesmas da prescrição: o otimizador aproveitou o índice mesmo com a conversão aplicada à coluna, e o antipadrão só se manifestou pela falta do índice. Em S5, com uma única subconsulta, o plano da reescrita foi idêntico ao do original, ou seja, o otimizador já havia convertido a subconsulta em junção, e a redução de 33,2\% veio do índice, mais estreito que a tabela.
+
+\subsection{Análise consolidada e teste da hipótese}\label{sec:hipotese}
+
+Entre as 17 consultas principais, a redução mediana das leituras lógicas foi de 99,9\%, muito acima do limiar de 20\% (teste de Wilcoxon exato, $p < 0{,}001$, com correção de Holm para as três métricas). Dezesseis das 17 atingiram o limiar individualmente, e a exceção foi S2, com 6,4\%. As reduções medianas foram de 99,0\% no tempo de processamento e no tempo de execução (98,8\% na R1), mas, com a emulação, esses valores são relativos. Na R2, uma consulta, F3, teve deriva acima de 25\% entre as duas medições do original e foi repetida; na R1, foram duas, F4 e S4. A hipótese foi confirmada para o conjunto e, na primeira volta, não foi confirmada para S2, cuja prescrição não atacou o gargalo dominante; na segunda volta, pós-hoc, S2 atingiu 95,9\%. Com as duas consultas de controle, a redução mediana permaneceu em 99,9\%.
+
+A decomposição por braço mostra a contribuição de cada recomendação. A reescrita isolada teve mediana de 0\% nas leituras lógicas, e o índice isolado, de 88,5\%. A prescrição leu menos páginas que o índice isolado em 11 das 12 consultas com reescrita, e a exceção foi S4. Dois braços adicionais mostraram os riscos. Em S1, a reescrita com um índice que não cobre as colunas lidas, apenas \texttt{OwnerUserId}, leu 4.964.675 páginas, 2,06 vezes as 2.409.973 do original, e levou cerca de 40 s por execução, contra 7 s do original: o índice piorou a consulta. Em V4, o índice com a ordem das colunas invertida, \texttt{(Score, OwnerUserId)}, leu 825 páginas, contra 11 da ordem prescrita, com a igualdade antes do intervalo, e ainda assim 99,9\% abaixo da linha de base.
+
+\subsection{Custo de escrita e índice nativo}\label{sec:escrita}
+
+O recurso de índices ausentes não sugeriu nenhum índice para seis das 17 consultas principais (F1 a F4, S1 e S4). Em seis outras (C1 a C4, S2 e S3), a sugestão diferiu do índice do \textit{framework}. Em S2 e S3, o índice nativo foi melhor, por cobrir o filtro externo. Em C1 a C4, que usam \texttt{SELECT *}, foi pior: leu 2.845, 14, 615 e 164 páginas, contra 41, 3, 40 e 32 da prescrição, e o índice sugerido repete como colunas incluídas todas as demais colunas da tabela, inclusive \texttt{Body}, de texto longo.
+
+O custo de escrita foi medido nos 17 índices distintos do \textit{framework} e nos três índices nativos que diferiram deles (Tabela~\ref{tab:escrita}, no Apêndice A). Nos índices do \textit{framework}, o \texttt{INSERT} de mil linhas elevou os bytes de log em 1,06 a 1,88 vezes em 13 dos 17 índices e em 4,59 a 14,1 vezes nos quatro restantes, de \texttt{Badges} e de \texttt{Users}, tabelas de linha estreita; o \texttt{UPDATE} da coluna-chave elevou-os em 2,8 a 3,3 vezes, porque a entrada do índice sai de uma posição e entra em outra; e o \texttt{DELETE}, em 1,07 a 1,88 vezes. As razões de leituras lógicas do \texttt{UPDATE} e do \texttt{DELETE}, de 15,8 a 798 vezes, são altas porque a linha de base, sem índice secundário, lê poucas páginas, e por isso a comparação do custo usa os bytes de log. O ganho nas leituras teve, portanto, como contrapartida um custo de 1 a 3 vezes no log das escritas na maioria dos índices; o protocolo reporta esse custo e não o julga, e pesá-lo contra o ganho cabe ao desenvolvedor. A rodada de sensibilidade da R2, que usou o método corrigido em outro nível de compatibilidade, reproduziu as razões de bytes de log dos índices do \textit{framework} com diferença máxima de 1,1\% em 42 pares de índice e operação.
+
+Os índices nativos para \texttt{SELECT *} custaram mais. O de \texttt{Posts}, que inclui 18 colunas, ocupou 863.949 páginas, 72 vezes as 12.023 do índice do \textit{framework} na mesma consulta, e elevou os bytes de log do \texttt{UPDATE} em 27,7 vezes, contra 3,0; o de \texttt{Comments} ocupou 167.145 páginas, contra 10.560, e elevou o \texttt{UPDATE} em 7,8 vezes, contra 3,0; e o de \texttt{Users}, 7.354 páginas, contra 1.772, e 8,6 vezes, contra 3,3. Em C1 a C4, o índice nativo leu mais páginas que o do \textit{framework} e custou mais para manter.
+
+\subsection{Sensibilidade ao nível de compatibilidade}\label{sec:sensibilidade}
+
+Com o nível de compatibilidade 100, o do conjunto de dados original, o estimador de cardinalidade é o legado. A redução mediana das leituras lógicas foi a mesma, 99,9\% ($p < 0{,}001$), e 51 dos 56 pares de consulta e braço tiveram leituras idênticas às do nível 160, com diferença menor que 1\%. As diferenças ficaram em S2 e S4. No original de S2, o estimador legado escolheu um plano que leu 31.451.276 páginas, 35 vezes as 894.264 do nível 160, e a prescrição reduziu 97,3\%, o que indica que o menor espaço de ganho de S2 no nível 160 reflete um plano do original muito melhor escolhido pelo estimador atual. Em S4, o índice isolado leu 22.636 páginas no nível 100, contra 13.875 no 160.
+
+\subsection{Comparação com os trabalhos correlatos}\label{sec:comparacao}
+
+A Tabela~\ref{tab:correlatos} resume os trabalhos correlatos apresentados na introdução e a lacuna de cada um em relação a este trabalho.
+
+\begin{table}[H]
+\centering
+\flutuante{%
+\small
+\begin{tabular}{ | m{2.8cm} | m{4.7cm} | m{5.1cm} | }
+\hline
+\textbf{Trabalho} & \textbf{Foco} & \textbf{Lacuna em relação a este trabalho} \\
+\hline
+\citeonline{leis2021cost} & Configuração de instâncias em nuvem para processamento analítico & Atua na infraestrutura; não trata de indexação nem da escrita da consulta \\
+\hline
+\citeonline{gretscher2025vldb} & Estratégias de otimização de consultas no otimizador & Perspectiva de quem desenvolve o sistema de banco de dados \\
+\hline
+\citeonline{wu2024indextuning} & Levantamento do ajuste automático de índices & Não oferece método manual e iterativo para o desenvolvedor \\
+\hline
+\citeonline{brucato2024wred} & Redução da carga de trabalho para acelerar o ajuste de índices & Automação sobre carga existente, posterior à escrita \\
+\hline
+\citeonline{marins2021outertuning} & \textit{Framework} com ontologia para sintonia semiautomática & Sintonia do sistema; não orienta a escrita da consulta \\
+\hline
+\citeonline{perciliano2021ondbtuning} & Inferência de ações de sintonia com ontologia & Recomendação de índices por inferência; sem foco em antipadrões de escrita \\
+\hline
+\citeonline{oliveira2022autonomic} & Combinação e seleção automática de ações de sintonia & Automação; sem validação por métricas ligada à escrita da consulta \\
+\hline
+\citeonline{araujo2014aresql} & Reescrita automática de consultas SQL & Reescrita sem relação explícita com a estratégia de indexação \\
+\hline
+\end{tabular}%
+}{\caption{Trabalhos correlatos e lacuna em relação a este trabalho}
+\label{tab:correlatos}}{Fonte: Do autor.}
+\end{table}
+
+Cada trabalho correlato sustenta uma afirmação que os resultados confirmam, contradizem ou ampliam. Com \citeonline{wu2024indextuning}, a afirmação a confrontar é que parte dos métodos automáticos considera apenas a recuperação de dados, sem o impacto das modificações, e outra parte inclui o custo de manutenção dos índices. Os resultados mostram que a sugestão do recurso nativo não traz esse custo: ela informa colunas e impacto na consulta, não sugeriu índice em seis das 17 consultas e, nas de \texttt{SELECT *}, sugeriu índices que repetem todas as colunas da tabela. Nas consultas de \texttt{SELECT *}, o índice sugerido ocupou de 4 a 72 vezes mais páginas e elevou os bytes de log do \texttt{UPDATE} em 8 a 28 vezes, contra 3 a 3,3 vezes dos índices do \textit{framework}, de modo que a sugestão, que informa o ganho estimado e não o custo de escrita, traz um custo de manutenção que o desenvolvedor não vê. Com \citeonline{brucato2024wred}, a comparação é de escopo, a consulta individual contra a carga de trabalho. Em S2 e S3, a análise de uma consulta isolada pelo desenvolvedor não viu o gargalo do filtro externo, que a ferramenta automática viu, e o contrário ocorreu nas consultas com \texttt{SELECT *}: os dois enfoques se mostraram complementares. \PENDENTE{confirmar com a orientadora se a autoria de pesquisadores da Microsoft em Brucato et al. (2024) é compatível com a regra de não citar a Microsoft}
+
+Com \citeonline{gretscher2025vldb}, a questão é se alguma consulta resistiu à melhoria do plano pelo otimizador. O otimizador converteu sozinho a subconsulta única de S5 e aproveitou o índice em F5, mesmo com a conversão da coluna para data, mas não converteu as funções \texttt{YEAR}, \texttt{DATEDIFF} e \texttt{UPPER} sobre a coluna, nem as subconsultas múltiplas sobre a mesma tabela, de modo que esses antipadrões persistiram. Com \citeonline{leis2021cost}, o contraste é que o \textit{hardware} foi mantido constante e variaram a consulta e o índice: as leituras lógicas mudaram em até cinco ordens de grandeza, de 800.856 para 3 páginas em C2, o que é compatível com a observação dos autores de que o desempenho pode variar em ordens de grandeza, aqui por causa da consulta e do índice, e não da instância. Com \citeonline{araujo2014aresql}, que relataram ganhos de até 92,5\% com a reescrita automática, a reescrita isolada reduziu as leituras lógicas em 66,5\% no melhor caso (S1) e em 0\% nas classes de função e de \texttt{SELECT *}; os autores podem ter usado outra métrica, de modo que a comparação é de ordem de grandeza. Com \citeonline{marins2021outertuning}, \citeonline{perciliano2021ondbtuning} e \citeonline{oliveira2022autonomic}, o contraste é que a sintonia desses trabalhos é feita por máquina, e este trabalho orienta o desenvolvedor no ato de escrever a consulta. Os resultados de S2 e S3, em que a ferramenta automática encontrou o que o método manual deixou de ver, indicam que a sintonia automática e o método manual se complementam, e não que um substitui o outro.
+
+\subsection{Limitações e ameaças à validade}\label{sec:limitacoes}
+
+Algumas limitações decorrem do desenho do experimento. O SQL Server foi executado sob emulação de arquitetura, imagem amd64 em computador arm64, de modo que os valores absolutos de tempo de processamento e de tempo de execução não são comparáveis com os de outros trabalhos, e apenas a comparação relativa entre as versões é válida; as leituras lógicas não dependem da arquitetura. Foi usado um único conjunto de dados, o Stack Overflow 2010, que é um banco de perguntas e respostas e não de varejo ou financeiro, e um único sistema gerenciador. O ambiente foi local, sem concorrência de usuários, de modo que os resultados não captam a contenção entre consultas simultâneas. A aplicação do \textit{framework} foi feita pelo próprio autor, o que pode introduzir viés na escolha das recomendações, e S2 e S3 mostraram um caso em que a prescrição manual errou o alvo. A memória do SQL Server (4.096 MB) é menor que a tabela \texttt{Posts} (6,7 GB), o que torna parcial o cenário quente nessa tabela: as varreduras dela leram quase todas as páginas do disco, e o cenário frio é frio apenas para o SQL Server, e não para o disco. O grau de paralelismo fixado em 1 produz planos seriais, que podem diferir dos que o servidor escolheria. A diferença entre a primeira e a segunda medição do original passou de 25\% em duas consultas da R1 (F4 e S4) e em uma da R2 (F3), o que indica ruído do ambiente, que o desenho ABA permite detectar mas não elimina, e que a máquina sem outra carga reduziu. As rodadas de sensibilidade mostraram o mesmo padrão, com uma consulta acima do limite em cada uma, C1 na R1 e C3 na R2.

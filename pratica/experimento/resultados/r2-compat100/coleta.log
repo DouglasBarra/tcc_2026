@@ -1,0 +1,218 @@
+01:24:08 rodada r2-compat100: 19 consulta(s), regimes ['quente'], N quente=20, N frio=8, compat=100, MAXDOP=1
+01:24:15 [F1] clone restaurado em 6.7s (compat 100, MAXDOP 1)
+01:24:19 [F1] equivalencia: True (1 linhas)
+01:24:19 [F1] indice sugerido pelo otimizador: nenhum
+01:24:20 [quente] bloco A1 (original)
+01:25:16 [quente] bloco B (reescrita)
+01:26:12 [quente] bloco C (indice)
+01:26:24 [quente] bloco D (reescrita+indice)
+01:26:31 [quente] bloco A2 (original)
+01:27:29 [F1] experimento 1 concluido em 190s; deriva A1->A2 = 4.9%
+01:27:34 [F1] custo de escrita medido (dbo.Posts; indice 8330 paginas; criacao 3385 ms)
+01:27:34 [F1] total 206s
+01:27:42 [F2] clone restaurado em 8.6s (compat 100, MAXDOP 1)
+01:27:42 [F2] equivalencia: True (1 linhas)
+01:27:42 [F2] indice sugerido pelo otimizador: nenhum
+01:27:42 [quente] bloco A1 (original)
+01:27:44 [quente] bloco B (reescrita)
+01:27:45 [quente] bloco C (indice)
+01:27:46 [quente] bloco D (reescrita+indice)
+01:27:47 [quente] bloco A2 (original)
+01:27:49 [F2] experimento 2 concluido em 6s; deriva A1->A2 = 0.1%
+01:27:50 [F2] custo de escrita medido (dbo.Users; indice 1282 paginas; criacao 375 ms)
+01:27:50 [F2] total 16s
+01:27:56 [F3] clone restaurado em 5.8s (compat 100, MAXDOP 1)
+01:27:58 [F3] equivalencia: True (9 linhas)
+01:27:58 [F3] indice sugerido pelo otimizador: nenhum
+01:27:58 [quente] bloco A1 (original)
+01:28:29 [quente] bloco B (reescrita)
+01:28:48 [quente] bloco C (indice)
+01:29:24 [quente] bloco D (reescrita+indice)
+01:29:39 [quente] bloco A2 (original)
+01:30:10 [F3] experimento 3 concluido em 132s; deriva A1->A2 = 2.2%
+01:30:15 [F3] custo de escrita medido (dbo.Votes; indice 27638 paginas; criacao 4376 ms)
+01:30:15 [F3] total 145s
+01:30:24 [F4] clone restaurado em 8.4s (compat 100, MAXDOP 1)
+01:30:28 [F4] equivalencia: True (1 linhas)
+01:30:28 [F4] indice sugerido pelo otimizador: nenhum
+01:30:28 [quente] bloco A1 (original)
+01:31:23 [quente] bloco B (reescrita)
+01:32:19 [quente] bloco C (indice)
+01:32:31 [quente] bloco D (reescrita+indice)
+01:32:41 [quente] bloco A2 (original)
+01:33:38 [F4] experimento 4 concluido em 189s; deriva A1->A2 = 4.1%
+01:33:42 [F4] custo de escrita medido (dbo.Posts; indice 8330 paginas; criacao 3269 ms)
+01:33:42 [F4] total 207s
+01:33:50 [F5] clone restaurado em 8.3s (compat 100, MAXDOP 1)
+01:33:52 [F5] equivalencia: True (9 linhas)
+01:33:52 [F5] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_votes ON [dbo].[Votes] ([CreationDate]) INCLUDE ([VoteTypeId])
+01:33:52 [quente] bloco A1 (original)
+01:34:11 [quente] bloco B (reescrita)
+01:34:29 [quente] bloco C (indice)
+01:34:44 [quente] bloco D (reescrita+indice)
+01:34:59 [quente] bloco A2 (original)
+01:35:18 [F5] experimento 5 concluido em 86s; deriva A1->A2 = 0.2%
+01:35:23 [F5] custo de escrita medido (dbo.Votes; indice 27638 paginas; criacao 4438 ms)
+01:35:23 [F5] total 101s
+01:35:31 [S1] clone restaurado em 7.4s (compat 100, MAXDOP 1)
+01:35:43 [S1] equivalencia: True (4020 linhas)
+01:35:43 [S1] indice sugerido pelo otimizador: nenhum
+01:35:43 [quente] bloco A1 (original)
+01:39:02 [quente] bloco B (reescrita)
+01:40:16 [quente] bloco C (indice)
+01:40:34 [quente] bloco D (reescrita+indice)
+01:40:48 [quente] bloco E (contraexemplo: reescrita + indice nao cobrindo)
+01:43:56 [quente] bloco A2 (original)
+01:47:18 [S1] experimento 6 concluido em 694s; deriva A1->A2 = 2.3%
+01:47:25 [S1] custo de escrita medido (dbo.Posts; indice 10162 paginas; criacao 6348 ms)
+01:47:25 [S1] total 722s
+01:47:34 [S2] clone restaurado em 9.1s (compat 100, MAXDOP 1)
+01:47:44 [S2] equivalencia: True (11354 linhas)
+01:47:44 [S2] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_posts ON [dbo].[Posts] ([OwnerUserId])
+01:47:44 [quente] bloco A1 (original)
+01:56:04 [quente] bloco B (reescrita)
+01:57:31 [quente] bloco C (indice)
+01:58:43 [quente] bloco D (reescrita+indice)
+01:59:54 [quente] bloco E (nativo)
+02:07:13 [quente] bloco A2 (original)
+02:15:49 [S2] experimento 7 concluido em 1685s; deriva A1->A2 = 1.5%
+02:15:58 [S2] custo de escrita medido (dbo.Votes; indice 27624 paginas; criacao 8541 ms)
+02:15:58 [S2] total 1713s
+02:16:09 [S3] clone restaurado em 10.3s (compat 100, MAXDOP 1)
+02:16:18 [S3] equivalencia: True (11354 linhas)
+02:16:18 [S3] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_posts ON [dbo].[Posts] ([OwnerUserId])
+02:16:18 [quente] bloco A1 (original)
+02:18:12 [quente] bloco B (reescrita)
+02:19:34 [quente] bloco C (indice)
+02:21:00 [quente] bloco D (reescrita+indice)
+02:22:18 [quente] bloco E (nativo)
+02:23:18 [quente] bloco A2 (original)
+02:25:12 [S3] experimento 8 concluido em 534s; deriva A1->A2 = 1.1%
+02:25:16 [S3] custo de escrita medido (dbo.Comments; indice 8652 paginas; criacao 2702 ms)
+02:25:16 [S3] total 557s
+02:25:24 [S4] clone restaurado em 8.8s (compat 100, MAXDOP 1)
+02:25:31 [S4] equivalencia: True (2706 linhas)
+02:25:31 [S4] indice sugerido pelo otimizador: nenhum
+02:25:31 [quente] bloco A1 (original)
+02:26:49 [quente] bloco B (reescrita)
+02:28:02 [quente] bloco C (indice)
+02:28:15 [quente] bloco D (reescrita+indice)
+02:28:28 [quente] bloco A2 (original)
+02:29:47 [S4] experimento 9 concluido em 256s; deriva A1->A2 = 1.8%
+02:29:54 [S4] custo de escrita medido (dbo.Posts; indice 6470 paginas; criacao 6025 ms)
+02:29:54 [S4] total 278s
+02:30:03 [S5] clone restaurado em 8.8s (compat 100, MAXDOP 1)
+02:30:04 [S5] equivalencia: True (4020 linhas)
+02:30:04 [S5] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_users ON [dbo].[Users] ([Reputation]) INCLUDE ([DisplayName])
+02:30:04 [quente] bloco A1 (original)
+02:30:09 [quente] bloco B (reescrita)
+02:30:14 [quente] bloco C (indice)
+02:30:18 [quente] bloco D (reescrita+indice)
+02:30:22 [quente] bloco E (nativo)
+02:30:27 [quente] bloco A2 (original)
+02:30:33 [S5] experimento 10 concluido em 29s; deriva A1->A2 = 0.3%
+02:30:34 [S5] custo de escrita medido (dbo.Badges; indice 1914 paginas; criacao 748 ms)
+02:30:34 [S5] total 40s
+02:30:43 [C1] clone restaurado em 8.5s (compat 100, MAXDOP 1)
+02:30:48 [C1] equivalencia: True (11354 linhas)
+02:30:48 [C1] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_posts ON [dbo].[Posts] ([OwnerUserId]) INCLUDE ([AcceptedAnswerId], [AnswerCount], [Body], [ClosedDate], [CommentCount], [CommunityOwnedDate], [CreationDate], [FavoriteCount], [LastActivityDate], [LastEditDate], [LastEditorDisplayName], [LastEditorUserId], [ParentId], [PostTypeId], [Score], [Tags], [Title], [ViewCount])
+02:30:48 [quente] bloco A1 (original)
+02:31:49 [quente] bloco B (reescrita)
+02:32:49 [quente] bloco C (indice)
+02:33:03 [quente] bloco D (reescrita+indice)
+02:33:14 [quente] bloco E (nativo)
+02:34:13 [quente] bloco A2 (original)
+02:35:17 [C1] experimento 11 concluido em 269s; deriva A1->A2 = 3.7%
+02:35:24 [C1] custo de escrita medido (dbo.Posts; indice 12023 paginas; criacao 6401 ms)
+02:35:24 [C1] total 290s
+02:35:33 [C2] clone restaurado em 9.0s (compat 100, MAXDOP 1)
+02:35:38 [C2] equivalencia: True (53 linhas)
+02:35:38 [C2] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_posts ON [dbo].[Posts] ([OwnerUserId]) INCLUDE ([AcceptedAnswerId], [AnswerCount], [Body], [ClosedDate], [CommentCount], [CommunityOwnedDate], [CreationDate], [FavoriteCount], [LastActivityDate], [LastEditDate], [LastEditorDisplayName], [LastEditorUserId], [ParentId], [PostTypeId], [Score], [Tags], [Title], [ViewCount])
+02:35:38 [quente] bloco A1 (original)
+02:36:36 [quente] bloco B (reescrita)
+02:37:36 [quente] bloco C (indice)
+02:37:46 [quente] bloco D (reescrita+indice)
+02:37:56 [quente] bloco E (nativo)
+02:38:51 [quente] bloco A2 (original)
+02:39:50 [C2] experimento 12 concluido em 252s; deriva A1->A2 = 1.9%
+02:39:57 [C2] custo de escrita medido (dbo.Posts; indice 12023 paginas; criacao 6435 ms)
+02:39:57 [C2] total 273s
+02:40:06 [C3] clone restaurado em 8.5s (compat 100, MAXDOP 1)
+02:40:07 [C3] equivalencia: True (13360 linhas)
+02:40:07 [C3] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_comments ON [dbo].[Comments] ([UserId]) INCLUDE ([CreationDate], [PostId], [Score], [Text])
+02:40:07 [quente] bloco A1 (original)
+02:40:23 [quente] bloco B (reescrita)
+02:40:43 [quente] bloco C (indice)
+02:40:52 [quente] bloco D (reescrita+indice)
+02:41:00 [quente] bloco E (nativo)
+02:41:15 [quente] bloco A2 (original)
+02:41:33 [C3] experimento 13 concluido em 86s; deriva A1->A2 = 39.4%
+02:41:33 [C3] deriva acima de 25%: repetindo o experimento (a tentativa 1 fica marcada como descartada)
+02:41:33 [quente] bloco A1 (original)
+02:41:51 [quente] bloco B (reescrita)
+02:42:15 [quente] bloco C (indice)
+02:42:23 [quente] bloco D (reescrita+indice)
+02:42:31 [quente] bloco E (nativo)
+02:42:45 [quente] bloco A2 (original)
+02:43:03 [C3] experimento 14 concluido em 90s; deriva A1->A2 = 0.1%
+02:43:09 [C3] custo de escrita medido (dbo.Comments; indice 10560 paginas; criacao 5122 ms)
+02:43:09 [C3] total 192s
+02:43:17 [C4] clone restaurado em 8.6s (compat 100, MAXDOP 1)
+02:43:18 [C4] equivalencia: True (3656 linhas)
+02:43:18 [C4] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_users ON [dbo].[Users] ([Location]) INCLUDE ([AboutMe], [Age], [CreationDate], [DisplayName], [DownVotes], [EmailHash], [LastAccessDate], [Reputation], [UpVotes], [Views], [WebsiteUrl], [AccountId])
+02:43:18 [quente] bloco A1 (original)
+02:43:19 [quente] bloco B (reescrita)
+02:43:21 [quente] bloco C (indice)
+02:43:23 [quente] bloco D (reescrita+indice)
+02:43:23 [quente] bloco E (nativo)
+02:43:25 [quente] bloco A2 (original)
+02:43:27 [C4] experimento 15 concluido em 9s; deriva A1->A2 = 0.0%
+02:43:28 [C4] custo de escrita medido (dbo.Users; indice 1772 paginas; criacao 292 ms)
+02:43:28 [C4] total 19s
+02:43:34 [V1] clone restaurado em 5.8s (compat 100, MAXDOP 1)
+02:43:34 [V1] sem reescrita
+02:43:34 [V1] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_votes ON [dbo].[Votes] ([PostId])
+02:43:34 [quente] bloco A1 (original)
+02:43:54 [quente] bloco B (indice)
+02:44:08 [quente] bloco A2 (original)
+02:44:28 [V1] experimento 16 concluido em 53s; deriva A1->A2 = 0.1%
+02:44:37 [V1] custo de escrita medido (dbo.Votes; indice 17589 paginas; criacao 8095 ms)
+02:44:37 [V1] total 68s
+02:44:43 [V2] clone restaurado em 6.6s (compat 100, MAXDOP 1)
+02:44:43 [V2] sem reescrita
+02:44:43 [V2] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_comments ON [dbo].[Comments] ([UserId])
+02:44:43 [quente] bloco A1 (original)
+02:44:58 [quente] bloco B (indice)
+02:45:06 [quente] bloco A2 (original)
+02:45:19 [V2] experimento 17 concluido em 35s; deriva A1->A2 = 1.2%
+02:45:24 [V2] custo de escrita medido (dbo.Comments; indice 6724 paginas; criacao 4633 ms)
+02:45:24 [V2] total 47s
+02:45:33 [V3] clone restaurado em 8.8s (compat 100, MAXDOP 1)
+02:45:33 [V3] sem reescrita
+02:45:33 [V3] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_badges ON [dbo].[Badges] ([UserId])
+02:45:33 [quente] bloco A1 (original)
+02:45:35 [quente] bloco B (indice)
+02:45:37 [quente] bloco A2 (original)
+02:45:39 [V3] experimento 18 concluido em 6s; deriva A1->A2 = 0.2%
+02:45:41 [V3] custo de escrita medido (dbo.Badges; indice 1914 paginas; criacao 743 ms)
+02:45:41 [V3] total 17s
+02:45:47 [V4] clone restaurado em 6.0s (compat 100, MAXDOP 1)
+02:45:47 [V4] sem reescrita
+02:45:47 [V4] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_posts ON [dbo].[Posts] ([OwnerUserId], [Score])
+02:45:47 [quente] bloco A1 (original)
+02:46:48 [quente] bloco B (indice)
+02:47:00 [quente] bloco C (controle: ordem invertida das colunas)
+02:47:13 [quente] bloco A2 (original)
+02:48:15 [V4] experimento 19 concluido em 148s; deriva A1->A2 = 3.3%
+02:48:23 [V4] custo de escrita medido (dbo.Posts; indice 8333 paginas; criacao 6467 ms)
+02:48:23 [V4] total 162s
+02:48:32 [V5] clone restaurado em 8.9s (compat 100, MAXDOP 1)
+02:48:32 [V5] sem reescrita
+02:48:32 [V5] indice sugerido pelo otimizador: CREATE INDEX ix_exp_nativo_users ON [dbo].[Users] ([Reputation]) INCLUDE ([DisplayName])
+02:48:32 [quente] bloco A1 (original)
+02:48:33 [quente] bloco B (indice)
+02:48:34 [quente] bloco A2 (original)
+02:48:35 [V5] experimento 20 concluido em 3s; deriva A1->A2 = 1.6%
+02:48:36 [V5] custo de escrita medido (dbo.Users; indice 1279 paginas; criacao 263 ms)
+02:48:36 [V5] total 13s
+02:48:36 rodada concluida em 84.5 min; falhas: nenhuma

@@ -1,0 +1,36 @@
+{
+  "captured_at_utc": "2026-10-26 04:24:19",
+  "sql_version": "Microsoft SQL Server 2022 (RTM-CU27) (KB5104824) - 16.0.4295.3 (X64)",
+  "edition": "Developer Edition (64-bit)",
+  "product_version": "16.0.4295.3",
+  "compat_level": 100,
+  "ce_version": 70,
+  "cpu_count": 15,
+  "physical_memory_mb": 4096,
+  "max_server_memory_mb": 2147483647,
+  "maxdop": 0,
+  "cost_threshold": 5,
+  "config_escopo_banco": {
+    "MAXDOP": "1",
+    "LEGACY_CARDINALITY_ESTIMATION": "0",
+    "PARAMETER_SNIFFING": "1",
+    "QUERY_OPTIMIZER_HOTFIXES": "0"
+  },
+  "maxdop_efetivo": 1,
+  "container_platform": "Linux / Ubuntu",
+  "emulacao_amd64_em_arm64": true,
+  "query_store_options": [
+    "READ_WRITE",
+    "ALL",
+    1,
+    60,
+    512
+  ],
+  "tool_version": "0.1.0",
+  "tool_commit": null,
+  "python_version": "3.14.9",
+  "python_lock_hash": "d91fb751ae5047b5",
+  "driver": "python-tds",
+  "database": "so_exp",
+  "avisos": []
+}

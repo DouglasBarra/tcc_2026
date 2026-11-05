@@ -1,0 +1,10 @@
+# Dependencias DIRETAS da interface (versoes testadas em 25/10/2026, Python 3.14.9).
+# O nucleo e instalado a parte, em modo editavel: pip install -e ../nucleo
+# (python-tds e as versoes de numpy/scipy/sqlglot abaixo sao as mesmas do pyproject.toml do nucleo).
+fastapi==0.162.0
+uvicorn==0.54.0
+httpx==0.28.1          # so para o TestClient dos testes
+pytest==9.1.1
+numpy==2.5.4           # extra "analise" do nucleo (tcclab.analise)
+scipy==1.18.1          # idem
+sqlglot==30.21.0       # extra "diagnostico" do nucleo (tcclab.diagnostico)

@@ -1,0 +1,4 @@
+run_id,experiment_id,variant_id,seq,regime,block,status,started_at,finished_at,query_hash,query_plan_hash,plan_id,avisos_json,variante
+85,17,69,1,quente,A1,concluido,2026-10-26 00:53:32.989480,2026-10-26 00:53:34.869105,0xC94878BD8C4D96B1,0x5A5F4CD9FFA54F32,85,[],original
+86,17,70,2,quente,B,concluido,2026-10-26 00:53:34.869850,2026-10-26 00:53:36.599127,0xC94878BD8C4D96B1,0x9C203417B0B9C8C4,86,[],indice
+87,17,69,3,quente,A2,concluido,2026-10-26 00:53:36.600087,2026-10-26 00:53:38.307448,0xC94878BD8C4D96B1,0x5A5F4CD9FFA54F32,87,[],original

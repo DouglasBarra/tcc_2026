@@ -1,0 +1,32 @@
+% tab_resumo_consulta; regime quente; experimentos [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]; criterios_sha 23e5e61d4e23e46b
+% requer \usepackage{booktabs}; arquivo gerado por tcclab.relatorio (nao editar a mao)
+{\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lllrrrrrc}
+\toprule
+Consulta & Antipadrão & Tratamento & Antes & Depois & Razão & IC95\% & Redução & Critério \\
+\midrule
+F1 & AP1 & prescricao & 800.856 & 47 & 0,0000587 & [0,0000587; 0,0000587] & 100,0\% & sim \\
+F2 & AP1 & prescricao & 7.405 & 3 & 0,000405 & [0,000405; 0,000405] & 100,0\% & sim \\
+F3 & AP1 & prescricao & 46.704 & 50 & 0,00107 & [0,00107; 0,00107] & 99,9\% & sim \\
+F4 & AP1 & prescricao & 800.856 & 4.839 & 0,00604 & [0,00604; 0,00604] & 99,4\% & sim \\
+S1 & AP2 & prescricao & 2.409.973 & 24.239 & 0,0101 & [0,0101; 0,0101] & 99,0\% & sim \\
+S2 & AP2 & prescricao & 31.451.276 & 837.274 & 0,0266 & [0,0266; 0,0266] & 97,3\% & sim \\
+S3 & AP2 & prescricao & 1.138.570 & 809.506 & 0,711 & [0,711; 0,711] & 28,9\% & sim \\
+S4 & AP2 & prescricao & 808.261 & 22.636 & 0,0280 & [0,0280; 0,0280] & 97,2\% & sim \\
+C1 & AP3 & prescricao & 800.856 & 41 & 0,0000512 & [0,0000512; 0,0000512] & 100,0\% & sim \\
+C2 & AP3 & prescricao & 800.856 & 3 & 0,00000375 & [0,00000375; 0,00000375] & 100,0\% & sim \\
+C3 & AP3 & prescricao & 168.857 & 40 & 0,000237 & [0,000237; 0,000237] & 100,0\% & sim \\
+C4 & AP3 & prescricao & 7.405 & 32 & 0,00432 & [0,00432; 0,00432] & 99,6\% & sim \\
+V1 & AP4 & indice & 46.704 & 3 & 0,0000642 & [0,0000642; 0,0000642] & 100,0\% & sim \\
+V2 & AP4 & indice & 168.857 & 27 & 0,000160 & [0,000160; 0,000160] & 100,0\% & sim \\
+V3 & AP4 & indice & 6.547 & 9 & 0,00137 & [0,00137; 0,00137] & 99,9\% & sim \\
+V4 & AP4 & indice & 800.856 & 11 & 0,0000137 & [0,0000137; 0,0000137] & 100,0\% & sim \\
+V5 & AP4 & indice & 7.405 & 82 & 0,0111 & [0,0111; 0,0111] & 98,9\% & sim \\
+\bottomrule
+\end{tabular}\par
+\vspace{3pt}
+\begin{minipage}{\linewidth}\footnotesize
+Regime quente. Mediana de leituras lógicas (antes e depois); razão = mediana depois/antes. Critério de melhoria: redução $\geq$ 20\% e IC95\% da razão abaixo de 1; custo de escrita reportado à parte, sem limiar.\par
+IC degenerado (limites iguais) onde a métrica é constante nas repetições (desvio padrão zero): a incerteza das repetições é nula e o intervalo não mede variação entre consultas.
+\end{minipage}
+}

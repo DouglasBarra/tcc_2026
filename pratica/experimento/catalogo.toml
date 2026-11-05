@@ -1,0 +1,257 @@
+# Catalogo de consultas do experimento (marco M2). Banco: clone so_exp do StackOverflow2010.
+#
+# Classes de antipadrao (as do metodo do projeto: table scans desnecessarios, funcao sobre coluna
+# filtrada, subconsulta correlacionada; mais SELECT * com key lookups, citado na Introducao):
+#   AP1 funcao sobre coluna filtrada (predicado nao sargavel)
+#   AP2 subconsulta correlacionada onde um JOIN seria mais adequado
+#   AP3 SELECT * com recuperacao de colunas desnecessarias (key lookups)
+#   AP4 varredura completa por falta de indice
+#
+# Cada consulta gera as variantes (ver tcclab/catalogo.py):
+#   original              consulta original, sem indice nao clusterizado (linha de base)
+#   reescrita             consulta reescrita, sem indice
+#   indice                consulta original + indice (indice_original, ou indice se omitido)
+#   reescrita+indice      prescricao completa do framework: reescrita + indice
+#   nativo                consulta original + indice sugerido pelo otimizador (plano real, MissingIndexes)
+#   [[consulta.extra]]    bracos adicionais (contraexemplos e controles)
+# Parametros sao literais fixos (sem parameter sniffing). Variacoes de seletividade sao consultas distintas.
+# Seletividade: alta (< 1% das linhas), media (1% a 20%), baixa (> 20%).
+
+[meta]
+versao = 1
+banco = "so_exp"
+dataset = "StackOverflow2010"
+
+# ======================================================================= AP1: funcao sobre coluna filtrada
+[[consulta]]
+id = "F1"
+antipadrao = "AP1"
+titulo = "YEAR/MONTH sobre Posts.CreationDate (um mes, 0,52% das linhas)"
+tabelas = ["dbo.Posts"]
+seletividade = "alta"
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Posts WHERE YEAR(CreationDate) = 2008 AND MONTH(CreationDate) = 8"""
+sql_reescrita = """SELECT COUNT(*) AS N FROM dbo.Posts WHERE CreationDate >= '20080801' AND CreationDate < '20080901'"""
+indice = "CREATE INDEX ix_exp_posts_creationdate ON dbo.Posts (CreationDate)"
+
+[[consulta]]
+id = "F2"
+antipadrao = "AP1"
+titulo = "UPPER sobre Users.DisplayName (1 linha; colacao ja ignora maiusculas)"
+tabelas = ["dbo.Users"]
+seletividade = "alta"
+sql_original = """SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE UPPER(DisplayName) = 'JON SKEET'"""
+sql_reescrita = """SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE DisplayName = 'Jon Skeet'"""
+indice = "CREATE INDEX ix_exp_users_displayname ON dbo.Users (DisplayName) INCLUDE (Reputation)"
+
+[[consulta]]
+id = "F3"
+antipadrao = "AP1"
+titulo = "DATEDIFF sobre Votes.CreationDate (um dia, 0,17% das linhas)"
+tabelas = ["dbo.Votes"]
+seletividade = "alta"
+sql_original = """SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE DATEDIFF(day, '20100615', CreationDate) = 0 GROUP BY VoteTypeId"""
+sql_reescrita = """SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE CreationDate >= '20100615' AND CreationDate < '20100616' GROUP BY VoteTypeId"""
+indice = "CREATE INDEX ix_exp_votes_creationdate ON dbo.Votes (CreationDate) INCLUDE (VoteTypeId)"
+
+[[consulta]]
+id = "F4"
+antipadrao = "AP1"
+titulo = "YEAR sobre Posts.CreationDate (um ano, 58% das linhas): baixa seletividade"
+tabelas = ["dbo.Posts"]
+seletividade = "baixa"
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Posts WHERE YEAR(CreationDate) = 2010"""
+sql_reescrita = """SELECT COUNT(*) AS N FROM dbo.Posts WHERE CreationDate >= '20100101' AND CreationDate < '20110101'"""
+indice = "CREATE INDEX ix_exp_posts_creationdate ON dbo.Posts (CreationDate)"
+
+[[consulta]]
+id = "F5"
+antipadrao = "AP1"
+titulo = "CONVERT(date, ...) sobre Votes.CreationDate: caso em que o otimizador pode tratar como sargavel (controle)"
+tabelas = ["dbo.Votes"]
+seletividade = "alta"
+papel = "controle"
+sql_original = """SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE CONVERT(date, CreationDate) = '20100615' GROUP BY VoteTypeId"""
+sql_reescrita = """SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE CreationDate >= '20100615' AND CreationDate < '20100616' GROUP BY VoteTypeId"""
+indice = "CREATE INDEX ix_exp_votes_creationdate ON dbo.Votes (CreationDate) INCLUDE (VoteTypeId)"
+
+# ======================================================================= AP2: subconsulta correlacionada
+[[consulta]]
+id = "S1"
+antipadrao = "AP2"
+titulo = "3 subconsultas escalares sobre Posts por usuario (4.020 usuarios)"
+tabelas = ["dbo.Users", "dbo.Posts"]
+seletividade = "media"
+sql_original = """SELECT u.Id, u.DisplayName,
+  (SELECT COUNT(*) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) AS Qtd,
+  (SELECT MAX(p.Score) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) AS MaxScore,
+  (SELECT SUM(p.ViewCount) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) AS Views
+FROM dbo.Users u WHERE u.Reputation >= 20000"""
+sql_reescrita = """SELECT u.Id, u.DisplayName, COUNT(p.Id) AS Qtd, MAX(p.Score) AS MaxScore, SUM(p.ViewCount) AS Views
+FROM dbo.Users u LEFT JOIN dbo.Posts p ON p.OwnerUserId = u.Id
+WHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName"""
+indice = "CREATE INDEX ix_exp_posts_owner_cob ON dbo.Posts (OwnerUserId) INCLUDE (Score, ViewCount)"
+  [[consulta.extra]]
+  nome = "contraexemplo: reescrita + indice nao cobrindo"
+  kind = "contraexemplo"
+  sql = "reescrita"
+  indice = "CREATE INDEX ix_exp_posts_owner ON dbo.Posts (OwnerUserId)"
+  # cada execucao leva ~94 s e le ~5 milhoes de paginas (piloto de 25/10): repeticoes reduzidas; as leituras logicas sao deterministicas
+  repeticoes_quente = 3
+  repeticoes_frio = 2
+  aquecimentos = 1
+
+[[consulta]]
+id = "S2"
+antipadrao = "AP2"
+titulo = "2 subconsultas escalares sobre Votes por post de um usuario (11.354 posts)"
+tabelas = ["dbo.Posts", "dbo.Votes"]
+seletividade = "alta"
+sql_original = """SELECT p.Id,
+  (SELECT COUNT(*) FROM dbo.Votes v WHERE v.PostId = p.Id) AS NVotos,
+  (SELECT MAX(v.CreationDate) FROM dbo.Votes v WHERE v.PostId = p.Id) AS UltimoVoto
+FROM dbo.Posts p WHERE p.OwnerUserId = 22656"""
+sql_reescrita = """SELECT p.Id, COUNT(v.Id) AS NVotos, MAX(v.CreationDate) AS UltimoVoto
+FROM dbo.Posts p LEFT JOIN dbo.Votes v ON v.PostId = p.Id
+WHERE p.OwnerUserId = 22656 GROUP BY p.Id"""
+indice = "CREATE INDEX ix_exp_votes_postid_cob ON dbo.Votes (PostId) INCLUDE (CreationDate)"
+
+[[consulta]]
+id = "S3"
+antipadrao = "AP2"
+titulo = "2 subconsultas escalares sobre Comments por post de um usuario (11.354 posts)"
+tabelas = ["dbo.Posts", "dbo.Comments"]
+seletividade = "alta"
+sql_original = """SELECT p.Id,
+  (SELECT COUNT(*) FROM dbo.Comments c WHERE c.PostId = p.Id) AS NComentarios,
+  (SELECT MAX(c.Score) FROM dbo.Comments c WHERE c.PostId = p.Id) AS MaxScoreComentario
+FROM dbo.Posts p WHERE p.OwnerUserId = 22656"""
+sql_reescrita = """SELECT p.Id, COUNT(c.Id) AS NComentarios, MAX(c.Score) AS MaxScoreComentario
+FROM dbo.Posts p LEFT JOIN dbo.Comments c ON c.PostId = p.Id
+WHERE p.OwnerUserId = 22656 GROUP BY p.Id"""
+indice = "CREATE INDEX ix_exp_comments_postid_cob ON dbo.Comments (PostId) INCLUDE (Score)"
+
+[[consulta]]
+id = "S4"
+antipadrao = "AP2"
+titulo = "subconsulta correlacionada no WHERE (usuarios com mais de 100 posts)"
+tabelas = ["dbo.Users", "dbo.Posts"]
+seletividade = "media"
+sql_original = """SELECT u.Id, u.DisplayName FROM dbo.Users u
+WHERE u.Reputation >= 20000 AND (SELECT COUNT(*) FROM dbo.Posts p WHERE p.OwnerUserId = u.Id) > 100"""
+sql_reescrita = """SELECT u.Id, u.DisplayName FROM dbo.Users u JOIN dbo.Posts p ON p.OwnerUserId = u.Id
+WHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName HAVING COUNT(*) > 100"""
+indice = "CREATE INDEX ix_exp_posts_owner ON dbo.Posts (OwnerUserId)"
+
+[[consulta]]
+id = "S5"
+antipadrao = "AP2"
+titulo = "1 subconsulta escalar sobre Badges por usuario: caso em que o otimizador ja converte (controle)"
+tabelas = ["dbo.Users", "dbo.Badges"]
+seletividade = "media"
+papel = "controle"
+sql_original = """SELECT u.Id, u.DisplayName, (SELECT COUNT(*) FROM dbo.Badges b WHERE b.UserId = u.Id) AS NBadges
+FROM dbo.Users u WHERE u.Reputation >= 20000"""
+sql_reescrita = """SELECT u.Id, u.DisplayName, COUNT(b.Id) AS NBadges
+FROM dbo.Users u LEFT JOIN dbo.Badges b ON b.UserId = u.Id
+WHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName"""
+indice = "CREATE INDEX ix_exp_badges_userid ON dbo.Badges (UserId)"
+
+# ======================================================================= AP3: SELECT * com key lookups
+[[consulta]]
+id = "C1"
+antipadrao = "AP3"
+titulo = "SELECT * em Posts por OwnerUserId (11.354 linhas, 0,3%)"
+tabelas = ["dbo.Posts"]
+seletividade = "alta"
+sql_original = """SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656"""
+sql_reescrita = """SELECT Id, Score, CreationDate FROM dbo.Posts WHERE OwnerUserId = 22656"""
+sql_equivalencia = """SELECT Id, Score, CreationDate FROM (SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656) AS t"""
+indice_original = "CREATE INDEX ix_exp_posts_owner ON dbo.Posts (OwnerUserId)"
+indice = "CREATE INDEX ix_exp_posts_owner_cob ON dbo.Posts (OwnerUserId) INCLUDE (Score, CreationDate)"
+
+[[consulta]]
+id = "C2"
+antipadrao = "AP3"
+titulo = "SELECT * em Posts por OwnerUserId (53 linhas)"
+tabelas = ["dbo.Posts"]
+seletividade = "alta"
+sql_original = """SELECT * FROM dbo.Posts WHERE OwnerUserId = 100"""
+sql_reescrita = """SELECT Id, Score, CreationDate FROM dbo.Posts WHERE OwnerUserId = 100"""
+sql_equivalencia = """SELECT Id, Score, CreationDate FROM (SELECT * FROM dbo.Posts WHERE OwnerUserId = 100) AS t"""
+indice_original = "CREATE INDEX ix_exp_posts_owner ON dbo.Posts (OwnerUserId)"
+indice = "CREATE INDEX ix_exp_posts_owner_cob ON dbo.Posts (OwnerUserId) INCLUDE (Score, CreationDate)"
+
+[[consulta]]
+id = "C3"
+antipadrao = "AP3"
+titulo = "SELECT * em Comments por UserId (13.360 linhas, 0,34%)"
+tabelas = ["dbo.Comments"]
+seletividade = "alta"
+sql_original = """SELECT * FROM dbo.Comments WHERE UserId = 22656"""
+sql_reescrita = """SELECT Id, PostId, Score FROM dbo.Comments WHERE UserId = 22656"""
+sql_equivalencia = """SELECT Id, PostId, Score FROM (SELECT * FROM dbo.Comments WHERE UserId = 22656) AS t"""
+indice_original = "CREATE INDEX ix_exp_comments_userid ON dbo.Comments (UserId)"
+indice = "CREATE INDEX ix_exp_comments_userid_cob ON dbo.Comments (UserId) INCLUDE (PostId, Score)"
+
+[[consulta]]
+id = "C4"
+antipadrao = "AP3"
+titulo = "SELECT * em Users por Location (3.656 linhas, 1,2%)"
+tabelas = ["dbo.Users"]
+seletividade = "media"
+sql_original = """SELECT * FROM dbo.Users WHERE Location = 'United States'"""
+sql_reescrita = """SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE Location = 'United States'"""
+sql_equivalencia = """SELECT Id, DisplayName, Reputation FROM (SELECT * FROM dbo.Users WHERE Location = 'United States') AS t"""
+indice_original = "CREATE INDEX ix_exp_users_location ON dbo.Users (Location)"
+indice = "CREATE INDEX ix_exp_users_location_cob ON dbo.Users (Location) INCLUDE (DisplayName, Reputation)"
+
+# ======================================================================= AP4: varredura completa por falta de indice
+[[consulta]]
+id = "V1"
+antipadrao = "AP4"
+titulo = "filtro por Votes.PostId (7 linhas em 10,1 milhoes)"
+tabelas = ["dbo.Votes"]
+seletividade = "alta"
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Votes WHERE PostId = 1000000"""
+indice = "CREATE INDEX ix_exp_votes_postid ON dbo.Votes (PostId)"
+
+[[consulta]]
+id = "V2"
+antipadrao = "AP4"
+titulo = "filtro por Comments.UserId (13.360 linhas, 0,34%)"
+tabelas = ["dbo.Comments"]
+seletividade = "alta"
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Comments WHERE UserId = 22656"""
+indice = "CREATE INDEX ix_exp_comments_userid ON dbo.Comments (UserId)"
+
+[[consulta]]
+id = "V3"
+antipadrao = "AP4"
+titulo = "filtro por Badges.UserId (2.821 linhas; tabela pequena, 6,5 mil paginas)"
+tabelas = ["dbo.Badges"]
+seletividade = "alta"
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Badges WHERE UserId = 22656"""
+indice = "CREATE INDEX ix_exp_badges_userid ON dbo.Badges (UserId)"
+
+[[consulta]]
+id = "V4"
+antipadrao = "AP4"
+titulo = "filtro composto em Posts: igualdade (OwnerUserId) e intervalo (Score); controle de ordem das colunas"
+tabelas = ["dbo.Posts"]
+seletividade = "alta"
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Posts WHERE OwnerUserId = 22656 AND Score > 10"""
+indice = "CREATE INDEX ix_exp_posts_owner_score ON dbo.Posts (OwnerUserId, Score)"
+  [[consulta.extra]]
+  nome = "controle: ordem invertida das colunas"
+  kind = "controle_ordem"
+  sql = "original"
+  indice = "CREATE INDEX ix_exp_posts_score_owner ON dbo.Posts (Score, OwnerUserId)"
+
+[[consulta]]
+id = "V5"
+antipadrao = "AP4"
+titulo = "filtro por Users.Reputation (17.212 linhas, 5,7%): seletividade media"
+tabelas = ["dbo.Users"]
+seletividade = "media"
+sql_original = """SELECT Id, DisplayName FROM dbo.Users WHERE Reputation >= 5000"""
+indice = "CREATE INDEX ix_exp_users_reputation ON dbo.Users (Reputation) INCLUDE (DisplayName)"

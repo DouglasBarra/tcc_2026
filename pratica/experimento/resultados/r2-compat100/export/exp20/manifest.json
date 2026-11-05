@@ -1,0 +1,79 @@
+{
+  "experiment_id": 20,
+  "semente": 20261025,
+  "status": "concluido",
+  "manifesto": {
+    "nome": "r2-compat100:V5",
+    "database": "so_exp",
+    "regimes": [
+      "quente"
+    ],
+    "aquecimentos": 2,
+    "repeticoes": {
+      "quente": 20,
+      "frio": 8
+    },
+    "ordem": "ABA",
+    "semente": 20261025,
+    "cache_planos": "escopo",
+    "estatisticas_tabelas": [
+      "dbo.Users"
+    ],
+    "microssegundos": true,
+    "sessao": [
+      "SET NOCOUNT ON",
+      "SET LANGUAGE us_english",
+      "SET ARITHABORT ON",
+      "SET STATISTICS IO ON",
+      "SET STATISTICS TIME ON"
+    ],
+    "variantes": [
+      {
+        "nome": "original",
+        "sql": "SELECT Id, DisplayName FROM dbo.Users WHERE Reputation >= 5000",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "original",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "indice",
+        "sql": "SELECT Id, DisplayName FROM dbo.Users WHERE Reputation >= 5000",
+        "ddl_aplicar": "CREATE INDEX ix_exp_users_reputation ON dbo.Users (Reputation) INCLUDE (DisplayName)",
+        "ddl_reverter": "DROP INDEX ix_exp_users_reputation ON dbo.Users",
+        "kind": "indice",
+        "repeticoes": null,
+        "aquecimentos": null
+      }
+    ],
+    "blocos_planejados": [
+      "A1",
+      "B",
+      "A2"
+    ]
+  },
+  "ordem_executada": [
+    {
+      "seq": 1,
+      "regime": "quente",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 98
+    },
+    {
+      "seq": 2,
+      "regime": "quente",
+      "bloco": "B",
+      "variante": "indice",
+      "run_id": 99
+    },
+    {
+      "seq": 3,
+      "regime": "quente",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 100
+    }
+  ]
+}

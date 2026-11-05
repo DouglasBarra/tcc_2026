@@ -1,0 +1,24 @@
+##### (b3) 3 subconsultas correlacionadas em Posts
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 11 ms, elapsed time = 11 ms.
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 0, read-ahead reads 0.
+Table 'Posts'. Scan count 48, logical reads 2440305, physical reads 2834, read-ahead reads 2391492.
+   CPU time = 20404 ms,  elapsed time = 4387 ms.
+##### (b4) equivalente com LEFT JOIN + GROUP BY
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 7 ms, elapsed time = 9 ms.
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 3, read-ahead reads 7401.
+Table 'Posts'. Scan count 16, logical reads 814990, physical reads 794, read-ahead reads 797891.
+   CPU time = 6810 ms,  elapsed time = 1246 ms.
+##### (b5) correlacionada no WHERE
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 4 ms, elapsed time = 5 ms.
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 3, read-ahead reads 7401.
+Table 'Posts'. Scan count 16, logical reads 815844, physical reads 3, read-ahead reads 801089.
+   CPU time = 4399 ms,  elapsed time = 955 ms.
+##### (b6) equivalente com JOIN + HAVING
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 6 ms, elapsed time = 6 ms.
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 0, read-ahead reads 7361.
+Table 'Posts'. Scan count 16, logical reads 815844, physical reads 1751, read-ahead reads 796450.
+   CPU time = 4554 ms,  elapsed time = 898 ms.

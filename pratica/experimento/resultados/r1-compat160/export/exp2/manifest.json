@@ -1,0 +1,149 @@
+{
+  "experiment_id": 2,
+  "semente": 20261025,
+  "status": "concluido",
+  "manifesto": {
+    "nome": "r1-compat160:F2",
+    "database": "so_exp",
+    "regimes": [
+      "quente",
+      "frio"
+    ],
+    "aquecimentos": 2,
+    "repeticoes": {
+      "quente": 20,
+      "frio": 8
+    },
+    "ordem": "ABA",
+    "semente": 20261025,
+    "cache_planos": "escopo",
+    "estatisticas_tabelas": [
+      "dbo.Users"
+    ],
+    "microssegundos": true,
+    "sessao": [
+      "SET NOCOUNT ON",
+      "SET LANGUAGE us_english",
+      "SET ARITHABORT ON",
+      "SET STATISTICS IO ON",
+      "SET STATISTICS TIME ON"
+    ],
+    "variantes": [
+      {
+        "nome": "original",
+        "sql": "SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE UPPER(DisplayName) = 'JON SKEET'",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "original",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita",
+        "sql": "SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE DisplayName = 'Jon Skeet'",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "reescrita",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "indice",
+        "sql": "SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE UPPER(DisplayName) = 'JON SKEET'",
+        "ddl_aplicar": "CREATE INDEX ix_exp_users_displayname ON dbo.Users (DisplayName) INCLUDE (Reputation)",
+        "ddl_reverter": "DROP INDEX ix_exp_users_displayname ON dbo.Users",
+        "kind": "indice",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita+indice",
+        "sql": "SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE DisplayName = 'Jon Skeet'",
+        "ddl_aplicar": "CREATE INDEX ix_exp_users_displayname ON dbo.Users (DisplayName) INCLUDE (Reputation)",
+        "ddl_reverter": "DROP INDEX ix_exp_users_displayname ON dbo.Users",
+        "kind": "prescricao",
+        "repeticoes": null,
+        "aquecimentos": null
+      }
+    ],
+    "blocos_planejados": [
+      "A1",
+      "B",
+      "C",
+      "D",
+      "A2"
+    ]
+  },
+  "ordem_executada": [
+    {
+      "seq": 1,
+      "regime": "quente",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 11
+    },
+    {
+      "seq": 2,
+      "regime": "quente",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 12
+    },
+    {
+      "seq": 3,
+      "regime": "quente",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 13
+    },
+    {
+      "seq": 4,
+      "regime": "quente",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 14
+    },
+    {
+      "seq": 5,
+      "regime": "quente",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 15
+    },
+    {
+      "seq": 6,
+      "regime": "frio",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 16
+    },
+    {
+      "seq": 7,
+      "regime": "frio",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 17
+    },
+    {
+      "seq": 8,
+      "regime": "frio",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 18
+    },
+    {
+      "seq": 9,
+      "regime": "frio",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 19
+    },
+    {
+      "seq": 10,
+      "regime": "frio",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 20
+    }
+  ]
+}

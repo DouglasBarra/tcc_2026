@@ -1,0 +1,42 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--texto);
+  font: 18.5px/1.55 var(--fonte-ui);
+  font-feature-settings: 'kern', 'liga';
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 { margin: 0; line-height: 1.2; font-weight: 600; }
+h1, h2 { font-family: var(--fonte-titulo); }
+h1 { font-size: 2.3rem; font-weight: 600; letter-spacing: -0.015em; }
+h2 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+p { margin: 0 0 0.5rem; }
+a { color: var(--acento); text-underline-offset: 2px; }
+code, pre, kbd, samp, .mono { font-family: var(--fonte-mono); font-size: 0.92em; }
+pre { margin: 0; white-space: pre-wrap; word-break: break-word; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: 0.55; }
+:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; border-radius: 3px; }
+.pular {
+  position: absolute; left: 8px; top: -48px; z-index: 100; padding: 8px 12px;
+  background: var(--acento); color: var(--sobre-acento); border-radius: var(--raio); text-decoration: none; font-weight: 600;
+}
+.pular:focus { top: 8px; }
+.so-leitor {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+::selection { background: color-mix(in srgb, var(--acento) 35%, transparent); }
+* { scrollbar-width: thin; scrollbar-color: var(--borda-forte) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--borda-forte); border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-track { background: transparent; }

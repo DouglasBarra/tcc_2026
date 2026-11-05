@@ -1,0 +1,174 @@
+{
+  "experiment_id": 11,
+  "semente": 20261025,
+  "status": "concluido",
+  "manifesto": {
+    "nome": "r2-compat160:S5",
+    "database": "so_exp",
+    "regimes": [
+      "quente",
+      "frio"
+    ],
+    "aquecimentos": 2,
+    "repeticoes": {
+      "quente": 20,
+      "frio": 8
+    },
+    "ordem": "ABA",
+    "semente": 20261025,
+    "cache_planos": "escopo",
+    "estatisticas_tabelas": [
+      "dbo.Users",
+      "dbo.Badges"
+    ],
+    "microssegundos": true,
+    "sessao": [
+      "SET NOCOUNT ON",
+      "SET LANGUAGE us_english",
+      "SET ARITHABORT ON",
+      "SET STATISTICS IO ON",
+      "SET STATISTICS TIME ON"
+    ],
+    "variantes": [
+      {
+        "nome": "original",
+        "sql": "SELECT u.Id, u.DisplayName, (SELECT COUNT(*) FROM dbo.Badges b WHERE b.UserId = u.Id) AS NBadges\nFROM dbo.Users u WHERE u.Reputation >= 20000",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "original",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita",
+        "sql": "SELECT u.Id, u.DisplayName, COUNT(b.Id) AS NBadges\nFROM dbo.Users u LEFT JOIN dbo.Badges b ON b.UserId = u.Id\nWHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "reescrita",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "indice",
+        "sql": "SELECT u.Id, u.DisplayName, (SELECT COUNT(*) FROM dbo.Badges b WHERE b.UserId = u.Id) AS NBadges\nFROM dbo.Users u WHERE u.Reputation >= 20000",
+        "ddl_aplicar": "CREATE INDEX ix_exp_badges_userid ON dbo.Badges (UserId)",
+        "ddl_reverter": "DROP INDEX ix_exp_badges_userid ON dbo.Badges",
+        "kind": "indice",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita+indice",
+        "sql": "SELECT u.Id, u.DisplayName, COUNT(b.Id) AS NBadges\nFROM dbo.Users u LEFT JOIN dbo.Badges b ON b.UserId = u.Id\nWHERE u.Reputation >= 20000 GROUP BY u.Id, u.DisplayName",
+        "ddl_aplicar": "CREATE INDEX ix_exp_badges_userid ON dbo.Badges (UserId)",
+        "ddl_reverter": "DROP INDEX ix_exp_badges_userid ON dbo.Badges",
+        "kind": "prescricao",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "nativo",
+        "sql": "SELECT u.Id, u.DisplayName, (SELECT COUNT(*) FROM dbo.Badges b WHERE b.UserId = u.Id) AS NBadges\nFROM dbo.Users u WHERE u.Reputation >= 20000",
+        "ddl_aplicar": "CREATE INDEX ix_exp_nativo_users ON [dbo].[Users] ([Reputation]) INCLUDE ([DisplayName])",
+        "ddl_reverter": "DROP INDEX ix_exp_nativo_users ON [dbo].[Users]",
+        "kind": "nativo",
+        "repeticoes": null,
+        "aquecimentos": null
+      }
+    ],
+    "blocos_planejados": [
+      "A1",
+      "B",
+      "C",
+      "D",
+      "E",
+      "A2"
+    ]
+  },
+  "ordem_executada": [
+    {
+      "seq": 1,
+      "regime": "quente",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 107
+    },
+    {
+      "seq": 2,
+      "regime": "quente",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 108
+    },
+    {
+      "seq": 3,
+      "regime": "quente",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 109
+    },
+    {
+      "seq": 4,
+      "regime": "quente",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 110
+    },
+    {
+      "seq": 5,
+      "regime": "quente",
+      "bloco": "E",
+      "variante": "nativo",
+      "run_id": 111
+    },
+    {
+      "seq": 6,
+      "regime": "quente",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 112
+    },
+    {
+      "seq": 7,
+      "regime": "frio",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 113
+    },
+    {
+      "seq": 8,
+      "regime": "frio",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 114
+    },
+    {
+      "seq": 9,
+      "regime": "frio",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 115
+    },
+    {
+      "seq": 10,
+      "regime": "frio",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 116
+    },
+    {
+      "seq": 11,
+      "regime": "frio",
+      "bloco": "E",
+      "variante": "nativo",
+      "run_id": 117
+    },
+    {
+      "seq": 12,
+      "regime": "frio",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 118
+    }
+  ]
+}

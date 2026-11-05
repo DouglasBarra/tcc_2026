@@ -1,0 +1,121 @@
+Changed database context to 'StackOverflow2010'.
+== versao/compat/recovery/collation
+name|compatibility_level|recovery_model_desc|collation_name|state_desc|page_verify_option_desc|is_auto_create_stats_on|is_auto_update_stats_on|is_auto_update_stats_async_on|is_read_committed_snapshot_on|snapshot_isolation_state_desc|is_query_store_on|containment_desc|target_recovery_time_in_seconds
+----|-------------------|-------------------|--------------|----------|-----------------------|-----------------------|-----------------------|-----------------------------|-----------------------------|-----------------------------|-----------------|----------------|-------------------------------
+StackOverflow2010|100|SIMPLE|SQL_Latin1_General_CP1_CI_AS|ONLINE|CHECKSUM|1|1|0|0|OFF|0|NONE|0
+== arquivos
+name|type_desc|physical_name|size_mb|growth|is_percent_growth
+----|---------|-------------|-------|------|-----------------
+StackOverflow2010|ROWS|/var/opt/mssql/data/StackOverflow2010.mdf|8820|32768|0
+StackOverflow2010_log|LOG|/var/opt/mssql/data/StackOverflow2010_log.ldf|255|32768|0
+== tabelas e contagens (COUNT_BIG por tabela, via dinamico) + paginas
+tabela|linhas|usado_mb|paginas_dados|compressao
+------|------|--------|-------------|----------
+dbo.Votes|10143364|364.875000|46530|NONE
+dbo.Comments|3875183|1319.203125|168229|NONE
+dbo.Posts|3729195|6763.210937|797888|NONE
+dbo.Badges|1102019|51.148437|6522|NONE
+dbo.Users|299398|58.039062|7376|NONE
+dbo.PostLinks|161519|5.187500|660|NONE
+dbo.VoteTypes|15|.015625|1|NONE
+dbo.PostTypes|8|.015625|1|NONE
+dbo.LinkTypes|2|.015625|1|NONE
+== views/procs/triggers/FKs/constraints
+views|procs|triggers|fks|checks|defaults
+-----|-----|--------|---|------|--------
+0|1|0|0|0|0
+== colunas
+tabela|column_id|coluna|tipo|max_length|precision|scale|is_nullable|is_identity
+------|---------|------|----|----------|---------|-----|-----------|-----------
+Badges|1|Id|int|4|10|0|0|1
+Badges|2|Name|nvarchar|80|0|0|0|0
+Badges|3|UserId|int|4|10|0|0|0
+Badges|4|Date|datetime|8|23|3|0|0
+Comments|1|Id|int|4|10|0|0|1
+Comments|2|CreationDate|datetime|8|23|3|0|0
+Comments|3|PostId|int|4|10|0|0|0
+Comments|4|Score|int|4|10|0|1|0
+Comments|5|Text|nvarchar|1400|0|0|0|0
+Comments|6|UserId|int|4|10|0|1|0
+LinkTypes|1|Id|int|4|10|0|0|1
+LinkTypes|2|Type|varchar|50|0|0|0|0
+PostLinks|1|Id|int|4|10|0|0|1
+PostLinks|2|CreationDate|datetime|8|23|3|0|0
+PostLinks|3|PostId|int|4|10|0|0|0
+PostLinks|4|RelatedPostId|int|4|10|0|0|0
+PostLinks|5|LinkTypeId|int|4|10|0|0|0
+Posts|1|Id|int|4|10|0|0|1
+Posts|2|AcceptedAnswerId|int|4|10|0|1|0
+Posts|3|AnswerCount|int|4|10|0|1|0
+Posts|4|Body|nvarchar|-1|0|0|0|0
+Posts|5|ClosedDate|datetime|8|23|3|1|0
+Posts|6|CommentCount|int|4|10|0|1|0
+Posts|7|CommunityOwnedDate|datetime|8|23|3|1|0
+Posts|8|CreationDate|datetime|8|23|3|0|0
+Posts|9|FavoriteCount|int|4|10|0|1|0
+Posts|10|LastActivityDate|datetime|8|23|3|0|0
+Posts|11|LastEditDate|datetime|8|23|3|1|0
+Posts|12|LastEditorDisplayName|nvarchar|80|0|0|1|0
+Posts|13|LastEditorUserId|int|4|10|0|1|0
+Posts|14|OwnerUserId|int|4|10|0|1|0
+Posts|15|ParentId|int|4|10|0|1|0
+Posts|16|PostTypeId|int|4|10|0|0|0
+Posts|17|Score|int|4|10|0|0|0
+Posts|18|Tags|nvarchar|300|0|0|1|0
+Posts|19|Title|nvarchar|500|0|0|1|0
+Posts|20|ViewCount|int|4|10|0|0|0
+PostTypes|1|Id|int|4|10|0|0|1
+PostTypes|2|Type|nvarchar|100|0|0|0|0
+Users|1|Id|int|4|10|0|0|1
+Users|2|AboutMe|nvarchar|-1|0|0|1|0
+Users|3|Age|int|4|10|0|1|0
+Users|4|CreationDate|datetime|8|23|3|0|0
+Users|5|DisplayName|nvarchar|80|0|0|0|0
+Users|6|DownVotes|int|4|10|0|0|0
+Users|7|EmailHash|nvarchar|80|0|0|1|0
+Users|8|LastAccessDate|datetime|8|23|3|0|0
+Users|9|Location|nvarchar|200|0|0|1|0
+Users|10|Reputation|int|4|10|0|0|0
+Users|11|UpVotes|int|4|10|0|0|0
+Users|12|Views|int|4|10|0|0|0
+Users|13|WebsiteUrl|nvarchar|400|0|0|1|0
+Users|14|AccountId|int|4|10|0|1|0
+Votes|1|Id|int|4|10|0|0|1
+Votes|2|PostId|int|4|10|0|0|0
+Votes|3|UserId|int|4|10|0|1|0
+Votes|4|BountyAmount|int|4|10|0|1|0
+Votes|5|VoteTypeId|int|4|10|0|0|0
+Votes|6|CreationDate|datetime|8|23|3|0|0
+VoteTypes|1|Id|int|4|10|0|0|1
+VoteTypes|2|Name|varchar|50|0|0|0|0
+== TODOS os indices
+tabela|index_id|indice|type_desc|is_unique|is_primary_key|has_filter|chaves|compressao
+------|--------|------|---------|---------|--------------|----------|------|----------
+Badges|1|PK_Badges__Id|CLUSTERED|1|1|0|Id|NONE
+Comments|1|PK_Comments__Id|CLUSTERED|1|1|0|Id|NONE
+LinkTypes|1|PK_LinkTypes__Id|CLUSTERED|1|1|0|Id|NONE
+PostLinks|1|PK_PostLinks__Id|CLUSTERED|1|1|0|Id|NONE
+Posts|1|PK_Posts__Id|CLUSTERED|1|1|0|Id|NONE
+PostTypes|1|PK_PostTypes__Id|CLUSTERED|1|1|0|Id|NONE
+Users|1|PK_Users_Id|CLUSTERED|1|1|0|Id|NONE
+Votes|1|PK_Votes__Id|CLUSTERED|1|1|0|Id|NONE
+VoteTypes|1|PK_VoteType__Id|CLUSTERED|1|1|0|Id|NONE
+indices_nao_clusterizados
+-------------------------
+0
+== estatisticas existentes
+tabela|estat|auto_created|user_created|no_recompute|is_incremental|colunas|last_updated|rows|rows_sampled|modification_counter
+------|-----|------------|------------|------------|--------------|-------|------------|----|------------|--------------------
+Badges|PK_Badges__Id|0|0|0|0|Id|2018-09-11 11:19:03.1970000|1102019|1102019|0
+Comments|PK_Comments__Id|0|0|0|0|Id|2018-09-11 11:19:05.3030000|3875183|3875183|0
+LinkTypes|PK_LinkTypes__Id|0|0|0|0|Id|2018-09-11 11:19:05.3070000|2|2|0
+PostLinks|PK_PostLinks__Id|0|0|0|0|Id|2018-09-11 11:19:05.3770000|161519|161519|0
+Posts|PK_Posts__Id|0|0|0|0|Id|2018-09-11 11:19:08.0230000|3729195|3729195|0
+PostTypes|PK_PostTypes__Id|0|0|0|0|Id|2018-09-11 11:19:08.0230000|8|8|0
+Users|PK_Users_Id|0|0|0|0|Id|2018-09-11 11:19:08.2400000|299398|299398|0
+Votes|PK_Votes__Id|0|0|0|0|Id|2018-09-11 11:19:13.3100000|10143364|10143364|0
+VoteTypes|PK_VoteType__Id|0|0|0|0|Id|2018-09-11 11:19:13.3100000|15|15|0
+== Query Store
+actual_state_desc|desired_state_desc|query_capture_mode_desc|interval_length_minutes|flush_interval_seconds|max_storage_size_mb|wait_stats_capture_mode_desc
+-----------------|------------------|-----------------------|-----------------------|----------------------|-------------------|----------------------------
+OFF|OFF|AUTO|60|900|1000|ON

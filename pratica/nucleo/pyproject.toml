@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tcclab"
+version = "0.1.0"
+description = "Nucleo de medicao do TCC: leituras logicas, CPU e tempo no SQL Server (marco M0)"
+requires-python = ">=3.12"
+# Dependencias fixadas (versoes testadas em 04/10/2026, Python 3.14.7).
+# O nucleo de medicao so tem o driver como dependencia externa (sqlite3, xml, csv, json, statistics e argparse sao da
+# biblioteca padrao). A camada de analise estatistica (estatistica/relatorio) usa o extra opcional `analise`.
+dependencies = [
+    "python-tds==1.17.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+]
+# Analise estatistica e relatorio (analise.py, relatorio.py). Versoes testadas em 25/10/2026, Python 3.14.9.
+# Instalar: .venv/bin/pip install -e ".[analise]"  (ou ".[dev,analise]")
+analise = [
+    "numpy==2.5.4",
+    "scipy==1.18.1",
+    "matplotlib==3.11.2",
+]
+# Diagnostico (camada 1 do framework: diagnostico.py). A leitura do plano XML usa so a biblioteca padrao;
+# o extra traz o analisador de T-SQL. Versao testada em 25/10/2026, Python 3.14.9.
+# Instalar: .venv/bin/pip install -e ".[diagnostico]"
+diagnostico = [
+    "sqlglot==30.21.0",
+]
+
+[project.scripts]
+tcclab = "tcclab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "banco: exige o SQL Server de pratica/infra rodando (usa o banco tcc_lab)",
+]

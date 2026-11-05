@@ -1,0 +1,90 @@
+# Consultas SEM antipadrao, para medir falsos positivos do Diagnostico (validacao do instrumento, relatorio 16 secao 6.7).
+# Mesmo formato do catalogo.toml. Nao sao medidas no experimento principal.
+# Cada uma foi escrita para ser eficiente na linha de base (so indices clusterizados das chaves primarias),
+# ou para ter uma varredura legitima (sem filtro, tabela minuscula).
+
+[meta]
+versao = 1
+banco = "so_exp"
+dataset = "StackOverflow2010"
+
+[[consulta]]
+id = "L1"
+antipadrao = "NENHUM"
+titulo = "busca por chave primaria em Users"
+tabelas = ["dbo.Users"]
+seletividade = "alta"
+papel = "limpa"
+sql_original = """SELECT Id, DisplayName, Reputation FROM dbo.Users WHERE Id = 22656"""
+
+[[consulta]]
+id = "L2"
+antipadrao = "NENHUM"
+titulo = "busca por chave primaria em Posts com colunas listadas"
+tabelas = ["dbo.Posts"]
+seletividade = "alta"
+papel = "limpa"
+sql_original = """SELECT Id, Title, Score FROM dbo.Posts WHERE Id = 4"""
+
+[[consulta]]
+id = "L3"
+antipadrao = "NENHUM"
+titulo = "intervalo da chave primaria em Comments"
+tabelas = ["dbo.Comments"]
+seletividade = "alta"
+papel = "limpa"
+sql_original = """SELECT Id, PostId, Score FROM dbo.Comments WHERE Id BETWEEN 1000 AND 1100"""
+
+[[consulta]]
+id = "L4"
+antipadrao = "NENHUM"
+titulo = "contagem total de Votes (varredura legitima, sem filtro)"
+tabelas = ["dbo.Votes"]
+seletividade = "baixa"
+papel = "limpa"
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Votes"""
+
+[[consulta]]
+id = "L5"
+antipadrao = "NENHUM"
+titulo = "junção por chaves primarias (duas buscas)"
+tabelas = ["dbo.Posts", "dbo.Users"]
+seletividade = "alta"
+papel = "limpa"
+sql_original = """SELECT p.Id, p.Title, u.DisplayName FROM dbo.Posts p JOIN dbo.Users u ON u.Id = p.OwnerUserId WHERE p.Id = 4"""
+
+[[consulta]]
+id = "L6"
+antipadrao = "NENHUM"
+titulo = "subconsulta NAO correlacionada com busca por chave"
+tabelas = ["dbo.Users", "dbo.Posts"]
+seletividade = "alta"
+papel = "limpa"
+sql_original = """SELECT Id, DisplayName FROM dbo.Users WHERE Id IN (SELECT OwnerUserId FROM dbo.Posts WHERE Id = 4)"""
+
+[[consulta]]
+id = "L7"
+antipadrao = "NENHUM"
+titulo = "TOP ordenado pela chave primaria"
+tabelas = ["dbo.Posts"]
+seletividade = "alta"
+papel = "limpa"
+sql_original = """SELECT TOP (10) Id, Title FROM dbo.Posts ORDER BY Id"""
+
+[[consulta]]
+id = "L8"
+antipadrao = "NENHUM"
+titulo = "tabela minuscula inteira (varredura legitima)"
+tabelas = ["dbo.VoteTypes"]
+seletividade = "baixa"
+papel = "limpa"
+sql_original = """SELECT Id, Name FROM dbo.VoteTypes"""
+
+[[consulta]]
+id = "L9"
+antipadrao = "NENHUM"
+titulo = "predicado sargavel em intervalo da chave primaria, com agregacao"
+tabelas = ["dbo.Votes"]
+seletividade = "alta"
+papel = "limpa"
+sql_original = """SELECT VoteTypeId, COUNT(*) AS N FROM dbo.Votes WHERE Id >= 1000 AND Id < 2000 GROUP BY VoteTypeId"""

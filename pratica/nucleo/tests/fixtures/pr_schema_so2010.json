@@ -1,0 +1,772 @@
+{
+ "origem": "StackOverflow2010 (banco base, metadados, 25/10/2026)",
+ "colunas": [
+  {
+   "esquema": "dbo",
+   "tabela": "Badges",
+   "ordem": 1,
+   "coluna": "Id",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": true
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Badges",
+   "ordem": 2,
+   "coluna": "Name",
+   "tipo": "nvarchar",
+   "bytes": 80,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Badges",
+   "ordem": 3,
+   "coluna": "UserId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Badges",
+   "ordem": 4,
+   "coluna": "Date",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Comments",
+   "ordem": 1,
+   "coluna": "Id",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": true
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Comments",
+   "ordem": 2,
+   "coluna": "CreationDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Comments",
+   "ordem": 3,
+   "coluna": "PostId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Comments",
+   "ordem": 4,
+   "coluna": "Score",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Comments",
+   "ordem": 5,
+   "coluna": "Text",
+   "tipo": "nvarchar",
+   "bytes": 1400,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Comments",
+   "ordem": 6,
+   "coluna": "UserId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "LinkTypes",
+   "ordem": 1,
+   "coluna": "Id",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": true
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "LinkTypes",
+   "ordem": 2,
+   "coluna": "Type",
+   "tipo": "varchar",
+   "bytes": 50,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostLinks",
+   "ordem": 1,
+   "coluna": "Id",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": true
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostLinks",
+   "ordem": 2,
+   "coluna": "CreationDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostLinks",
+   "ordem": 3,
+   "coluna": "PostId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostLinks",
+   "ordem": 4,
+   "coluna": "RelatedPostId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostLinks",
+   "ordem": 5,
+   "coluna": "LinkTypeId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 1,
+   "coluna": "Id",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": true
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 2,
+   "coluna": "AcceptedAnswerId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 3,
+   "coluna": "AnswerCount",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 4,
+   "coluna": "Body",
+   "tipo": "nvarchar",
+   "bytes": -1,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 5,
+   "coluna": "ClosedDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 6,
+   "coluna": "CommentCount",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 7,
+   "coluna": "CommunityOwnedDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 8,
+   "coluna": "CreationDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 9,
+   "coluna": "FavoriteCount",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 10,
+   "coluna": "LastActivityDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 11,
+   "coluna": "LastEditDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 12,
+   "coluna": "LastEditorDisplayName",
+   "tipo": "nvarchar",
+   "bytes": 80,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 13,
+   "coluna": "LastEditorUserId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 14,
+   "coluna": "OwnerUserId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 15,
+   "coluna": "ParentId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 16,
+   "coluna": "PostTypeId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 17,
+   "coluna": "Score",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 18,
+   "coluna": "Tags",
+   "tipo": "nvarchar",
+   "bytes": 300,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 19,
+   "coluna": "Title",
+   "tipo": "nvarchar",
+   "bytes": 500,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "ordem": 20,
+   "coluna": "ViewCount",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostTypes",
+   "ordem": 1,
+   "coluna": "Id",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": true
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostTypes",
+   "ordem": 2,
+   "coluna": "Type",
+   "tipo": "nvarchar",
+   "bytes": 100,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 1,
+   "coluna": "Id",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": true
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 2,
+   "coluna": "AboutMe",
+   "tipo": "nvarchar",
+   "bytes": -1,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 3,
+   "coluna": "Age",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 4,
+   "coluna": "CreationDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 5,
+   "coluna": "DisplayName",
+   "tipo": "nvarchar",
+   "bytes": 80,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 6,
+   "coluna": "DownVotes",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 7,
+   "coluna": "EmailHash",
+   "tipo": "nvarchar",
+   "bytes": 80,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 8,
+   "coluna": "LastAccessDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 9,
+   "coluna": "Location",
+   "tipo": "nvarchar",
+   "bytes": 200,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 10,
+   "coluna": "Reputation",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 11,
+   "coluna": "UpVotes",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 12,
+   "coluna": "Views",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 13,
+   "coluna": "WebsiteUrl",
+   "tipo": "nvarchar",
+   "bytes": 400,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "ordem": 14,
+   "coluna": "AccountId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Votes",
+   "ordem": 1,
+   "coluna": "Id",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": true
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Votes",
+   "ordem": 2,
+   "coluna": "PostId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Votes",
+   "ordem": 3,
+   "coluna": "UserId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Votes",
+   "ordem": 4,
+   "coluna": "BountyAmount",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": true,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Votes",
+   "ordem": 5,
+   "coluna": "VoteTypeId",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Votes",
+   "ordem": 6,
+   "coluna": "CreationDate",
+   "tipo": "datetime",
+   "bytes": 8,
+   "anulavel": false,
+   "identidade": false
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "VoteTypes",
+   "ordem": 1,
+   "coluna": "Id",
+   "tipo": "int",
+   "bytes": 4,
+   "anulavel": false,
+   "identidade": true
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "VoteTypes",
+   "ordem": 2,
+   "coluna": "Name",
+   "tipo": "varchar",
+   "bytes": 50,
+   "anulavel": false,
+   "identidade": false
+  }
+ ],
+ "tabelas": [
+  {
+   "esquema": "dbo",
+   "tabela": "Badges",
+   "linhas": 1102019,
+   "paginas": 6547
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Comments",
+   "linhas": 3875183,
+   "paginas": 168858
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "LinkTypes",
+   "linhas": 2,
+   "paginas": 2
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostLinks",
+   "linhas": 161519,
+   "paginas": 664
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "linhas": 3729195,
+   "paginas": 865691
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostTypes",
+   "linhas": 8,
+   "paginas": 2
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "linhas": 299398,
+   "paginas": 7429
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Votes",
+   "linhas": 10143364,
+   "paginas": 46704
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "VoteTypes",
+   "linhas": 15,
+   "paginas": 2
+  }
+ ],
+ "indices": [
+  {
+   "esquema": "dbo",
+   "tabela": "Badges",
+   "indice": "PK_Badges__Id",
+   "tipo": "CLUSTERED",
+   "unico": true,
+   "pk": true,
+   "ordem_chave": 1,
+   "incluida": false,
+   "coluna": "Id"
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Comments",
+   "indice": "PK_Comments__Id",
+   "tipo": "CLUSTERED",
+   "unico": true,
+   "pk": true,
+   "ordem_chave": 1,
+   "incluida": false,
+   "coluna": "Id"
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "LinkTypes",
+   "indice": "PK_LinkTypes__Id",
+   "tipo": "CLUSTERED",
+   "unico": true,
+   "pk": true,
+   "ordem_chave": 1,
+   "incluida": false,
+   "coluna": "Id"
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostLinks",
+   "indice": "PK_PostLinks__Id",
+   "tipo": "CLUSTERED",
+   "unico": true,
+   "pk": true,
+   "ordem_chave": 1,
+   "incluida": false,
+   "coluna": "Id"
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Posts",
+   "indice": "PK_Posts__Id",
+   "tipo": "CLUSTERED",
+   "unico": true,
+   "pk": true,
+   "ordem_chave": 1,
+   "incluida": false,
+   "coluna": "Id"
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "PostTypes",
+   "indice": "PK_PostTypes__Id",
+   "tipo": "CLUSTERED",
+   "unico": true,
+   "pk": true,
+   "ordem_chave": 1,
+   "incluida": false,
+   "coluna": "Id"
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Users",
+   "indice": "PK_Users_Id",
+   "tipo": "CLUSTERED",
+   "unico": true,
+   "pk": true,
+   "ordem_chave": 1,
+   "incluida": false,
+   "coluna": "Id"
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "Votes",
+   "indice": "PK_Votes__Id",
+   "tipo": "CLUSTERED",
+   "unico": true,
+   "pk": true,
+   "ordem_chave": 1,
+   "incluida": false,
+   "coluna": "Id"
+  },
+  {
+   "esquema": "dbo",
+   "tabela": "VoteTypes",
+   "indice": "PK_VoteType__Id",
+   "tipo": "CLUSTERED",
+   "unico": true,
+   "pk": true,
+   "ordem_chave": 1,
+   "incluida": false,
+   "coluna": "Id"
+  }
+ ]
+}

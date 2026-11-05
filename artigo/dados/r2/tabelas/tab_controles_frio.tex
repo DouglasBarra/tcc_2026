@@ -1,0 +1,17 @@
+% tab_controles; regime frio; experimentos [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]; criterios_sha 23e5e61d4e23e46b
+% requer \usepackage{booktabs}; arquivo gerado por tcclab.relatorio (nao editar a mao)
+{\small\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrrrc}
+\toprule
+Consulta & Antipadrão & Antes & Depois & Razão & IC95\% & Redução & Critério \\
+\midrule
+F5 & AP1 & 46.704 & 50 & 0,00107 & [0,00107; 0,00107] & 99,9\% & sim \\
+S5 & AP2 & 13.952 & 9.319 & 0,668 & [0,668; 0,668] & 33,2\% & sim \\
+\bottomrule
+\end{tabular}\par
+\vspace{3pt}
+\begin{minipage}{\linewidth}\footnotesize
+Regime frio. Mediana de leituras lógicas (antes e depois); razão = mediana depois/antes. Critério de melhoria: redução $\geq$ 20\% e IC95\% da razão abaixo de 1; custo de escrita reportado à parte, sem limiar. Consultas de controle: fora da análise principal.\par
+IC degenerado (limites iguais) onde a métrica é constante nas repetições (desvio padrão zero): a incerteza das repetições é nula e o intervalo não mede variação entre consultas.
+\end{minipage}
+}

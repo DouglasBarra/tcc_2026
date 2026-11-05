@@ -1,0 +1,4 @@
+run_id,query_plan_hash,execution_count,avg_logical_reads,avg_cpu_us,avg_elapsed_us,min_cpu_us,max_cpu_us,min_elapsed_us,max_elapsed_us,last_cpu_us,last_elapsed_us
+91,0x5A5F4CD9FFA54F32,20,6547.0,48899.35,48907.75,48604,49423,48604,49424,48988,48988
+92,0x9C203417B0B9C8C4,20,9.0,707.6,707.65,570,1336,570,1336,688,688
+93,0x5A5F4CD9FFA54F32,20,6547.0,49049.45,49061.45,48586,49987,48587,50213,49227,49229

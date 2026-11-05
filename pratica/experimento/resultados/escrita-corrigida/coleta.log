@@ -1,0 +1,22 @@
+02:48:55 20 indices distintos a medir (k=1000, repeticoes=10)
+02:49:05 [ix_exp_posts_creationdate] framework: 8330 paginas, criacao 3344 ms, 5s
+02:49:07 [ix_exp_users_displayname] framework: 1282 paginas, criacao 415 ms, 1s
+02:49:12 [ix_exp_votes_creationdate] framework: 27638 paginas, criacao 4721 ms, 6s
+02:49:20 [ix_exp_posts_owner_cob] framework: 10162 paginas, criacao 6681 ms, 8s
+02:49:27 [ix_exp_posts_owner] framework_extra: 6470 paginas, criacao 6044 ms, 7s
+02:49:37 [ix_exp_votes_postid_cob] framework: 27624 paginas, criacao 8822 ms, 10s
+02:49:40 [ix_exp_comments_postid_cob] framework: 8652 paginas, criacao 2387 ms, 3s
+02:49:42 [ix_exp_badges_userid] framework: 1914 paginas, criacao 744 ms, 2s
+02:49:49 [ix_exp_posts_owner_cob] framework: 12023 paginas, criacao 6219 ms, 7s
+02:49:55 [ix_exp_comments_userid_cob] framework: 10560 paginas, criacao 4895 ms, 6s
+02:50:00 [ix_exp_comments_userid] framework: 6724 paginas, criacao 4376 ms, 5s
+02:50:01 [ix_exp_users_location_cob] framework: 1772 paginas, criacao 302 ms, 1s
+02:50:03 [ix_exp_users_location] framework: 847 paginas, criacao 288 ms, 1s
+02:50:11 [ix_exp_votes_postid] framework: 17589 paginas, criacao 7830 ms, 9s
+02:50:19 [ix_exp_posts_owner_score] framework: 8333 paginas, criacao 6552 ms, 8s
+02:50:28 [ix_exp_posts_score_owner] framework_extra: 8333 paginas, criacao 7664 ms, 9s
+02:50:29 [ix_exp_users_reputation] framework: 1279 paginas, criacao 253 ms, 1s
+02:51:18 [ix_exp_nativo_posts (C1+C2)] nativo: 863949 paginas, criacao 47511 ms, 49s
+02:51:29 [ix_exp_nativo_comments (C3)] nativo: 167145 paginas, criacao 10508 ms, 11s
+02:51:31 [ix_exp_nativo_users (C4)] nativo: 7354 paginas, criacao 784 ms, 2s
+02:51:31 rodada de escrita concluida

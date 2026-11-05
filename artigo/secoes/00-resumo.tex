@@ -1,0 +1,30 @@
+% =====================================================================
+% RESUMO, PALAVRAS-CHAVE, ABSTRACT E KEYWORDS
+%
+% Versão mais simples possível: parágrafos com rótulo em negrito, como nos TCCs
+% de exemplo (Resumo: ...; Palavras-chave: ...; Abstract: ...; Keywords: ...).
+% Não depende de ambiente da classe UNESC. Se a classe oferecer ambientes ou
+% comandos próprios (por exemplo \resumo{...}), troque APENAS a moldura e mantenha
+% o texto. Ver README.md, seção "O que ajustar no template UNESC".
+%
+% Regras: até 250 palavras cada, sem citação bibliográfica, com problema,
+% solução, hipótese, resultados e conclusão. Resultados e conclusão ficam
+% como \PENDENTE até a execução do experimento. Ao preencher, reconferir a
+% contagem de palavras (alvo: 190 a 230).
+% =====================================================================
+
+\begingroup
+\singlespacing
+
+\noindent\textbf{Resumo:} A escrita de consultas em bancos de dados relacionais figura entre as tarefas de maior esforço no desenvolvimento de \textit{software}, e o desempenho costuma ceder lugar à correção funcional. As ferramentas automáticas de ajuste de índices atuam depois que a consulta foi escrita e não orientam quem a escreve. Este trabalho propôs um \textit{framework} metodológico de quatro camadas, diagnóstico, análise, prescrição e validação, que organiza práticas de indexação e de reescrita de consultas no SQL Server. A hipótese foi que o \textit{framework} reduz em pelo menos 20\% as leituras lógicas de consultas com antipadrões de escrita. Realizou-se um experimento do tipo antes e depois sobre o conjunto de dados público Stack Overflow 2010, com 19 consultas de quatro classes de antipadrões, medidas nas formas original e otimizada quanto às leituras lógicas, ao tempo de processamento e ao tempo de execução, além do custo de escrita dos índices e da comparação com o índice sugerido pela ferramenta nativa. A redução mediana das leituras lógicas nas 17 consultas principais foi de 99,9\% (teste de Wilcoxon, $p < 0{,}001$), e 16 delas atingiram o limiar. A subconsulta correlacionada teve o menor efeito, e em uma consulta a prescrição manual não atacou o gargalo que o índice nativo encontrou. A reescrita isolada não reduziu as leituras, e um índice que não cobria a consulta a piorou. Concluiu-se que a hipótese foi confirmada para o conjunto e que o método manual e a ferramenta nativa se complementam.
+
+\medskip
+\noindent\textbf{Palavras-chave:} otimização de consultas; indexação; SQL Server; desempenho de bancos de dados; antipadrões de consulta.
+
+\bigskip
+\noindent\textbf{Abstract:} Writing queries for relational databases is among the most demanding software development tasks, and performance often gives way to functional correctness. Automatic index tuning tools act after the query has been written and do not guide the person writing it. This work proposed a four-layer methodological \textit{framework}, composed of diagnosis, analysis, prescription and validation, which organizes indexing and query rewriting practices in SQL Server. The hypothesis was that the \textit{framework} reduces logical reads by at least 20\% in queries with writing antipatterns. A before-and-after experiment was carried out on the public Stack Overflow 2010 dataset, with 19 queries from four antipattern classes, measured in their original and optimized forms for logical reads, CPU time and elapsed time, together with the write cost of the indexes and a comparison with the index suggested by the native tool. The median reduction in logical reads across the 17 main queries was 99.9\% (Wilcoxon test, $p < 0.001$), and 16 of them reached the threshold. Correlated subqueries had the smallest effect, and in one query the manual prescription missed the bottleneck that the native index found. Rewriting alone did not reduce reads, and an index that did not cover the query made it worse. It was concluded that the hypothesis was confirmed for the set and that the manual method and the native tool complement each other.
+
+\medskip
+\noindent\textbf{Keywords:} query optimization; indexing; SQL Server; database performance; query antipatterns.
+
+\endgroup

@@ -1,0 +1,173 @@
+# Conjunto de VALIDACAO do Diagnostico, separado do desenvolvimento das regras.
+# Escrito e rotulado em 25/10/2026 ANTES de qualquer execucao do detector sobre ele; o hash SHA-256 deste arquivo e o de
+# diagnostico.py foram registrados em PRE-REGISTRO.md antes de gerar os planos. Nao ajustar regras olhando estes resultados
+# sem declarar que o conjunto deixou de ser de validacao.
+#
+# Rotulos (por consulta):
+#   esperado = classes que o detector DEVE apontar
+#   tolerado = classes que podem aparecer sem contar como falso positivo (a varredura por falta de indice acompanha varias)
+#   proibido = classes que NAO podem aparecer (casos construidos para enganar uma regra)
+# Mesmo formato do catalogo.toml (campos obrigatorios de consulta), mais as tres listas.
+
+[meta]
+versao = 1
+banco = "so_exp"
+dataset = "StackOverflow2010"
+
+[[consulta]]
+id = "H1"
+antipadrao = "AP1"
+titulo = "LEFT sobre DisplayName"
+tabelas = ["dbo.Users"]
+seletividade = "alta"
+papel = "validacao"
+esperado = ["AP1"]
+tolerado = ["AP4"]
+proibido = ["AP2", "AP3"]
+sql_original = """SELECT Id FROM dbo.Users WHERE LEFT(DisplayName, 4) = 'Jon '"""
+
+[[consulta]]
+id = "H2"
+antipadrao = "AP1"
+titulo = "YEAR sobre Comments.CreationDate"
+tabelas = ["dbo.Comments"]
+seletividade = "media"
+papel = "validacao"
+esperado = ["AP1"]
+tolerado = ["AP4"]
+proibido = ["AP2", "AP3"]
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Comments WHERE YEAR(CreationDate) = 2009"""
+
+[[consulta]]
+id = "H3"
+antipadrao = "AP1"
+titulo = "ISNULL sobre coluna anulavel no filtro"
+tabelas = ["dbo.Posts"]
+seletividade = "media"
+papel = "validacao"
+esperado = ["AP1"]
+tolerado = ["AP4"]
+proibido = ["AP2", "AP3"]
+sql_original = """SELECT Id, Title FROM dbo.Posts WHERE ISNULL(AcceptedAnswerId, 0) = 0 AND Score > 100"""
+
+[[consulta]]
+id = "H4"
+antipadrao = "AP1"
+titulo = "CAST da coluna para texto no filtro"
+tabelas = ["dbo.Users"]
+seletividade = "alta"
+papel = "validacao"
+esperado = ["AP1"]
+tolerado = ["AP4"]
+proibido = ["AP2", "AP3"]
+sql_original = """SELECT Id FROM dbo.Users WHERE CAST(Reputation AS varchar(10)) = '1'"""
+
+[[consulta]]
+id = "H5"
+antipadrao = "AP2"
+titulo = "subconsulta escalar correlacionada com TOP 1 e ORDER BY"
+tabelas = ["dbo.Posts", "dbo.Comments"]
+seletividade = "alta"
+papel = "validacao"
+esperado = ["AP2"]
+tolerado = ["AP4"]
+proibido = ["AP1", "AP3"]
+sql_original = """SELECT p.Id, (SELECT TOP (1) c.Text FROM dbo.Comments c WHERE c.PostId = p.Id ORDER BY c.Score DESC) AS TopComentario
+FROM dbo.Posts p WHERE p.OwnerUserId = 100"""
+
+[[consulta]]
+id = "H6"
+antipadrao = "AP4"
+titulo = "EXISTS correlacionado (semijuncao, NAO e subconsulta escalar) sobre coluna sem indice"
+tabelas = ["dbo.Users", "dbo.Badges"]
+seletividade = "media"
+papel = "validacao"
+esperado = ["AP4"]
+tolerado = []
+proibido = ["AP1", "AP2", "AP3"]
+sql_original = """SELECT u.Id FROM dbo.Users u WHERE u.Reputation >= 20000
+AND EXISTS (SELECT 1 FROM dbo.Badges b WHERE b.UserId = u.Id AND b.Name = 'Teacher')"""
+
+[[consulta]]
+id = "H7"
+antipadrao = "AP3"
+titulo = "SELECT * em Badges por UserId"
+tabelas = ["dbo.Badges"]
+seletividade = "alta"
+papel = "validacao"
+esperado = ["AP3", "AP4"]
+tolerado = []
+proibido = ["AP1", "AP2"]
+sql_original = """SELECT * FROM dbo.Badges WHERE UserId = 22656"""
+
+[[consulta]]
+id = "H8"
+antipadrao = "AP3"
+titulo = "SELECT * em PostLinks por PostId"
+tabelas = ["dbo.PostLinks"]
+seletividade = "alta"
+papel = "validacao"
+esperado = ["AP3", "AP4"]
+tolerado = []
+proibido = ["AP1", "AP2"]
+sql_original = """SELECT * FROM dbo.PostLinks WHERE PostId = 4"""
+
+[[consulta]]
+id = "H9"
+antipadrao = "AP4"
+titulo = "filtro de igualdade em Posts.ParentId sem indice"
+tabelas = ["dbo.Posts"]
+seletividade = "alta"
+papel = "validacao"
+esperado = ["AP4"]
+tolerado = []
+proibido = ["AP1", "AP2", "AP3"]
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Posts WHERE ParentId = 4"""
+
+[[consulta]]
+id = "H10"
+antipadrao = "AP4"
+titulo = "filtro composto de igualdade em Votes sem indice"
+tabelas = ["dbo.Votes"]
+seletividade = "alta"
+papel = "validacao"
+esperado = ["AP4"]
+tolerado = []
+proibido = ["AP1", "AP2", "AP3"]
+sql_original = """SELECT Id FROM dbo.Votes WHERE UserId = 5 AND VoteTypeId = 2"""
+
+[[consulta]]
+id = "H11"
+antipadrao = "NENHUM"
+titulo = "junção entre chaves primarias com intervalo"
+tabelas = ["dbo.Posts", "dbo.Comments"]
+seletividade = "alta"
+papel = "validacao"
+esperado = []
+tolerado = []
+proibido = ["AP1", "AP2", "AP3", "AP4"]
+sql_original = """SELECT p.Id, c.Id AS ComentarioId FROM dbo.Posts p JOIN dbo.Comments c ON c.Id = p.Id WHERE p.Id BETWEEN 1 AND 100"""
+
+[[consulta]]
+id = "H12"
+antipadrao = "NENHUM"
+titulo = "contagem total de Users (varredura legitima sem filtro)"
+tabelas = ["dbo.Users"]
+seletividade = "baixa"
+papel = "validacao"
+esperado = []
+tolerado = []
+proibido = ["AP1", "AP2", "AP3", "AP4"]
+sql_original = """SELECT COUNT(*) AS N FROM dbo.Users"""
+
+[[consulta]]
+id = "H13"
+antipadrao = "NENHUM"
+titulo = "busca de tres chaves primarias com colunas listadas"
+tabelas = ["dbo.Posts"]
+seletividade = "alta"
+papel = "validacao"
+esperado = []
+tolerado = []
+proibido = ["AP1", "AP2", "AP3", "AP4"]
+sql_original = """SELECT Id, Title, Score FROM dbo.Posts WHERE Id IN (4, 11, 13)"""

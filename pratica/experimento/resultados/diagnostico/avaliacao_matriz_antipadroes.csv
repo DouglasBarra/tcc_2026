@@ -1,0 +1,16 @@
+modo,declarado,n,detectou_AP1,detectou_AP2,detectou_AP3,detectou_AP4,sem_achado_de_ap
+sql,AP1,5,5,0,0,0,0
+sql,AP2,5,0,5,0,0,0
+sql,AP3,4,0,0,4,0,0
+sql,AP4,5,0,0,0,0,5
+sql,NENHUM,9,0,0,0,0,9
+estimado,AP1,5,5,0,0,4,0
+estimado,AP2,5,0,5,0,5,0
+estimado,AP3,4,0,0,4,4,0
+estimado,AP4,5,0,0,0,5,0
+estimado,NENHUM,9,0,0,0,0,9
+real,AP1,5,5,0,0,4,0
+real,AP2,5,0,5,0,5,0
+real,AP3,4,0,0,4,4,0
+real,AP4,5,0,0,0,5,0
+real,NENHUM,9,0,0,0,0,9

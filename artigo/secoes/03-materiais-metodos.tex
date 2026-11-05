@@ -1,0 +1,104 @@
+% =====================================================================
+% 3 MATERIAIS E MÉTODOS
+% Reorganiza Trabalho Proposto + Metodologia + Recursos Necessários nas quatro
+% partes de Lakatos e Marconi (objeto de estudo, delineamento, procedimentos,
+% análise dos dados).
+%
+% REGRA DE OURO: nada é declarado como feito se ainda não foi executado.
+% - Passado: decisões de projeto e o ambiente já montado (fatos verificados em
+%   knowledge/13-infra-sqlserver-docker.md).
+% - Tudo que depende do experimento (números, versões finais, resultados de
+%   comandos) está como \PENDENTE.
+% - Subseções 3.5 a 3.7: o texto descreve o protocolo DEFINIDO, em presente;
+%   ao executar o experimento, reler e converter os verbos para o pretérito
+%   (ver \PENDENTE no início de 3.5).
+% =====================================================================
+
+\section{MATERIAIS E MÉTODOS}\label{sec:mm}
+
+Esta seção apresenta a contribuição do autor e as informações necessárias para reproduzir o experimento, em quatro partes: o objeto de estudo (subseções~\ref{sec:framework} a~\ref{sec:materiais}), o delineamento (subseção~\ref{sec:delineamento}), os procedimentos (subseção~\ref{sec:procedimentos}) e a análise dos dados (subseção~\ref{sec:analise}).
+
+\subsection{Caracterização da pesquisa e hipótese}\label{sec:caracterizacao}
+
+Esta pesquisa caracteriza-se, quanto à sua natureza, como aplicada, uma vez que tem como finalidade a produção de conhecimento direcionado à solução de um problema prático identificado no desenvolvimento de sistemas que dependem de bancos de dados relacionais. Quanto aos objetivos, classifica-se como exploratória e descritiva, na medida em que busca aprofundar a compreensão do tema por meio da revisão bibliográfica e descrever de forma sistemática o comportamento das consultas antes e depois da aplicação do \textit{framework}. Quanto aos procedimentos técnicos, combina revisão bibliográfica e desenvolvimento experimental, conduzido por testes práticos em ambiente controlado de banco de dados. \PENDENTE{confirmar a classificação da pesquisa com a orientadora: a taxonomia da disciplina não traz \textquotedblleft aplicada\textquotedblright{} como natureza, e \textquotedblleft exploratória\textquotedblright{} indica ausência de hipótese, que o artigo formula (decisão 21)}
+
+A hipótese operacional é que as recomendações das camadas de análise e de prescrição reduzem em pelo menos 20\% a mediana das leituras lógicas das consultas com antipadrões (seção~\ref{sec:introducao}). O custo de escrita dos índices criados foi incluído para verificar se o ganho na leitura se mantém.
+
+\subsection{O \textit{framework} de quatro camadas}\label{sec:framework}
+
+O \textit{framework} foi concebido como um processo iterativo de quatro camadas sequenciais (Figura~\ref{fig:framework}): a saída da camada de validação pode retroalimentar uma nova rodada de diagnóstico, o que permite refinar as consultas e os índices.
+
+\begin{figure}[H]
+\centering
+\flutuante{%
+\resizebox{\textwidth}{!}{%
+\fbox{\parbox[c]{3.6cm}{\centering\textbf{1. Diagnóstico}\\[2pt] antipadrões e evidências no plano de execução}}
+$\rightarrow$
+\fbox{\parbox[c]{3.6cm}{\centering\textbf{2. Análise}\\[2pt] índices existentes, seletividade e custo de escrita}}
+$\rightarrow$
+\fbox{\parbox[c]{3.6cm}{\centering\textbf{3. Prescrição}\\[2pt] reescrita da consulta e criação ou ajuste de índice}}
+$\rightarrow$
+\fbox{\parbox[c]{3.6cm}{\centering\textbf{4. Validação}\\[2pt] três métricas, custo de escrita e comparação com o índice nativo}}
+}%
+}{\caption{Camadas do \textit{framework} e ciclo de iteração}\label{fig:framework}}{Sem melhoria significativa ou com efeito colateral negativo, o processo retorna à camada 1.\\[0.1cm]Fonte: Do autor.}
+\end{figure}
+
+A camada de diagnóstico identifica, em uma consulta existente, antipadrões de escrita associados a operações ineficientes, a partir do plano de execução: varreduras completas de tabela, funções aplicadas a colunas filtradas e subconsultas correlacionadas em contextos em que uma junção seria mais adequada \cite{neumann2025unnesting, karwin2010antipatterns}. O resultado é um conjunto de evidências objetivas que fundamenta as camadas seguintes.
+
+A camada de análise examina as evidências em conjunto com os índices já existentes nas tabelas, avalia a seletividade das colunas usadas nos filtros e nas junções e determina se a causa da ineficiência é a ausência de um índice adequado ou o uso inadequado de um índice existente \cite{fritchey2018qpt}. Além do ganho estimado na leitura, considera o impacto potencial de um novo índice sobre as operações de escrita \cite{saidu2024indexing}.
+
+A camada de prescrição traduz a análise em recomendações objetivas: a reescrita da consulta, que elimina o antipadrão; a criação ou o ajuste de índices, com a ordem das colunas justificada pela seletividade; ou ambas. As recomendações são diretrizes específicas e tecnicamente justificadas, e não sugestões genéricas.
+
+A camada de validação verifica se as recomendações resultaram em ganho de desempenho. Compara as três métricas, leituras lógicas, tempo de processamento e tempo de execução, antes e depois \cite{rusanu2014perf}, mede o custo de escrita (\texttt{INSERT}, \texttt{UPDATE} e \texttt{DELETE}) do índice criado e compara o resultado com o do índice sugerido pelo recurso nativo de índices ausentes do SQL Server. Sem melhoria significativa, ou com efeito colateral negativo, o processo retorna ao diagnóstico. Definiu-se como melhoria significativa a redução mediana de pelo menos 20\% nas leituras lógicas.
+
+\subsection{Catálogo de antipadrões e consultas de teste}\label{sec:catalogo}
+
+O catálogo reúne quatro classes de antipadrões, escolhidas por serem recorrentes na literatura e por terem correção conhecida (Tabela~\ref{tab:catalogo}). Cada classe foi associada a quatro ou cinco consultas de teste, 19 no total, em duas versões quando há reescrita: a original, que contém o antipadrão, e a otimizada, que aplica a prescrição. A consulta entra no experimento se contiver o antipadrão e se as duas versões retornarem o mesmo resultado. Duas das 19 consultas, uma de função sobre coluna e uma de subconsulta correlacionada, foram designadas como controle antes da coleta, por serem casos em que o otimizador pode neutralizar o antipadrão sem intervenção, e são analisadas à parte. Os exemplos usam as tabelas do conjunto de dados da subseção~\ref{sec:materiais}. \PENDENTE{incluir a lista final das consultas no Apêndice A, se a orientadora aceitar apêndice (decisão 22)}
+
+\begin{table}[H]
+\centering
+\flutuante{%
+\small
+\begin{tabular}{ | m{4.2cm} | m{4.2cm} | m{4.2cm} | }
+\hline
+\textbf{Antipadrão} & \textbf{Efeito no plano de execução} & \textbf{Prescrição} \\
+\hline
+Função aplicada a coluna filtrada, por exemplo \texttt{WHERE YEAR(CreationDate) = 2010} & O valor é recalculado para cada registro, e o índice da coluna não localiza os registros, o que resulta em varredura completa \cite{karwin2010antipatterns, fritchey2018qpt} & Reescrever o filtro como intervalo, por exemplo \texttt{CreationDate >= '2010-01-01' AND CreationDate < '2011-01-01'}, e indexar a coluna filtrada \\
+\hline
+Subconsulta correlacionada no lugar de junção, por exemplo uma contagem de postagens por usuário calculada em subconsulta para cada linha & A subconsulta é reexecutada para cada registro da consulta externa, com tempo que pode crescer de forma quadrática \cite{neumann2025unnesting} & Reescrever com \texttt{JOIN} e \texttt{GROUP BY} e indexar a coluna de junção \\
+\hline
+Seleção desnecessária de colunas (\texttt{SELECT *}) & O índice não contém as colunas pedidas, e o sistema faz uma busca adicional na tabela base para cada registro (\textit{key lookup}) ou varre a tabela \cite{karwin2010antipatterns, fritchey2018qpt} & Listar apenas as colunas necessárias e criar índice que as inclua (\texttt{INCLUDE}) \\
+\hline
+Varredura completa por falta de índice, por exemplo filtro de igualdade em coluna sem índice & O sistema lê todas as páginas da tabela para encontrar poucos registros \cite{fritchey2018qpt} & Criar índice na coluna filtrada, com as colunas de igualdade antes das de intervalo \\
+\hline
+\end{tabular}%
+}{\caption{Catálogo de antipadrões de escrita de consultas}
+\label{tab:catalogo}}{Fonte: Do autor, com base nas fontes citadas.}
+\end{table}
+
+\subsection{Materiais: dados, ambiente e ferramentas}\label{sec:materiais}
+
+O conjunto de dados foi o Stack Overflow 2010, cópia em formato SQL Server do banco público de perguntas e respostas do Stack Overflow, limitada aos dados de 2008 a 2010 e mantida por \citeonline{ozar2015stackoverflow} a partir do despejo de dados de \citeonline{stackexchange2024dump}. São dados reais, em nove tabelas, licenciados sob CC BY-SA 4.0, que exige atribuição aos autores. O arquivo tem 1,17 GB e ocupa cerca de nove gigabytes depois de restaurado. As tabelas somam 19,3 milhões de linhas: \texttt{Votes} tem 10,1 milhões, \texttt{Comments}, 3,9 milhões, e \texttt{Posts}, 3,7 milhões, com 6,7 GB. Todas têm apenas o índice clusterizado da chave primária, de modo que a medição inicial parte de um banco sem índices secundários. Gerou-se uma cópia de segurança do banco (2,72 GB), com resumo criptográfico SHA-256 registrado, e cada consulta partiu de um clone restaurado dessa cópia, o que garantiu o mesmo estado inicial para todas. \PENDENTE{confirmar com a orientadora se esse domínio, uma aplicação real de perguntas e respostas, atende ao critério \textquotedblleft transacional\textquotedblright{} do projeto (decisão 25); o plano B, se necessário, é o TPC-H}
+O sistema gerenciador foi o SQL Server 2022, edição Developer, em contêiner Docker sobre Linux, com imagem fixada pelo resumo criptográfico (\textit{digest}) e versão 16.0.4295.3 (RTM-CU27, KB5104824), com o \textit{Query Store} em captura completa. O computador tinha macOS e processador Apple Silicon (arm64), com 24 GiB de memória, dos quais 7,75 GiB na máquina virtual do Docker Desktop e 4.096 MB para o SQL Server. A imagem, amd64, rodou sob emulação, o que impede comparar os valores absolutos de tempo de processamento e de tempo de execução com os de outros trabalhos; esses indicadores foram tratados como relativos, e as leituras lógicas, que não dependem da arquitetura, como a métrica principal. Como \texttt{Posts} é maior que a memória do SQL Server, as varreduras dela envolveram leituras físicas mesmo no cenário quente. Dois parâmetros foram fixados na configuração do banco: o nível de compatibilidade 160, padrão da versão sob teste, com uma rodada de sensibilidade em 100, nível em que o conjunto é distribuído; e o grau máximo de paralelismo igual a 1, porque em planos paralelos as leituras lógicas de uma mesma consulta variaram até 2\% entre execuções idênticas, e porque o tempo de processamento só é comparável ao de execução em plano serial.
+
+O SQL Server Management Studio não é executável em macOS, e por isso se adotou uma ferramenta própria, em Python 3.14, com o \textit{driver} \texttt{python-tds} 1.17.1, escolhido por não exigir biblioteca nativa e por entregar o número de cada mensagem do servidor, o que torna a leitura das estatísticas independente do idioma. A ferramenta executou cada versão da consulta, coletou as métricas e consolidou as medições em um banco SQLite, e as tabelas e as figuras deste artigo foram geradas dos dados por \textit{script}. As consultas, os \textit{scripts} e os dados brutos da coleta estão disponíveis em repositório público, com instruções de execução (\url{https://github.com/DouglasBarra/tcc_2026}). \PENDENTE{endereço do repositório e apêndice com os \textit{scripts}, se a orientadora aceitar apêndice (decisão 22)}
+
+\subsection{Delineamento do experimento}\label{sec:delineamento}
+
+O experimento foi do tipo antes e depois, pareado: cada consulta foi a unidade de análise e serviu de controle de si mesma. O tratamento foram as recomendações das camadas de análise e de prescrição, aplicadas pelo autor. A amostra reuniu as 19 consultas do catálogo, 17 principais e 2 de controle, em quatro classes de antipadrão, com ao menos quatro consultas por classe. Cada consulta foi medida em 20 repetições no cenário quente e em 8 no cenário frio, depois de 2 execuções de aquecimento. O cenário frio é frio apenas para o SQL Server, que teve o cache de dados esvaziado antes de cada repetição; o cenário quente manteve as páginas na memória, quando coube. A consulta original foi medida no início e no fim de cada experimento (ordem ABA), e uma diferença superior a 25\% entre as duas medianas do tempo de processamento indicou deriva do ambiente. Permaneceram constantes o conjunto de dados, o ambiente e os parâmetros da consulta, de modo que o \textit{framework} fosse o único fator a variar.
+
+Os valores atípicos (\textit{outliers}), definidos pelas cercas de Tukey (1,5 vez a amplitude interquartil), foram sinalizados e mantidos: a análise principal usou a mediana, robusta a eles, e a de sensibilidade os excluiu. Os critérios, os limiares e as regras de análise foram registrados em documento datado de 25 de outubro de 2026, antes da coleta. A coleta consistiu em duas rodadas completas do mesmo protocolo, R1, com o computador em uso por outras tarefas, e R2, sem outra carga, cada uma com uma rodada de sensibilidade em nível de compatibilidade 100. Na R1, a deriva foi registrada sem repetir o experimento; na R2, uma deriva acima de 25\% repetiu o experimento da consulta uma vez, e a tentativa descartada permaneceu registrada. Na R2, um experimento foi repetido por deriva em cada nível de compatibilidade, F3 no 160 e C3 no 100.
+
+\subsection{Procedimentos}\label{sec:procedimentos}
+
+Para cada consulta, o banco foi restaurado em um clone a partir da cópia de segurança e o \textit{Query Store} foi habilitado. A equivalência de resultado entre a versão original e a reescrita foi verificada pela comparação do conjunto de linhas, sem considerar a ordem, e a consulta cujo resultado divergisse seria invalidada. Obteve-se o índice sugerido pelo recurso nativo de índices ausentes a partir do plano estimado da consulta original. Os blocos foram medidos na ordem original, reescrita, índice, reescrita com índice, índice nativo e original novamente. Antes de cada bloco, criou-se o índice da variante, atualizaram-se as estatísticas das tabelas com leitura completa (\texttt{UPDATE STATISTICS ... WITH FULLSCAN}) e limpou-se o cache de planos do banco; no cenário frio, antes de cada repetição, o banco foi gravado em disco e o cache de dados foi esvaziado (\texttt{CHECKPOINT} e \texttt{DBCC DROPCLEANBUFFERS}).
+
+O custo de escrita foi medido em rodada dedicada, para cada índice distinto do \textit{framework} e do recurso nativo, com \texttt{INSERT}, \texttt{UPDATE} e \texttt{DELETE} das mesmas mil linhas, com e sem o índice, dentro de transação desfeita, registrando as leituras lógicas e os bytes de registro de transações (\textit{log}). A rodada dedicada substituiu a medição feita junto com as consultas, cujo método selecionava linhas diferentes conforme o caminho de acesso e foi corrigido durante o trabalho.
+
+A coleta combinou três canais independentes, que se conferiram entre si. As leituras lógicas e os tempos foram capturados a cada execução com \texttt{SET STATISTICS IO, TIME ON} \cite{rusanu2014perf, fritchey2018qpt}; o plano de execução real, em XML, trouxe os contadores de cada operador; e a visão \texttt{sys.dm\_exec\_query\_stats} e o \textit{Query Store} agregaram as execuções de cada bloco. Como \texttt{SET STATISTICS TIME} registra milissegundos inteiros e consultas rápidas resultam em zero, os tempos de processamento e de execução analisados foram lidos em microssegundos da visão logo após cada execução, com o \texttt{STATISTICS TIME} como conferência. Em testes preliminares, os três canais concordaram nas leituras lógicas, e os tempos do \textit{Query Store} e da visão coincidiram.
+
+\subsection{Métricas e análise dos dados}\label{sec:analise}
+
+As leituras lógicas contabilizam as páginas de dados lidas da memória durante a execução da consulta e foram a métrica principal, por serem o melhor indicador do custo de uma consulta \cite{rusanu2014perf}. Em um teste preliminar do ambiente, com uma tabela de 200.000 linhas, o valor foi idêntico entre as repetições, ao passo que o tempo de processamento e o tempo de execução variaram. O tempo de processamento reflete os ciclos de processador consumidos, e o tempo de execução mede a duração total percebida pela aplicação; ambos são relativos, em razão da emulação.
+
+Para cada consulta, métrica e cenário, calculou-se a mediana das repetições e a redução percentual entre as versões original e otimizada, isto é, a diferença entre os valores antes e depois dividida pelo valor antes. A versão otimizada foi a prescrição completa do \textit{framework}: a reescrita com o índice ou, nas consultas sem reescrita, apenas o índice. As demais variantes (só reescrita, só índice, índice nativo, um contraexemplo de índice que não cobre a consulta e um controle com a ordem das colunas invertida) formaram comparações secundárias que separam a contribuição de cada recomendação. A análise principal usou as 17 consultas principais e o cenário quente; a de sensibilidade incluiu as duas de controle e repetiu as estatísticas sem os valores atípicos. Para a generalização entre consultas, aplicou-se o teste dos postos sinalizados de Wilcoxon para amostras pareadas, por métrica, com nível de significância de 0,05 e correção de Holm para as três métricas, e reportou-se a redução mediana percentual com seu intervalo de confiança. A hipótese seria confirmada se a redução mediana das leituras lógicas atingisse o limiar de 20\%, e os casos sem ganho ou com piora foram mantidos e reportados. Como a consulta S2 ficou abaixo do limiar, uma segunda volta do \textit{framework} para S2 e S3, com o índice também no filtro externo, foi medida depois, como análise pós-hoc, não registrada antes da coleta. \PENDENTE{confirmar com a orientadora o teste estatístico, o nível de significância e a correção para comparações múltiplas; não há fonte no material da disciplina}

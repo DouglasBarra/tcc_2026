@@ -1,0 +1,41 @@
+Changed database context to 'StackOverflow2010_teste'.
+##### (a1) YEAR(CreationDate) em Users - sem indice
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+ 
+-
+199550
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 71, page server reads 0, read-ahead reads 7214, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+ SQL Server Execution Times:
+   CPU time = 69 ms,  elapsed time = 55 ms.
+##### (a2) sargavel em Users - sem indice
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 0 ms.
+ 
+-
+199550
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 4, page server reads 0, read-ahead reads 2660, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+ SQL Server Execution Times:
+   CPU time = 51 ms,  elapsed time = 39 ms.
+##### (a3) YEAR(CreationDate) em Posts - sem indice
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+ 
+-
+2165685
+Table 'Posts'. Scan count 16, logical reads 810262, physical reads 6, page server reads 0, read-ahead reads 797024, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+ SQL Server Execution Times:
+   CPU time = 6126 ms,  elapsed time = 1660 ms.
+##### (a4) sargavel em Posts - sem indice
+ SQL Server Execution Times:
+   CPU time = 0 ms,  elapsed time = 0 ms.
+SQL Server parse and compile time: 
+   CPU time = 0 ms, elapsed time = 0 ms.
+ 
+-
+2165685
+Table 'Posts'. Scan count 16, logical reads 813404, physical reads 814, page server reads 0, read-ahead reads 790316, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0, lob page server read-ahead reads 0.
+ SQL Server Execution Times:
+   CPU time = 4045 ms,  elapsed time = 1505 ms.

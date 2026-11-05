@@ -1,0 +1,310 @@
+../experimento/analise/r1-compat160/summary.csv
+../experimento/analise/r1-compat160/comparisons.csv
+../experimento/analise/r1-compat160/aggregate.csv
+../experimento/analise/r1-compat160/verdicts.csv
+../experimento/analise/r1-compat160/determinism.csv
+../experimento/analise/r1-compat160/escrita.csv
+../experimento/analise/r1-compat160/outliers.csv
+../experimento/analise/r1-compat160/queries.csv
+../experimento/analise/r1-compat160/analise.json
+../experimento/analise/r1-compat160/criterios.json
+../experimento/analise/r1-compat160/tabelas/tab_resumo_consulta_frio.tex
+../experimento/analise/r1-compat160/tabelas/tab_tempo_consulta_frio.tex
+../experimento/analise/r1-compat160/tabelas/tab_efeito_antipadrao_frio.tex
+../experimento/analise/r1-compat160/tabelas/tab_sensibilidade_frio.tex
+../experimento/analise/r1-compat160/tabelas/tab_controles_frio.tex
+../experimento/analise/r1-compat160/tabelas/tab_secundarias_frio.tex
+../experimento/analise/r1-compat160/tabelas/tab_resumo_consulta_quente.tex
+../experimento/analise/r1-compat160/tabelas/tab_tempo_consulta_quente.tex
+../experimento/analise/r1-compat160/tabelas/tab_efeito_antipadrao_quente.tex
+../experimento/analise/r1-compat160/tabelas/tab_sensibilidade_quente.tex
+../experimento/analise/r1-compat160/tabelas/tab_controles_quente.tex
+../experimento/analise/r1-compat160/tabelas/tab_secundarias_quente.tex
+../experimento/analise/r1-compat160/tabelas/tab_escrita.tex
+../experimento/analise/r1-compat160/figuras/razao_por_consulta_frio.pdf
+../experimento/analise/r1-compat160/figuras/leituras_antes_depois_frio.pdf
+../experimento/analise/r1-compat160/figuras/repeticoes_cpu_frio.pdf
+../experimento/analise/r1-compat160/figuras/repeticoes_decorrido_frio.pdf
+../experimento/analise/r1-compat160/figuras/razao_por_consulta_quente.pdf
+../experimento/analise/r1-compat160/figuras/leituras_antes_depois_quente.pdf
+../experimento/analise/r1-compat160/figuras/repeticoes_cpu_quente.pdf
+../experimento/analise/r1-compat160/figuras/repeticoes_decorrido_quente.pdf
+../experimento/analise/r1-compat160/numeros-do-artigo.json
+../experimento/analise/r1-compat160/numeros-do-artigo.md
+experimentos [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]  criterios 23e5e61d4e23e46b  semente 20261005  reamostragens 10000  alfa 0.05  regime principal quente
+AVISO: leituras logicas DIFEREM entre regimes em 8 variante(s) (ex.: key lookup, read-ahead; ver determinism.csv): a analise principal usa o regime 'quente'; o outro sai em tabela propria
+AVISO: consulta(s) com papel fora de ['principal'] (['F5', 'S5']): ficam fora da analise principal; aparecem em 'controles' e 'com_controles' (aggregate.csv) e na tabela de controles
+AVISO: leituras logicas NAO deterministicas em 13 de 150 grupo(s) (regimes: ['frio', 'quente']; ver determinism.csv): investigar antes de reportar
+
+tratamento principal (prescricao do framework) contra a linha de base:
+consulta         regime  braco          antes    depois     razao                     IC   reducao  criterio
+C1               quente  prescricao   800.856        41 0,0000512 [0,0000512; 0,0000512]    100,0%  SIM
+C2               quente  prescricao   800.856         3 0,00000375 [0,00000375; 0,00000375]    100,0%  SIM
+C3               quente  prescricao   168.857        40  0,000237   [0,000237; 0,000237]    100,0%  SIM
+C4               quente  prescricao     7.405        32   0,00432     [0,00432; 0,00432]     99,6%  SIM
+F1               quente  prescricao   800.856        47 0,0000587 [0,0000587; 0,0000587]    100,0%  SIM
+F2               quente  prescricao     7.405         3  0,000405   [0,000405; 0,000405]    100,0%  SIM
+F3               quente  prescricao    46.704        50   0,00107     [0,00107; 0,00107]     99,9%  SIM
+F4               quente  prescricao   800.856     4.839   0,00604     [0,00604; 0,00604]     99,4%  SIM
+F5 (controle)    quente  prescricao    46.704        50   0,00107     [0,00107; 0,00107]     99,9%  SIM
+S1               quente  prescricao 2.409.973    24.239    0,0101       [0,0101; 0,0101]     99,0%  SIM
+S2               quente  prescricao   894.264   837.274     0,936         [0,936; 0,936]      6,4%  nao
+S3               quente  prescricao 1.138.570   809.506     0,711         [0,711; 0,711]     28,9%  SIM
+S4               quente  prescricao   808.261    22.636    0,0280       [0,0280; 0,0280]     97,2%  SIM
+S5 (controle)    quente  prescricao    13.952     9.319     0,668         [0,668; 0,668]     33,2%  SIM
+V1               quente  indice        46.704         3 0,0000642 [0,0000642; 0,0000642]    100,0%  SIM
+V2               quente  indice       168.857        27  0,000160   [0,000160; 0,000160]    100,0%  SIM
+V3               quente  indice         6.547         9   0,00137     [0,00137; 0,00137]     99,9%  SIM
+V4               quente  indice       800.856        11 0,0000137 [0,0000137; 0,0000137]    100,0%  SIM
+V5               quente  indice         7.405        82    0,0111       [0,0111; 0,0111]     98,9%  SIM
+C1               frio    prescricao   800.856        41 0,0000512 [0,0000512; 0,0000512]    100,0%  SIM
+C2               frio    prescricao   800.856         3 0,00000375 [0,00000375; 0,00000375]    100,0%  SIM
+C3               frio    prescricao   168.857        40  0,000237   [0,000237; 0,000237]    100,0%  SIM
+C4               frio    prescricao     7.405        32   0,00432     [0,00432; 0,00432]     99,6%  SIM
+F1               frio    prescricao   800.856        47 0,0000587 [0,0000587; 0,0000587]    100,0%  SIM
+F2               frio    prescricao     7.405         3  0,000405   [0,000405; 0,000405]    100,0%  SIM
+F3               frio    prescricao    46.704        50   0,00107     [0,00107; 0,00107]     99,9%  SIM
+F4               frio    prescricao   800.856     4.839   0,00604     [0,00604; 0,00604]     99,4%  SIM
+F5 (controle)    frio    prescricao    46.704        50   0,00107     [0,00107; 0,00107]     99,9%  SIM
+S1               frio    prescricao 2.409.973  37.099,5    0,0154       [0,0154; 0,0155]     98,5%  SIM
+S2               frio    prescricao   894.264 879.176,5     0,983         [0,983; 0,984]      1,7%  nao
+S3               frio    prescricao 1.138.570   809.506     0,711         [0,711; 0,711]     28,9%  SIM
+S4               frio    prescricao   808.261    33.894    0,0419       [0,0415; 0,0461]     95,8%  SIM
+S5 (controle)    frio    prescricao    13.952     9.319     0,668         [0,668; 0,668]     33,2%  SIM
+V1               frio    indice        46.704         3 0,0000642 [0,0000642; 0,0000642]    100,0%  SIM
+V2               frio    indice       168.857        27  0,000160   [0,000160; 0,000160]    100,0%  SIM
+V3               frio    indice         6.547         9   0,00137     [0,00137; 0,00137]     99,9%  SIM
+V4               frio    indice       800.856        11 0,0000137 [0,0000137; 0,0000137]    100,0%  SIM
+V5               frio    indice         7.405        82    0,0111       [0,0111; 0,0111]     98,9%  SIM
+
+bracos secundarios contra a linha de base (fora do agregado principal):
+consulta         regime  braco          antes    depois     razao                     IC   reducao  criterio
+C1               quente  indice       800.856    46.157    0,0576       [0,0576; 0,0576]     94,2%  SIM
+C1               quente  nativo       800.856     2.845   0,00355     [0,00355; 0,00355]     99,6%  SIM
+C1               quente  reescrita    800.856   800.856      1,00           [1,00; 1,00]      0,0%  nao
+C2               quente  indice       800.856       227  0,000283   [0,000283; 0,000283]    100,0%  SIM
+C2               quente  nativo       800.856        14 0,0000175 [0,0000175; 0,0000175]    100,0%  SIM
+C2               quente  reescrita    800.856   800.856      1,00           [1,00; 1,00]      0,0%  nao
+C3               quente  indice       168.857    54.311     0,322         [0,322; 0,322]     67,8%  SIM
+C3               quente  nativo       168.857       615   0,00364     [0,00364; 0,00364]     99,6%  SIM
+C3               quente  reescrita    168.857   168.857      1,00           [1,00; 1,00]      0,0%  nao
+C4               quente  indice         7.405     7.405      1,00           [1,00; 1,00]      0,0%  nao
+C4               quente  nativo         7.405       164    0,0221       [0,0221; 0,0221]     97,8%  SIM
+C4               quente  reescrita      7.405     7.405      1,00           [1,00; 1,00]      0,0%  nao
+F1               quente  indice       800.856     8.330    0,0104       [0,0104; 0,0104]     99,0%  SIM
+F1               quente  reescrita    800.856   800.856      1,00           [1,00; 1,00]      0,0%  nao
+F2               quente  indice         7.405     1.282     0,173         [0,173; 0,173]     82,7%  SIM
+F2               quente  reescrita      7.405     7.405      1,00           [1,00; 1,00]      0,0%  nao
+F3               quente  indice        46.704    27.638     0,592         [0,592; 0,592]     40,8%  SIM
+F3               quente  reescrita     46.704    46.704      1,00           [1,00; 1,00]      0,0%  nao
+F4               quente  indice       800.856     8.330    0,0104       [0,0104; 0,0104]     99,0%  SIM
+F4               quente  reescrita    800.856   800.856      1,00           [1,00; 1,00]      0,0%  nao
+F5 (controle)    quente  indice        46.704        50   0,00107     [0,00107; 0,00107]     99,9%  SIM
+F5 (controle)    quente  reescrita     46.704    46.704      1,00           [1,00; 1,00]      0,0%  nao
+S1               quente  contraexem 2.409.973 4.964.675      2,06           [2,06; 2,06]   -106,0%  nao piora
+S1               quente  indice     2.409.973    57.988    0,0241       [0,0241; 0,0241]     97,6%  SIM
+S1               quente  reescrita  2.409.973   808.261     0,335         [0,335; 0,335]     66,5%  SIM
+S2               quente  indice       894.264   873.692     0,977         [0,977; 0,977]      2,3%  nao
+S2               quente  nativo       894.264    93.431     0,104         [0,104; 0,104]     89,6%  SIM
+S2               quente  reescrita    894.264   847.560     0,948         [0,948; 0,948]      5,2%  nao
+S3               quente  indice     1.138.570   818.160     0,719         [0,719; 0,719]     28,1%  SIM
+S3               quente  nativo     1.138.570   337.737     0,297         [0,297; 0,297]     70,3%  SIM
+S3               quente  reescrita  1.138.570   969.713     0,852         [0,852; 0,852]     14,8%  nao
+S4               quente  indice       808.261    13.875    0,0172       [0,0172; 0,0172]     98,3%  SIM
+S4               quente  reescrita    808.261   808.261      1,00           [1,00; 1,00]      0,0%  nao
+S5 (controle)    quente  indice        13.952     9.319     0,668         [0,668; 0,668]     33,2%  SIM
+S5 (controle)    quente  nativo        13.952     6.570     0,471         [0,471; 0,471]     52,9%  SIM
+S5 (controle)    quente  reescrita     13.952    13.952      1,00           [1,00; 1,00]      0,0%  nao
+V4               quente  controle_o   800.856       825   0,00103     [0,00103; 0,00103]     99,9%  SIM
+C1               frio    indice       800.856  78.273,5    0,0977       [0,0968; 0,0980]     90,2%  SIM
+C1               frio    nativo       800.856     2.845   0,00355     [0,00355; 0,00355]     99,6%  SIM
+C1               frio    reescrita    800.856   800.856      1,00           [1,00; 1,00]      0,0%  nao
+C2               frio    indice       800.856       391  0,000488   [0,000484; 0,000488]    100,0%  SIM
+C2               frio    nativo       800.856        14 0,0000175 [0,0000175; 0,0000175]    100,0%  SIM
+C2               frio    reescrita    800.856   800.856      1,00           [1,00; 1,00]      0,0%  nao
+C3               frio    indice       168.857  85.498,5     0,506         [0,506; 0,507]     49,4%  SIM
+C3               frio    nativo       168.857       615   0,00364     [0,00364; 0,00364]     99,6%  SIM
+C3               frio    reescrita    168.857   168.857      1,00           [1,00; 1,00]      0,0%  nao
+C4               frio    indice         7.405     7.405      1,00           [1,00; 1,00]      0,0%  nao
+C4               frio    nativo         7.405       164    0,0221       [0,0221; 0,0221]     97,8%  SIM
+C4               frio    reescrita      7.405     7.405      1,00           [1,00; 1,00]      0,0%  nao
+F1               frio    indice       800.856     8.330    0,0104       [0,0104; 0,0104]     99,0%  SIM
+F1               frio    reescrita    800.856   800.856      1,00           [1,00; 1,00]      0,0%  nao
+F2               frio    indice         7.405     1.282     0,173         [0,173; 0,173]     82,7%  SIM
+F2               frio    reescrita      7.405     7.405      1,00           [1,00; 1,00]      0,0%  nao
+F3               frio    indice        46.704    27.638     0,592         [0,592; 0,592]     40,8%  SIM
+F3               frio    reescrita     46.704    46.704      1,00           [1,00; 1,00]      0,0%  nao
+F4               frio    indice       800.856     8.330    0,0104       [0,0104; 0,0104]     99,0%  SIM
+F4               frio    reescrita    800.856   800.856      1,00           [1,00; 1,00]      0,0%  nao
+F5 (controle)    frio    indice        46.704        50   0,00107     [0,00107; 0,00107]     99,9%  SIM
+F5 (controle)    frio    reescrita     46.704    46.704      1,00           [1,00; 1,00]      0,0%  nao
+S1               frio    contraexem 2.409.973 4.964.675      2,06           [2,06; 2,06]   -106,0%  nao piora
+S1               frio    indice     2.409.973  70.961,5    0,0294       [0,0294; 0,0303]     97,1%  SIM
+S1               frio    reescrita  2.409.973   808.261     0,335         [0,335; 0,335]     66,5%  SIM
+S2               frio    indice       894.264   915.638      1,02           [1,02; 1,02]     -2,4%  nao piora
+S2               frio    nativo       894.264    93.431     0,104         [0,104; 0,104]     89,6%  SIM
+S2               frio    reescrita    894.264   847.560     0,948         [0,948; 0,948]      5,2%  nao
+S3               frio    indice     1.138.570   818.160     0,719         [0,719; 0,719]     28,1%  SIM
+S3               frio    nativo     1.138.570   337.737     0,297         [0,297; 0,297]     70,3%  SIM
+S3               frio    reescrita  1.138.570   969.713     0,852         [0,852; 0,852]     14,8%  nao
+S4               frio    indice       808.261    13.875    0,0172       [0,0172; 0,0172]     98,3%  SIM
+S4               frio    reescrita    808.261   808.261      1,00           [1,00; 1,00]      0,0%  nao
+S5 (controle)    frio    indice        13.952     9.319     0,668         [0,668; 0,668]     33,2%  SIM
+S5 (controle)    frio    nativo        13.952     6.570     0,471         [0,471; 0,471]     52,9%  SIM
+S5 (controle)    frio    reescrita     13.952    13.952      1,00           [1,00; 1,00]      0,0%  nao
+V4               frio    controle_o   800.856       825   0,00103     [0,00103; 0,00103]     99,9%  SIM
+
+analise       regime  grupo    estrato            metrica          n reducao med.       p  p Holm  metodo / observacao
+principal     quente  prescric AP1                logical_reads    4        99,9%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     quente  prescric AP1                cpu_ms           4        99,3%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4); 2 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     quente  prescric AP1                elapsed_ms       4        99,3%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4); 2 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     quente  prescric AP2                logical_reads    4        63,1%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     quente  prescric AP2                cpu_ms           4        61,4%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     quente  prescric AP2                elapsed_ms       4        60,8%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     quente  prescric AP3                logical_reads    4       100,0%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     quente  prescric AP3                cpu_ms           4        99,5%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4); 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     quente  prescric AP3                elapsed_ms       4        99,5%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4); 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     quente  prescric AP4                logical_reads    5       100,0%   0,062   0,188  exato; n=5 consultas (< 6): exploratorio; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5)
+principal     quente  prescric AP4                cpu_ms           5        99,8%   0,062   0,188  exato; n=5 consultas (< 6): exploratorio; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5); 4 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     quente  prescric AP4                elapsed_ms       5        99,8%   0,062   0,188  exato; n=5 consultas (< 6): exploratorio; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5); 4 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     quente  prescric (todas)            logical_reads   17        99,9%  <0,001  <0,001  exato
+principal     quente  prescric (todas)            cpu_ms          17        98,8%  <0,001  <0,001  exato; 7 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     quente  prescric (todas)            elapsed_ms      17        98,8%  <0,001  <0,001  exato; 7 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     frio    prescric AP1                logical_reads    4        99,9%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     frio    prescric AP1                cpu_ms           4        99,4%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4); 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     frio    prescric AP1                elapsed_ms       4        99,4%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4); 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     frio    prescric AP2                logical_reads    4        62,4%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     frio    prescric AP2                cpu_ms           4        48,4%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     frio    prescric AP2                elapsed_ms       4        47,3%   0,250   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     frio    prescric AP3                logical_reads    4       100,0%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4)
+principal     frio    prescric AP3                cpu_ms           4        99,8%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4); 2 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     frio    prescric AP3                elapsed_ms       4        99,7%   0,125   0,375  exato; n=4 consultas (< 6): exploratorio; p minimo atingivel 0.125 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 4); 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     frio    prescric AP4                logical_reads    5       100,0%   0,062   0,188  exato; n=5 consultas (< 6): exploratorio; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5)
+principal     frio    prescric AP4                cpu_ms           5        99,7%   0,062   0,188  exato; n=5 consultas (< 6): exploratorio; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5); 3 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     frio    prescric AP4                elapsed_ms       5        99,9%   0,062   0,188  exato; n=5 consultas (< 6): exploratorio; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5); 4 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     frio    prescric (todas)            logical_reads   17        99,9%  <0,001  <0,001  exato
+principal     frio    prescric (todas)            cpu_ms          17        98,9%  <0,001  <0,001  exato; 6 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+principal     frio    prescric (todas)            elapsed_ms      17        99,0%  <0,001  <0,001  exato; 6 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+com_controles quente  prescric (todas)            logical_reads   19        99,9%  <0,001  <0,001  assintotico_com_empates
+com_controles quente  prescric (todas)            cpu_ms          19        98,8%  <0,001  <0,001  exato; 7 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+com_controles quente  prescric (todas)            elapsed_ms      19        98,8%  <0,001  <0,001  exato; 7 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+com_controles frio    prescric (todas)            logical_reads   19        99,9%  <0,001  <0,001  assintotico_com_empates
+com_controles frio    prescric (todas)            cpu_ms          19        98,9%  <0,001  <0,001  exato; 6 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+com_controles frio    prescric (todas)            elapsed_ms      19        99,0%  <0,001  <0,001  exato; 6 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+controles     quente  prescric (todas)            logical_reads    2        66,5%   0,500   1,000  exato; n=2 consultas (< 6): exploratorio; p minimo atingivel 0.5 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 2)
+controles     quente  prescric (todas)            cpu_ms           2        15,5%   1,000   1,000  exato; n=2 consultas (< 6): exploratorio; p minimo atingivel 0.5 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 2)
+controles     quente  prescric (todas)            elapsed_ms       2        16,1%   1,000   1,000  exato; n=2 consultas (< 6): exploratorio; p minimo atingivel 0.5 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 2)
+controles     frio    prescric (todas)            logical_reads    2        66,5%   0,500   1,000  exato; n=2 consultas (< 6): exploratorio; p minimo atingivel 0.5 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 2)
+controles     frio    prescric (todas)            cpu_ms           2        18,5%   1,000   1,000  exato; n=2 consultas (< 6): exploratorio; p minimo atingivel 0.5 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 2)
+controles     frio    prescric (todas)            elapsed_ms       2        21,1%   1,000   1,000  exato; n=2 consultas (< 6): exploratorio; p minimo atingivel 0.5 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 2)
+secundarias   quente  contraex (todas)            logical_reads    1      -106,0%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   quente  contraex (todas)            cpu_ms           1      -125,6%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   quente  contraex (todas)            elapsed_ms       1      -762,0%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   quente  controle (todas)            logical_reads    1        99,9%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   quente  controle (todas)            cpu_ms           1        99,5%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   quente  controle (todas)            elapsed_ms       1        99,6%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   quente  indice   (todas)            logical_reads   12        88,5%  <0,001   0,003  permutacao_exata; 1 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon
+secundarias   quente  indice   (todas)            cpu_ms          12        89,8%  <0,001   0,003  exato; 1 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon; 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+secundarias   quente  indice   (todas)            elapsed_ms      12        88,7%  <0,001   0,003  exato; 1 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon; 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+secundarias   quente  nativo   (todas)            logical_reads    6        98,7%   0,031   0,094  exato; p minimo atingivel 0.03125 > alfa/3: nao sobrevive a correcao de Holm
+secundarias   quente  nativo   (todas)            cpu_ms           6        93,9%   0,031   0,094  exato; p minimo atingivel 0.03125 > alfa/3: nao sobrevive a correcao de Holm; 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+secundarias   quente  nativo   (todas)            elapsed_ms       6        90,7%   0,031   0,094  exato; p minimo atingivel 0.03125 > alfa/3: nao sobrevive a correcao de Holm; 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+secundarias   quente  nativo_v (todas)            logical_reads    6      -389,6%   0,312   0,938  exato; p minimo atingivel 0.03125 > alfa/3: nao sobrevive a correcao de Holm
+secundarias   quente  nativo_v (todas)            cpu_ms           6       -75,0%   1,000   1,000  exato; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5); 1 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon
+secundarias   quente  nativo_v (todas)            elapsed_ms       6      -125,0%   1,000   1,000  exato; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5); 1 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon
+secundarias   quente  reescrit (todas)            logical_reads   12         0,0%   0,250   0,250  exato; p minimo atingivel 0.25 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 3); 9 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon
+secundarias   quente  reescrit (todas)            cpu_ms          12         7,9%   0,021   0,063  exato
+secundarias   quente  reescrit (todas)            elapsed_ms      12         9,5%   0,021   0,063  exato
+secundarias   frio    contraex (todas)            logical_reads    1      -106,0%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   frio    contraex (todas)            cpu_ms           1      -219,1%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   frio    contraex (todas)            elapsed_ms       1    -1.211,8%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   frio    controle (todas)            logical_reads    1        99,9%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   frio    controle (todas)            cpu_ms           1        99,4%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   frio    controle (todas)            elapsed_ms       1        99,5%   1,000   1,000  exato; n=1 consultas (< 6): exploratorio; p minimo atingivel 1 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 1)
+secundarias   frio    indice   (todas)            logical_reads   12        86,5%   0,002   0,002  permutacao_exata; 1 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon
+secundarias   frio    indice   (todas)            cpu_ms          12        80,3%  <0,001   0,001  exato
+secundarias   frio    indice   (todas)            elapsed_ms      12        76,7%  <0,001   0,002  exato; 1 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon
+secundarias   frio    nativo   (todas)            logical_reads    6        98,7%   0,031   0,094  exato; p minimo atingivel 0.03125 > alfa/3: nao sobrevive a correcao de Holm
+secundarias   frio    nativo   (todas)            cpu_ms           6        93,8%   0,031   0,094  exato; p minimo atingivel 0.03125 > alfa/3: nao sobrevive a correcao de Holm; 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+secundarias   frio    nativo   (todas)            elapsed_ms       6        91,6%   0,031   0,094  exato; p minimo atingivel 0.03125 > alfa/3: nao sobrevive a correcao de Holm; 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+secundarias   frio    nativo_v (todas)            logical_reads    6      -389,6%   0,312   0,938  exato; p minimo atingivel 0.03125 > alfa/3: nao sobrevive a correcao de Holm
+secundarias   frio    nativo_v (todas)            cpu_ms           6      -183,3%   0,438   0,938  exato; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5); 1 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon; 1 consulta(s) com mediana zero: razao e cota calculada com piso 0.5
+secundarias   frio    nativo_v (todas)            elapsed_ms       6      -175,0%   1,000   1,000  exato; p minimo atingivel 0.0625 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 5); 1 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon
+secundarias   frio    reescrit (todas)            logical_reads   12         0,0%   0,250   0,250  exato; p minimo atingivel 0.25 > alfa: o teste NAO pode rejeitar H0 (n efetivo = 3); 9 consulta(s) com razao exatamente 1 descartada(s) do Wilcoxon
+secundarias   frio    reescrit (todas)            cpu_ms          12         8,7%   0,016   0,048  exato
+secundarias   frio    reescrit (todas)            elapsed_ms      12        10,7%   0,016   0,048  exato
+
+custo de escrita (razao com/sem indice, mediana; sem limiar):
+  C1         delete  ix_exp_posts_owner_cob       leituras logicas 217 -> 10.136 (x46,7)
+  C1         insert  ix_exp_posts_owner_cob       leituras logicas 7.809 -> 11.013 (x1,41)
+  C1         update  ix_exp_posts_owner_cob       leituras logicas 217 -> 12.471 (x57,5)
+  C2         delete  ix_exp_posts_owner_cob       leituras logicas 217 -> 10.136 (x46,7)
+  C2         insert  ix_exp_posts_owner_cob       leituras logicas 7.809 -> 11.013 (x1,41)
+  C2         update  ix_exp_posts_owner_cob       leituras logicas 217 -> 12.471 (x57,5)
+  C3         delete  ix_exp_comments_userid_cob   leituras logicas 53 -> 10.135 (x191)
+  C3         insert  ix_exp_comments_userid_cob   leituras logicas 6.778 -> 9.969 (x1,47)
+  C3         update  ix_exp_comments_userid_cob   leituras logicas 53 -> 6.094,5 (x115)
+  C4         delete  ix_exp_users_location_cob    leituras logicas 71 -> 6.147 (x86,6)
+  C4         insert  ix_exp_users_location_cob    leituras logicas 2.708,5 -> 7.276 (x2,69)
+  C4         update  ix_exp_users_location_cob    leituras logicas 71 -> 5.097,5 (x71,8)
+  F1         delete  ix_exp_posts_creationdate    leituras logicas 217 -> 10.139 (x46,7)
+  F1         insert  ix_exp_posts_creationdate    leituras logicas 7.809 -> 11.001 (x1,41)
+  F1         update  ix_exp_posts_creationdate    leituras logicas 217 -> 12.473,5 (x57,5)
+  F2         delete  ix_exp_users_displayname     leituras logicas 71 -> 6.146 (x86,6)
+  F2         insert  ix_exp_users_displayname     leituras logicas 2.708,5 -> 7.106 (x2,62)
+  F2         update  ix_exp_users_displayname     leituras logicas 71 -> 11.039 (x155)
+  F3         delete  ix_exp_votes_creationdate    leituras logicas 17 -> 9.151 (x538)
+  F3         insert  ix_exp_votes_creationdate    leituras logicas 5.255,5 -> 9.445,5 (x1,80)
+  F3         update  ix_exp_votes_creationdate    leituras logicas 17 -> 6.392 (x376)
+  F4         delete  ix_exp_posts_creationdate    leituras logicas 217 -> 10.139 (x46,7)
+  F4         insert  ix_exp_posts_creationdate    leituras logicas 7.809 -> 11.001 (x1,41)
+  F4         update  ix_exp_posts_creationdate    leituras logicas 217 -> 12.473,5 (x57,5)
+  F5         delete  ix_exp_votes_creationdate    leituras logicas 17 -> 9.151 (x538)
+  F5         insert  ix_exp_votes_creationdate    leituras logicas 5.255,5 -> 9.445,5 (x1,80)
+  F5         update  ix_exp_votes_creationdate    leituras logicas 17 -> 6.392 (x376)
+  S1         delete  ix_exp_posts_owner_cob       leituras logicas 217 -> 10.135 (x46,7)
+  S1         insert  ix_exp_posts_owner_cob       leituras logicas 7.809 -> 11.054 (x1,42)
+  S1         update  ix_exp_posts_owner_cob       leituras logicas 217 -> 12.470 (x57,5)
+  S2         delete  ix_exp_votes_postid_cob      leituras logicas 17 -> 9.137 (x537)
+  S2         insert  ix_exp_votes_postid_cob      leituras logicas 5.255,5 -> 8.451,5 (x1,61)
+  S2         update  ix_exp_votes_postid_cob      leituras logicas 17 -> 6.392 (x376)
+  S3         delete  ix_exp_comments_postid_cob   leituras logicas 53 -> 10.137 (x191)
+  S3         insert  ix_exp_comments_postid_cob   leituras logicas 6.778 -> 9.971 (x1,47)
+  S3         update  ix_exp_comments_postid_cob   leituras logicas 53 -> 12.471,5 (x235)
+  S4         delete  ix_exp_posts_owner           leituras logicas 217 -> 7.137 (x32,9)
+  S4         insert  ix_exp_posts_owner           leituras logicas 7.809 -> 10.275 (x1,32)
+  S4         update  ix_exp_posts_owner           leituras logicas 217 -> 12.345 (x56,9)
+  S5         delete  ix_exp_badges_userid         leituras logicas 18 -> 3.080,5 (x171)
+  S5         insert  ix_exp_badges_userid         leituras logicas 2.836 -> 6.025 (x2,12)
+  S5         update  ix_exp_badges_userid         leituras logicas 18 -> 6.373 (x354)
+  V1         delete  ix_exp_votes_postid          leituras logicas 17 -> 9.135 (x537)
+  V1         insert  ix_exp_votes_postid          leituras logicas 5.255,5 -> 8.447,5 (x1,61)
+  V1         update  ix_exp_votes_postid          leituras logicas 17 -> 6.392 (x376)
+  V2         delete  ix_exp_comments_userid       leituras logicas 53 -> 7.139 (x135)
+  V2         insert  ix_exp_comments_userid       leituras logicas 6.778 -> 7.971,5 (x1,18)
+  V2         update  ix_exp_comments_userid       leituras logicas 53 -> 6.095,5 (x115)
+  V3         delete  ix_exp_badges_userid         leituras logicas 18 -> 3.080,5 (x171)
+  V3         insert  ix_exp_badges_userid         leituras logicas 2.836 -> 6.025 (x2,12)
+  V3         update  ix_exp_badges_userid         leituras logicas 18 -> 6.373 (x354)
+  V4         delete  ix_exp_posts_owner_score     leituras logicas 217 -> 10.136 (x46,7)
+  V4         insert  ix_exp_posts_owner_score     leituras logicas 7.809 -> 10.998 (x1,41)
+  V4         update  ix_exp_posts_owner_score     leituras logicas 217 -> 12.471 (x57,5)
+  V5         delete  ix_exp_users_reputation      leituras logicas 71 -> 6.138 (x86,5)
+  V5         insert  ix_exp_users_reputation      leituras logicas 2.708,5 -> 7.110 (x2,63)
+  V5         update  ix_exp_users_reputation      leituras logicas 71 -> 11.345,5 (x160)
+
+determinismo das leituras logicas: 137/150 grupos com dp = 0
+  S1/indice/frio: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (8 valor(es) distinto(s))
+  S1/reescrita+indice/frio: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (7 valor(es) distinto(s))
+  S1/reescrita+indice/quente: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))
+  S2/indice/frio: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (8 valor(es) distinto(s))
+  S2/indice/quente: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))
+  S2/reescrita+indice/frio: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (8 valor(es) distinto(s))
+  S2/reescrita+indice/quente: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))
+  S4/reescrita+indice/frio: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (6 valor(es) distinto(s))
+  S4/reescrita+indice/quente: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))
+  C1/indice/frio: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (2 valor(es) distinto(s))
+  C1/indice/quente: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (2 valor(es) distinto(s))
+  C2/indice/frio: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))
+  C3/indice/frio: dp > 0: investigar plano (1 QueryPlanHash), paralelismo (DOP [0]) e read-ahead (1 valor(es) distinto(s))
+atipicos de Tukey sinalizados (nunca descartados): 681 medidas em outliers.csv

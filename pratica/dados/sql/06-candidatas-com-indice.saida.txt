@@ -1,0 +1,79 @@
+##### (a1) YEAR(CreationDate)=2010 Users - com indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+199550
+Table 'Users'. Scan count 1, logical reads 685, physical reads 3, read-ahead reads 730.
+   CPU time = 23 ms,  elapsed time = 27 ms.
+##### (a2) sargavel 2010 Users - com indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+199550
+Table 'Users'. Scan count 1, logical reads 460, physical reads 0, read-ahead reads 0.
+   CPU time = 9 ms,  elapsed time = 9 ms.
+##### (a3) YEAR=2010 Posts - com indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+2165685
+Table 'Posts'. Scan count 16, logical reads 8464, physical reads 1, read-ahead reads 8426.
+   CPU time = 393 ms,  elapsed time = 51 ms.
+##### (a4) sargavel 2010 Posts - com indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+2165685
+Table 'Posts'. Scan count 16, logical reads 4919, physical reads 0, read-ahead reads 0.
+   CPU time = 128 ms,  elapsed time = 16 ms.
+##### (a5) YEAR+MONTH Posts ago/2008 - COM indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+19466
+Table 'Posts'. Scan count 16, logical reads 8464, physical reads 0, read-ahead reads 0.
+   CPU time = 260 ms,  elapsed time = 24 ms.
+##### (a6) sargavel ago/2008 Posts - com indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+19466
+Table 'Posts'. Scan count 5, logical reads 49, physical reads 0, read-ahead reads 0.
+   CPU time = 4 ms,  elapsed time = 1 ms.
+##### (b1) correlacionada - com indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 3, read-ahead reads 7381.
+Table 'Posts'. Scan count 16, logical reads 6606, physical reads 0, read-ahead reads 189.
+Table 'Workfile'. Scan count 0, logical reads 0, physical reads 0, read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, read-ahead reads 0.
+   CPU time = 518 ms,  elapsed time = 79 ms.
+##### (b2) JOIN+GROUP BY - com indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 0, read-ahead reads 0.
+Table 'Posts'. Scan count 16, logical reads 6606, physical reads 0, read-ahead reads 0.
+Table 'Workfile'. Scan count 0, logical reads 0, physical reads 0, read-ahead reads 0.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, read-ahead reads 0.
+   CPU time = 509 ms,  elapsed time = 54 ms.
+##### (c1) SELECT * user 22656 - com IX(OwnerUserId)
+   CPU time = 0 ms,  elapsed time = 0 ms.
+namespace ExtensionLibrary
+names.Reverse();
+<p>Basically nothing in that loop is going to take very much CPU time compared with the time it's sleeping or waiting for IO.</p>
+namespace TestPara NULL 1 NULL 2009-04-16 13:40:38.323 0 2009-04-16 13:47:47.510 2017-05-23 12:20:37.980 NULL -1 22656 756156 2 6 NULL NULL 0
+namespace Application
+namespace X
+namespace Test
+name = dt.Rows[0][NameColumn];
+0
+namespace Bar
+Table 'Posts'. Scan count 1, logical reads 68913, physical reads 0, read-ahead reads 95524, lob logical reads 94, lob physical reads 46.
+   CPU time = 335 ms,  elapsed time = 448 ms.
+##### (c1b) SELECT * user 100 - com IX(OwnerUserId)
+   CPU time = 0 ms,  elapsed time = 0 ms.
+Table 'Posts'. Scan count 1, logical reads 340, physical reads 0, read-ahead reads 493.
+   CPU time = 3 ms,  elapsed time = 2 ms.
+##### (c2) colunas listadas user 22656 - com IX(OwnerUserId) nao cobrindo
+   CPU time = 0 ms,  elapsed time = 0 ms.
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, read-ahead reads 0.
+Table 'Posts'. Scan count 16, logical reads 46159, physical reads 0, read-ahead reads 0.
+   CPU time = 37 ms,  elapsed time = 34 ms.
+##### (d1) Comments UserId - com indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 1 ms, elapsed time = 2 ms.
+13360
+Table 'Comments'. Scan count 1, logical reads 29, physical reads 2, read-ahead reads 0.
+   CPU time = 0 ms,  elapsed time = 1 ms.
+##### (d2) Votes PostId - com indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+   CPU time = 1 ms, elapsed time = 1 ms.
+7
+Table 'Votes'. Scan count 1, logical reads 3, physical reads 0, read-ahead reads 0.
+   CPU time = 0 ms,  elapsed time = 0 ms.

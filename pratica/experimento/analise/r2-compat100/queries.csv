@@ -1,0 +1,20 @@
+experiment_id,query_id,consulta,titulo,antipadrao,seletividade,papel
+1,F1,F1,"YEAR/MONTH sobre Posts.CreationDate (um mes, 0,52% das linhas)",AP1,alta,principal
+2,F2,F2,UPPER sobre Users.DisplayName (1 linha; colacao ja ignora maiusculas),AP1,alta,principal
+3,F3,F3,"DATEDIFF sobre Votes.CreationDate (um dia, 0,17% das linhas)",AP1,alta,principal
+4,F4,F4,"YEAR sobre Posts.CreationDate (um ano, 58% das linhas): baixa seletividade",AP1,baixa,principal
+5,F5,F5,"CONVERT(date, ...) sobre Votes.CreationDate: caso em que o otimizador pode tratar como sargavel (controle)",AP1,alta,controle
+6,S1,S1,3 subconsultas escalares sobre Posts por usuario (4.020 usuarios),AP2,media,principal
+7,S2,S2,2 subconsultas escalares sobre Votes por post de um usuario (11.354 posts),AP2,alta,principal
+8,S3,S3,2 subconsultas escalares sobre Comments por post de um usuario (11.354 posts),AP2,alta,principal
+9,S4,S4,subconsulta correlacionada no WHERE (usuarios com mais de 100 posts),AP2,media,principal
+10,S5,S5,1 subconsulta escalar sobre Badges por usuario: caso em que o otimizador ja converte (controle),AP2,media,controle
+11,C1,C1,"SELECT * em Posts por OwnerUserId (11.354 linhas, 0,3%)",AP3,alta,principal
+12,C2,C2,SELECT * em Posts por OwnerUserId (53 linhas),AP3,alta,principal
+14,C3,C3,"SELECT * em Comments por UserId (13.360 linhas, 0,34%)",AP3,alta,principal
+15,C4,C4,"SELECT * em Users por Location (3.656 linhas, 1,2%)",AP3,media,principal
+16,V1,V1,"filtro por Votes.PostId (7 linhas em 10,1 milhoes)",AP4,alta,principal
+17,V2,V2,"filtro por Comments.UserId (13.360 linhas, 0,34%)",AP4,alta,principal
+18,V3,V3,"filtro por Badges.UserId (2.821 linhas; tabela pequena, 6,5 mil paginas)",AP4,alta,principal
+19,V4,V4,filtro composto em Posts: igualdade (OwnerUserId) e intervalo (Score); controle de ordem das colunas,AP4,alta,principal
+20,V5,V5,"filtro por Users.Reputation (17.212 linhas, 5,7%): seletividade media",AP4,media,principal

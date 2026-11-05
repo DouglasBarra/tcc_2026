@@ -1,0 +1,5 @@
+# Pacotes usados SO na avaliacao de drivers (scripts/avaliar_drivers.py). Nao sao dependencias do nucleo.
+# Instalar com: .venv/bin/pip install -r requirements-avaliacao.txt
+pymssql==2.4.2
+mssql-python==1.15.0   # traz mssql-python-odbc (ODBC Driver 18 em wheel, licenca proprietaria da Microsoft)
+pyodbc==5.3.0          # precisa de unixodbc (Homebrew) e de um driver ODBC: nao funciona aqui

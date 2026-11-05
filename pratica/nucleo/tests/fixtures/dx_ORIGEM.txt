@@ -1,0 +1,23 @@
+Fixtures do Diagnostico (tests/test_diagnostico.py). Planos REAIS (SET STATISTICS XML ON) do SQL Server 2022 CU27 em Docker,
+capturados pelo piloto de coleta de 25/10/2026 no clone so_exp do StackOverflow2010 (copias de
+experimento/resultados/piloto-2/tcclab_planos/<hash>.sqlplan; o nome original e um hash do plano):
+  dx_c1_original_varredura.sqlplan            054cb91d371e8d89  C1 original (SELECT * em Posts por OwnerUserId), sem indices: Clustered Index Scan + MissingIndexes
+  dx_c1_original_lookup.sqlplan               b2b4571f848c212f  C1 original com indice nao cobrindo (ix_exp_posts_owner): Nested Loops + Key Lookup (11.354 execucoes)
+  dx_c1_reescrita_cobrindo.sqlplan            82479d85bf6fd282  C1 reescrita (3 colunas) com indice cobrindo: Index Seek
+  dx_s1_original_hash.sqlplan                 018e331345103bf2  S1 original (3 subconsultas), sem indices: o otimizador decorrelacionou (Hash Match, filtros PROBE)
+  dx_s1_original_indice_cobrindo.sqlplan      46fa8316cc1360a2  S1 original com indice cobrindo: Nested Loops correlacionados + Stream Aggregate (4.020 execucoes)
+  dx_s1_reescrita_hash.sqlplan                6072f6afbe34a8f9  S1 reescrita (LEFT JOIN + GROUP BY), sem indices: Hash Match
+  dx_s1_reescrita_indice_nao_cobrindo.sqlplan 176c0f3c109b3d5e  S1 reescrita com indice nao cobrindo (contraexemplo): Nested Loops + Key Lookup
+A associacao plano-consulta foi feita lendo StatementText e os objetos de cada plano. Os demais fixtures (plano_real_scan,
+plano_real_seek, plano_estimado_scan) sao do marco M0. Planos derivados (predicado trocado, RunTimeInformation removido) sao
+montados dentro dos testes e rotulados como derivados: testam a estrutura, nao provam o XML exato que o servidor emitiria.
+
+Planos da avaliacao completa (copias de experimento/planos/<ID>/ e experimento/planos_controles/<ID>/, gerados por salvar_planos.py em
+25/10/2026, linha de base sem indices nao clusterizados, compat. 160, MAXDOP 1):
+  dx_f1_original_real / dx_f1_original_estimado / dx_f1_reescrita_real   F1 (YEAR/MONTH): predicado com datepart sobre Posts.CreationDate
+  dx_f2_original_real      F2 (UPPER): upper(DisplayName)         dx_f3_original_real  F3 (DATEDIFF): datediff com CONVERT_IMPLICIT(datetimeoffset) na coluna
+  dx_f5_original_real      F5 (CONVERT(date, coluna)): CONVERT no predicado da varredura
+  dx_f4_reescrita_real / dx_f4_reescrita_estimado   F4 reescrita: real devolve 58% das linhas, estimado supoe 0,53%
+  dx_v3_original_real      V3 (AP4): varredura de Badges, 2.821 de 1,1 M linhas + MissingIndexes
+  dx_s5_original_real      S5: subconsulta unica decorrelacionada pelo otimizador (Hash Match)
+  dx_l4_original_real (COUNT(*) sem filtro), dx_l5_ (juncao por chaves), dx_l7_ (TOP ordenado), dx_l8_ (tabela minuscula): controles limpos

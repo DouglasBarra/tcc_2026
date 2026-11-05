@@ -1,0 +1,8 @@
+##### MAXDOP 1 x3
+Table 'Posts'. Scan count 1, logical reads 800856, physical reads 5, read-ahead reads 800561.
+Table 'Posts'. Scan count 1, logical reads 800856, physical reads 0, read-ahead reads 798836.
+Table 'Posts'. Scan count 1, logical reads 800856, physical reads 4, read-ahead reads 799908.
+##### paralelo x3
+Table 'Posts'. Scan count 16, logical reads 812562, physical reads 78, read-ahead reads 799319.
+Table 'Posts'. Scan count 16, logical reads 813614, physical reads 816, read-ahead reads 796593.
+Table 'Posts'. Scan count 16, logical reads 815844, physical reads 455, read-ahead reads 796386.

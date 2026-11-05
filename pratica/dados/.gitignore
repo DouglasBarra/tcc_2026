@@ -1,0 +1,10 @@
+# Arquivos grandes/derivados: nao versionar
+*.7z
+*.mdf
+*.ndf
+*.ldf
+*.bak
+*.torrent
+.venv/
+extraido/
+backups/

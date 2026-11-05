@@ -1,0 +1,42 @@
+users_rep_ge_20000
+4020
+OwnerUserId n
+posts_user_22656
+11354
+posts_user_100
+53
+##### (b1) subconsulta correlacionada - sem indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 3, page server reads 0, read-ahead reads 7401, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead rea
+Table 'Posts'. Scan count 16, logical reads 811973, physical reads 79, page server reads 0, read-ahead reads 786728, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahea
+Table 'Workfile'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 
+   CPU time = 6084 ms,  elapsed time = 1464 ms.
+##### (b2) JOIN + GROUP BY - sem indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+Table 'Users'. Scan count 16, logical reads 7778, physical reads 0, page server reads 0, read-ahead reads 7375, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead rea
+Table 'Posts'. Scan count 16, logical reads 810042, physical reads 5496, page server reads 0, read-ahead reads 784570, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ah
+Table 'Workfile'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 0
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 
+   CPU time = 7122 ms,  elapsed time = 2083 ms.
+##### (c1) SELECT * por OwnerUserId - sem indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+<p>Basically nothing in that loop is going to take very much CPU time compared with the time it's sleeping or waiting for IO.</p>
+0
+Table 'Posts'. Scan count 16, logical reads 810234, physical reads 4346, page server reads 0, read-ahead reads 759421, page server read-ahead reads 0, lob logical reads 92, lob physical reads 46, lob page server reads 0, lob read-
+Table 'Worktable'. Scan count 0, logical reads 0, physical reads 0, page server reads 0, read-ahead reads 0, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead reads 
+   CPU time = 5228 ms,  elapsed time = 2005 ms.
+##### (c2) colunas listadas por OwnerUserId - sem indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+Table 'Posts'. Scan count 16, logical reads 809560, physical reads 2812, page server reads 0, read-ahead reads 783254, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ah
+   CPU time = 5384 ms,  elapsed time = 1893 ms.
+##### (d1) varredura completa Comments por UserId - sem indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+13360
+Table 'Comments'. Scan count 16, logical reads 171982, physical reads 2, page server reads 0, read-ahead reads 168879, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ah
+   CPU time = 1432 ms,  elapsed time = 301 ms.
+##### (d2) varredura completa Votes por PostId - sem indice
+   CPU time = 0 ms,  elapsed time = 0 ms.
+7
+Table 'Votes'. Scan count 16, logical reads 47390, physical reads 1, page server reads 0, read-ahead reads 46710, page server read-ahead reads 0, lob logical reads 0, lob physical reads 0, lob page server reads 0, lob read-ahead r
+   CPU time = 778 ms,  elapsed time = 93 ms.

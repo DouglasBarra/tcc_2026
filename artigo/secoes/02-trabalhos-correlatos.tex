@@ -1,0 +1,52 @@
+% =====================================================================
+% 2 TRABALHOS CORRELATOS
+% Reaproveita os 4 trabalhos do original (Leis e Kuschewski; Gretscher et al.;
+% Wu et al. 2024; Wu et al. WRED) e acrescenta 4 trabalhos nacionais verificados
+% (relatório 15). As descrições seguem os resumos conferidos (Crossref e páginas
+% das editoras). Detalhes das correções em ALINHAMENTOS.md.
+% =====================================================================
+
+\section{TRABALHOS CORRELATOS}\label{sec:correlatos}
+
+Esta seção situa o trabalho em relação a pesquisas internacionais e nacionais sobre otimização de consultas e ajuste de índices e termina com a lacuna que o trabalho se propõe a preencher. Os trabalhos foram buscados no Google Acadêmico e na biblioteca digital da Sociedade Brasileira de Computação (SBC OpenLib), que reúne os anais do Simpósio Brasileiro de Banco de Dados (SBBD) e o \textit{Journal of Information and Data Management} (JIDM), com termos em inglês e em português, como \textit{index tuning}, \textit{query optimization}, ajuste de índices e otimização de consultas, entre 2014 e 2025. Foram selecionados os trabalhos revisados por pares que tratam de otimização de consultas ou de ajuste de índices em bancos relacionais. \PENDENTE{autor: conferir se as bases, os termos e o período correspondem à busca feita}
+
+\citeonline{leis2021cost} propuseram um modelo que considera a carga de trabalho e o \textit{hardware} para determinar a configuração ideal de instâncias de computação em nuvem em sistemas de processamento analítico, observando que desempenho e custo podem variar em ordens de grandeza conforme a configuração escolhida. Sob a ótica deste trabalho, a limitação é que a decisão ocorre na camada de infraestrutura e não aborda a indexação nem a escrita da consulta em ambientes transacionais.
+
+\citeonline{gretscher2025vldb} compararam abordagens de otimização de consultas, a dividida (\textit{split}), a holística e a híbrida, em um sistema de pesquisa, avaliando o tempo de otimização e a qualidade do plano de execução resultante, e propuseram uma estratégia híbrida. O estudo concentra-se na construção do plano pelo otimizador, ou seja, na perspectiva de quem desenvolve sistemas gerenciadores de bancos de dados, e não propõe método para quem escreve as consultas.
+
+\citeonline{wu2024indextuning} elaboraram um levantamento sobre o ajuste automático de índices, que organiza as técnicas em pré-processamento, estimativa do benefício dos índices e seleção de índices, e discute sua aplicação em produtos comerciais e de código aberto. O levantamento é abrangente quanto às técnicas, mas não propõe um modelo estruturado que o desenvolvedor aplique de forma manual e iterativa ao escrever e revisar consultas.
+
+\citeonline{brucato2024wred} propuseram a redução da carga de trabalho (\textit{workload reduction}) como técnica complementar para acelerar o ajuste de índices, diminuindo o tempo de cada chamada ao otimizador com índices hipotéticos sem afetar de modo relevante a qualidade do ajuste. Assim como o levantamento anterior, o trabalho mantém o foco na automação sobre uma carga de trabalho já existente, etapa posterior à escrita das consultas. \PENDENTE{confirmar com a orientadora se a autoria de pesquisadores da Microsoft em Brucato et al. (2024) é compatível com a regra de não citar a Microsoft (decisão 24)}
+
+No contexto nacional, \citeonline{marins2021outertuning} apresentaram o \textit{Outer-Tuning}, \textit{framework} extensível, baseado em ontologia de domínio, para a sintonia semiautomática de bancos de dados relacionais. \citeonline{perciliano2021ondbtuning} detalharam a inferência de ações de sintonia com a ontologia OnDBTuning e a avaliaram na recomendação de índices. \citeonline{oliveira2022autonomic} propuseram um método automático para gerar e selecionar combinações de ações de sintonia, com soluções mais eficientes do que as locais independentes. Mais próximo da etapa de prescrição deste trabalho, \citeonline{araujo2014aresql} propuseram o ARe-SQL, abordagem automática e não intrusiva de reescrita de consultas SQL baseada em 11 heurísticas, com ganhos de até 92,5\% em alguns casos. A Tabela~\ref{tab:correlatos} resume os trabalhos.
+
+\begin{table}[H]
+\centering
+\flutuante{%
+\small
+\begin{tabular}{ | m{2.8cm} | m{4.7cm} | m{5.1cm} | }
+\hline
+\textbf{Trabalho} & \textbf{Foco} & \textbf{Lacuna em relação a este trabalho} \\
+\hline
+\citeonline{leis2021cost} & Configuração de instâncias em nuvem para processamento analítico & Atua na infraestrutura; não trata de indexação nem da escrita da consulta \\
+\hline
+\citeonline{gretscher2025vldb} & Estratégias de otimização de consultas no otimizador & Perspectiva de quem desenvolve o sistema de banco de dados \\
+\hline
+\citeonline{wu2024indextuning} & Levantamento do ajuste automático de índices & Não oferece método manual e iterativo para o desenvolvedor \\
+\hline
+\citeonline{brucato2024wred} & Redução da carga de trabalho para acelerar o ajuste de índices & Automação sobre carga existente, posterior à escrita \\
+\hline
+\citeonline{marins2021outertuning} & \textit{Framework} com ontologia para sintonia semiautomática & Sintonia do sistema; não orienta a escrita da consulta \\
+\hline
+\citeonline{perciliano2021ondbtuning} & Inferência de ações de sintonia com ontologia & Recomendação de índices por inferência; sem foco em antipadrões de escrita \\
+\hline
+\citeonline{oliveira2022autonomic} & Combinação e seleção automática de ações de sintonia & Automação; sem validação por métricas ligada à escrita da consulta \\
+\hline
+\citeonline{araujo2014aresql} & Reescrita automática de consultas SQL & Reescrita sem relação explícita com a estratégia de indexação \\
+\hline
+\end{tabular}%
+}{\caption{Trabalhos correlatos e lacuna em relação a este trabalho}
+\label{tab:correlatos}}{Fonte: Do autor.}
+\end{table}
+
+Os trabalhos analisados concentram-se na automação posterior à escrita da consulta, seja por estratégias do otimizador \cite{gretscher2025vldb}, pela escolha da infraestrutura \cite{leis2021cost}, por algoritmos de recomendação de índices \cite{wu2024indextuning, brucato2024wred} ou por ontologias e heurísticas de sintonia e de reescrita \cite{marins2021outertuning, perciliano2021ondbtuning, oliveira2022autonomic, araujo2014aresql}. Entre eles, não foi encontrado método que oriente o desenvolvedor durante a escrita e a revisão da consulta, relacione antipadrões a estratégias de indexação e verifique o efeito pelas leituras lógicas, pelo tempo de processamento, pelo tempo de execução e pelo custo de escrita. Essa é a lacuna que o \textit{framework} da seção~\ref{sec:mm} busca preencher.

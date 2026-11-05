@@ -1,0 +1,131 @@
+{
+  "experiment_id": 8,
+  "semente": 20261025,
+  "status": "concluido",
+  "manifesto": {
+    "nome": "r2-compat100:S3",
+    "database": "so_exp",
+    "regimes": [
+      "quente"
+    ],
+    "aquecimentos": 2,
+    "repeticoes": {
+      "quente": 20,
+      "frio": 8
+    },
+    "ordem": "ABA",
+    "semente": 20261025,
+    "cache_planos": "escopo",
+    "estatisticas_tabelas": [
+      "dbo.Posts",
+      "dbo.Comments"
+    ],
+    "microssegundos": true,
+    "sessao": [
+      "SET NOCOUNT ON",
+      "SET LANGUAGE us_english",
+      "SET ARITHABORT ON",
+      "SET STATISTICS IO ON",
+      "SET STATISTICS TIME ON"
+    ],
+    "variantes": [
+      {
+        "nome": "original",
+        "sql": "SELECT p.Id,\n  (SELECT COUNT(*) FROM dbo.Comments c WHERE c.PostId = p.Id) AS NComentarios,\n  (SELECT MAX(c.Score) FROM dbo.Comments c WHERE c.PostId = p.Id) AS MaxScoreComentario\nFROM dbo.Posts p WHERE p.OwnerUserId = 22656",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "original",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita",
+        "sql": "SELECT p.Id, COUNT(c.Id) AS NComentarios, MAX(c.Score) AS MaxScoreComentario\nFROM dbo.Posts p LEFT JOIN dbo.Comments c ON c.PostId = p.Id\nWHERE p.OwnerUserId = 22656 GROUP BY p.Id",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "reescrita",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "indice",
+        "sql": "SELECT p.Id,\n  (SELECT COUNT(*) FROM dbo.Comments c WHERE c.PostId = p.Id) AS NComentarios,\n  (SELECT MAX(c.Score) FROM dbo.Comments c WHERE c.PostId = p.Id) AS MaxScoreComentario\nFROM dbo.Posts p WHERE p.OwnerUserId = 22656",
+        "ddl_aplicar": "CREATE INDEX ix_exp_comments_postid_cob ON dbo.Comments (PostId) INCLUDE (Score)",
+        "ddl_reverter": "DROP INDEX ix_exp_comments_postid_cob ON dbo.Comments",
+        "kind": "indice",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "reescrita+indice",
+        "sql": "SELECT p.Id, COUNT(c.Id) AS NComentarios, MAX(c.Score) AS MaxScoreComentario\nFROM dbo.Posts p LEFT JOIN dbo.Comments c ON c.PostId = p.Id\nWHERE p.OwnerUserId = 22656 GROUP BY p.Id",
+        "ddl_aplicar": "CREATE INDEX ix_exp_comments_postid_cob ON dbo.Comments (PostId) INCLUDE (Score)",
+        "ddl_reverter": "DROP INDEX ix_exp_comments_postid_cob ON dbo.Comments",
+        "kind": "prescricao",
+        "repeticoes": null,
+        "aquecimentos": null
+      },
+      {
+        "nome": "nativo",
+        "sql": "SELECT p.Id,\n  (SELECT COUNT(*) FROM dbo.Comments c WHERE c.PostId = p.Id) AS NComentarios,\n  (SELECT MAX(c.Score) FROM dbo.Comments c WHERE c.PostId = p.Id) AS MaxScoreComentario\nFROM dbo.Posts p WHERE p.OwnerUserId = 22656",
+        "ddl_aplicar": "CREATE INDEX ix_exp_nativo_posts ON [dbo].[Posts] ([OwnerUserId])",
+        "ddl_reverter": "DROP INDEX ix_exp_nativo_posts ON [dbo].[Posts]",
+        "kind": "nativo",
+        "repeticoes": null,
+        "aquecimentos": null
+      }
+    ],
+    "blocos_planejados": [
+      "A1",
+      "B",
+      "C",
+      "D",
+      "E",
+      "A2"
+    ]
+  },
+  "ordem_executada": [
+    {
+      "seq": 1,
+      "regime": "quente",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 38
+    },
+    {
+      "seq": 2,
+      "regime": "quente",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 39
+    },
+    {
+      "seq": 3,
+      "regime": "quente",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 40
+    },
+    {
+      "seq": 4,
+      "regime": "quente",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 41
+    },
+    {
+      "seq": 5,
+      "regime": "quente",
+      "bloco": "E",
+      "variante": "nativo",
+      "run_id": 42
+    },
+    {
+      "seq": 6,
+      "regime": "quente",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 43
+    }
+  ]
+}

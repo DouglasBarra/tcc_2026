@@ -1,0 +1,163 @@
+{
+  "experiment_id": 2,
+  "semente": 20261026,
+  "status": "concluido",
+  "manifesto": {
+    "nome": "piloto-2:C1:t2",
+    "database": "so_exp",
+    "regimes": [
+      "quente",
+      "frio"
+    ],
+    "aquecimentos": 1,
+    "repeticoes": {
+      "quente": 3,
+      "frio": 2
+    },
+    "ordem": "ABA",
+    "semente": 20261026,
+    "cache_planos": "escopo",
+    "estatisticas_tabelas": [
+      "dbo.Posts"
+    ],
+    "microssegundos": true,
+    "sessao": [
+      "SET NOCOUNT ON",
+      "SET LANGUAGE us_english",
+      "SET ARITHABORT ON",
+      "SET STATISTICS IO ON",
+      "SET STATISTICS TIME ON"
+    ],
+    "variantes": [
+      {
+        "nome": "original",
+        "sql": "SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "original"
+      },
+      {
+        "nome": "reescrita",
+        "sql": "SELECT Id, Score, CreationDate FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": null,
+        "ddl_reverter": null,
+        "kind": "reescrita"
+      },
+      {
+        "nome": "indice",
+        "sql": "SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": "CREATE INDEX ix_exp_posts_owner ON dbo.Posts (OwnerUserId)",
+        "ddl_reverter": "DROP INDEX ix_exp_posts_owner ON dbo.Posts",
+        "kind": "indice"
+      },
+      {
+        "nome": "reescrita+indice",
+        "sql": "SELECT Id, Score, CreationDate FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": "CREATE INDEX ix_exp_posts_owner_cob ON dbo.Posts (OwnerUserId) INCLUDE (Score, CreationDate)",
+        "ddl_reverter": "DROP INDEX ix_exp_posts_owner_cob ON dbo.Posts",
+        "kind": "prescricao"
+      },
+      {
+        "nome": "nativo",
+        "sql": "SELECT * FROM dbo.Posts WHERE OwnerUserId = 22656",
+        "ddl_aplicar": "CREATE INDEX ix_exp_nativo_posts ON [dbo].[Posts] ([OwnerUserId]) INCLUDE ([AcceptedAnswerId], [AnswerCount], [Body], [ClosedDate], [CommentCount], [CommunityOwnedDate], [CreationDate], [FavoriteCount], [LastActivityDate], [LastEditDate], [LastEditorDisplayName], [LastEditorUserId], [ParentId], [PostTypeId], [Score], [Tags], [Title], [ViewCount])",
+        "ddl_reverter": "DROP INDEX ix_exp_nativo_posts ON [dbo].[Posts]",
+        "kind": "nativo"
+      }
+    ],
+    "blocos_planejados": [
+      "A1",
+      "B",
+      "C",
+      "D",
+      "E",
+      "A2"
+    ]
+  },
+  "ordem_executada": [
+    {
+      "seq": 1,
+      "regime": "quente",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 13
+    },
+    {
+      "seq": 2,
+      "regime": "quente",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 14
+    },
+    {
+      "seq": 3,
+      "regime": "quente",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 15
+    },
+    {
+      "seq": 4,
+      "regime": "quente",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 16
+    },
+    {
+      "seq": 5,
+      "regime": "quente",
+      "bloco": "E",
+      "variante": "nativo",
+      "run_id": 17
+    },
+    {
+      "seq": 6,
+      "regime": "quente",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 18
+    },
+    {
+      "seq": 7,
+      "regime": "frio",
+      "bloco": "A1",
+      "variante": "original",
+      "run_id": 19
+    },
+    {
+      "seq": 8,
+      "regime": "frio",
+      "bloco": "B",
+      "variante": "reescrita",
+      "run_id": 20
+    },
+    {
+      "seq": 9,
+      "regime": "frio",
+      "bloco": "C",
+      "variante": "indice",
+      "run_id": 21
+    },
+    {
+      "seq": 10,
+      "regime": "frio",
+      "bloco": "D",
+      "variante": "reescrita+indice",
+      "run_id": 22
+    },
+    {
+      "seq": 11,
+      "regime": "frio",
+      "bloco": "E",
+      "variante": "nativo",
+      "run_id": 23
+    },
+    {
+      "seq": 12,
+      "regime": "frio",
+      "bloco": "A2",
+      "variante": "original",
+      "run_id": 24
+    }
+  ]
+}
