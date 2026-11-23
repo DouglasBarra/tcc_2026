@@ -1,4 +1,5 @@
 import { fmtNum, fmtRazao, rotuloMetrica, ehNumero } from '../lib/formatar.js';
+import { escalaFonte } from '../lib/escala.js';
 
 const CORES = ['var(--serie-1)', 'var(--serie-2)', 'var(--serie-3)', 'var(--serie-4)', 'var(--serie-5)', 'var(--serie-6)'];
 
@@ -12,6 +13,15 @@ export function ticksLog(max) {
   return t;
 }
 
+/** Rotulo de variante em ate duas linhas ("reescrita" / "+indice"), cada uma cortada na largura da coluna. */
+function linhasRotulo(v, larg) {
+  const max = Math.max(6, Math.floor(larg / 7.2));
+  if (v.length <= max) return [v];
+  const corte = v.search(/[+ ]/);
+  const partes = corte > 0 ? [v.slice(0, corte), v.slice(corte).trim()] : [v];
+  return partes.map((p) => (p.length > max ? `${p.slice(0, max - 1)}…` : p));
+}
+
 /**
  * Grafico de pontos: uma coluna por variante, um ponto por repeticao medida, escala log(1+x).
  * `pontos`: [{ run_id, rep, variante, valor }] vindos da API (`/repeticoes`); `medianas`: { variante: mediana } vindas
@@ -20,12 +30,15 @@ export function ticksLog(max) {
 export function GraficoPontos({ pontos, medianas = {}, metrica, titulo, ordem }) {
   const variantes = ordem ?? [...new Set(pontos.map((p) => p.variante))];
   if (!pontos.length) return null;
-  const L = 520, A = 190, mE = 74, mD = 12, mT = 10, mB = 34;
+  const L = 520 / escalaFonte(), mE = 84, mD = 12, mT = 12;
+  const larg = (L - mE - mD) / variantes.length;
+  const rotulos = variantes.map((v) => linhasRotulo(v, larg));
+  const extra = Math.max(...rotulos.map((r) => r.length)) > 1 ? 18 : 0;
+  const A = 192 + extra, mB = 34 + extra;
   const max = Math.max(...pontos.map((p) => p.valor), ...Object.values(medianas).filter(ehNumero), 1);
   const ticks = ticksLog(max);
   const topo = escalaLog(ticks[ticks.length - 1]) || 1;
   const y = (v) => mT + (A - mT - mB) * (1 - escalaLog(v) / topo);
-  const larg = (L - mE - mD) / variantes.length;
   const desc = `${titulo}: ${variantes.map((v) => `${v}, mediana ${ehNumero(medianas[v]) ? fmtNum(medianas[v], 0) : 'indisponível'}`).join('; ')}`;
   return (
     <svg className="grafico" viewBox={`0 0 ${L} ${A}`} role="img" aria-label={desc}>
@@ -55,7 +68,10 @@ export function GraficoPontos({ pontos, medianas = {}, metrica, titulo, ordem })
                 <title>{`mediana de ${v}: ${fmtNum(medianas[v], 0)}`}</title>
               </line>
             ) : null}
-            <text x={cx} y={A - mB + 14} textAnchor="middle">{v.length > 16 ? `${v.slice(0, 15)}…` : v}</text>
+            <text x={cx} y={A - mB + 18} textAnchor="middle">
+              {rotulos[i].map((t, k) => <tspan key={t} x={cx} dy={k ? 18 : 0}>{t}</tspan>)}
+              <title>{v}</title>
+            </text>
           </g>
         );
       })}
@@ -69,15 +85,15 @@ export function GraficoPontos({ pontos, medianas = {}, metrica, titulo, ordem })
  */
 export function GraficoRazao({ itens, titulo }) {
   const validos = itens.filter((i) => ehNumero(i.razao_reg ?? i.razao) && ehNumero(i.ic_lo) && ehNumero(i.ic_hi));
-  const L = 520, linha = 26, mE = 190, mD = 70, mT = 8, mB = 26;
+  const L = 520 / escalaFonte(), linha = 26, mE = 190, mD = 70, mT = 8, mB = 26;
   const A = mT + mB + Math.max(1, itens.length) * linha;
   const valores = validos.flatMap((i) => [i.ic_lo, i.ic_hi, i.razao_reg ?? i.razao, 1]).filter((v) => v > 0);
   const lo = Math.min(...valores, 1) * 0.8, hi = Math.max(...valores, 1) * 1.25;
   const x = (v) => mE + ((Math.log10(Math.max(v, lo)) - Math.log10(lo)) / (Math.log10(hi) - Math.log10(lo))) * (L - mE - mD);
-  // marcas nas potencias de 10 dentro da escala, mais o 1 (sem mudanca); no maximo ~6 rotulos
+  // marcas nas potencias de 10 dentro da escala, mais o 1 (sem mudanca); quantas cabem na largura
   const decadas = [];
   for (let k = Math.ceil(Math.log10(lo)); 10 ** k <= hi; k += 1) decadas.push(10 ** k);
-  const passo = Math.max(1, Math.ceil(decadas.length / 5));
+  const passo = Math.max(1, Math.ceil(decadas.length / Math.max(3, Math.floor((L - mE - mD) / 52))));
   const marcas = [...new Set([...decadas.filter((_, i) => i % passo === 0), 1])];
   return (
     <svg className="grafico" viewBox={`0 0 ${L} ${A}`} role="img" aria-label={`${titulo}: ${itens.map((i) => `${i.rotulo} ${ehNumero(i.razao_reg ?? i.razao) ? fmtRazao(i.razao_reg ?? i.razao) : 'indisponível'}`).join('; ')}`}>

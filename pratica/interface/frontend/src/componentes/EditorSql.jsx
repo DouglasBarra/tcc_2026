@@ -8,7 +8,7 @@ import { tags as t } from '@lezer/highlight';
 
 // Tema e realce usam variaveis CSS (tokens.css): acompanham o tema claro/escuro sem recriar o editor.
 const tema = EditorView.theme({
-  '&': { backgroundColor: 'var(--bg-2)', color: 'var(--sql-ident)', height: '100%', fontSize: '15.5px' },
+  '&': { backgroundColor: 'var(--bg-2)', color: 'var(--sql-ident)', fontSize: 'calc(15.5px * var(--escala-fonte))' },
   '.cm-scroller': { fontFamily: 'var(--fonte-mono)', lineHeight: '1.55' },
   '.cm-content': { caretColor: 'var(--acento)' },
   '.cm-gutters': { backgroundColor: 'var(--bg-2)', color: 'var(--texto-2)', borderRight: '1px solid var(--borda)' },

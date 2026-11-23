@@ -75,10 +75,10 @@ export default function Consulta({ rota }) {
   const [edicoes, setEdicoes] = useState({});
   const [planoSel, setPlanoSel] = useState(null);
   const [analisado, setAnalisado] = useState(null); // { texto, achados } do ultimo diagnostico: base das marcas no editor
-  const [altura, setAltura] = useState(() => recuperar('altura-editor', 200));
+  const [altura, setAltura] = useState(() => recuperar('altura-editor-v2', 280));
   const [lateralAberta, setLateralAberta] = useState(false);
   useEffect(() => { setVariante('original'); setEdicoes({}); setPlanoSel(null); setAnalisado(null); }, [id]);
-  useEffect(() => { guardar('altura-editor', altura); }, [altura]);
+  useEffect(() => { guardar('altura-editor-v2', altura); }, [altura]);
 
   const d = detalhe.dados;
   const planej = d?.variantes_planejadas ?? [];
@@ -120,7 +120,7 @@ export default function Consulta({ rota }) {
   return (
     <div className="consulta">
       <Lateral catalogo={catalogo} rodada={rodada} atual={id} aberta={lateralAberta} />
-      <section className="area" style={{ '--h-editor': `${Math.min(altura, Math.max(120, texto.split('\n').length * 25 + 66 + (atual?.ddl_aplicar ? 34 : 0)))}px` }} aria-label={id ? `Consulta ${id}` : 'Consulta'}>
+      <section className="area" style={{ '--h-editor': `${altura}px` }} aria-label={id ? `Consulta ${id}` : 'Consulta'}>
         {!id ? (
           <div className="pagina"><EstadoVazio titulo="Nenhuma consulta selecionada" motivo="O catálogo está vazio ou indisponível." /></div>
         ) : (

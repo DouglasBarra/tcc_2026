@@ -1,11 +1,11 @@
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; font-size: calc(100% * var(--escala-fonte)); }
 html, body, #root { height: 100%; }
 body {
   margin: 0;
   background: var(--bg);
   color: var(--texto);
-  font: 18.5px/1.55 var(--fonte-ui);
+  font: calc(18.5px * var(--escala-fonte))/1.55 var(--fonte-ui);
   font-feature-settings: 'kern', 'liga';
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -24,7 +24,7 @@ button { cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: 0.55; }
 :focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; border-radius: 3px; }
 .pular {
-  position: absolute; left: 8px; top: -48px; z-index: 100; padding: 8px 12px;
+  position: absolute; left: 8px; top: calc(-48px * var(--escala-fonte)); z-index: 100; padding: 8px 12px;
   background: var(--acento); color: var(--sobre-acento); border-radius: var(--raio); text-decoration: none; font-weight: 600;
 }
 .pular:focus { top: 8px; }

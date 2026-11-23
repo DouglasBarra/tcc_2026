@@ -6,6 +6,7 @@ import { useContexto } from '../contexto.jsx';
 import { useApi } from '../hooks/useApi.js';
 import { montarUrl, mensagemDeErro } from '../lib/api.js';
 import { montarHash } from '../lib/roteador.js';
+import { escalaFonte } from '../lib/escala.js';
 import { Aviso, Badge, Carregando, EstadoVazio } from '../componentes/EstadoVazio.jsx';
 import { fmtNum, fmtP, fmtPct, rotuloMetrica } from '../lib/formatar.js';
 
@@ -25,8 +26,9 @@ function agregado(lista, { grupo, metrica = 'logical_reads', estratoTipo = 'toda
 }
 
 /** Barras horizontais de reducao (%), com linha do limiar. Valores negativos (piora) vao para a esquerda do zero. */
-function BarrasReducao({ itens, limiar, titulo, altura = 26, larg = 640, esq = 150 }) {
-  const dir = 64; const util = larg - esq - dir; const topo = limiar != null ? 18 : 4;
+function BarrasReducao({ itens, limiar, titulo, altura = 26, larg: largBase = 640, esq = 150 }) {
+  const larg = largBase / escalaFonte();
+  const dir = 64; const util = larg - esq - dir; const topo = limiar != null ? 24 : 4;
   const min = Math.min(0, ...itens.map((i) => i.valor ?? 0));
   const x = (v) => esq + ((v - min) / (100 - min)) * util;
   const h = itens.length * altura + 24 + topo;
@@ -71,7 +73,8 @@ function rotuloPot(e) {
 }
 
 /** Halteres em escala log: páginas lidas antes (círculo vazio) e depois (círculo cheio), por consulta. */
-function Halteres({ itens, titulo, larg = 760, esq = 56, altura = 32 }) {
+function Halteres({ itens, titulo, larg: largBase = 760, esq = 56, altura = 32 }) {
+  const larg = largBase / escalaFonte();
   const dir = 84; const topo = 8; const util = larg - esq - dir;
   const vals = itens.flatMap((i) => [i.antes, i.depois]).filter((v) => v != null).map((v) => Math.max(1, v));
   const e0 = Math.floor(Math.log10(Math.min(...vals))); const e1 = Math.ceil(Math.log10(Math.max(...vals)));
@@ -261,7 +264,7 @@ export default function Painel() {
                     titulo="Redução mediana por braço do experimento"
                     altura={36}
                     larg={540}
-                    esq={176}
+                    esq={184}
                     itens={v.bracos.map(({ g, rot, a: x }) => ({ rotulo: rot.replace('Índice sugerido pelo SQL Server', 'Índice nativo'), sub: `n = ${x.n_consultas}`, valor: x.reducao_mediana_pct, tom: g === 'prescricao_do_framework' ? 'acento' : 'neutro' }))}
                   />
                   <p className="sub" style={{ margin: '8px 0 0' }}>Medianas entre as consultas em que cada braço existe; a reescrita isolada só existe nas consultas com reescrita.</p>

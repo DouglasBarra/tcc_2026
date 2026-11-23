@@ -5,10 +5,11 @@
   --fonte-ui: 'Source Sans 3', 'Source Sans Pro', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   --fonte-titulo: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
   --fonte-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --escala-fonte: 1.2; /* tamanho de toda a interface: 1 = original. Textos, caixas e gráficos seguem este fator */
   --raio: 6px;
   --raio-g: 8px;
-  --h-topo: 60px;
-  --w-trilho: 92px;
+  --h-topo: calc(60px * var(--escala-fonte));
+  --w-trilho: calc(92px * var(--escala-fonte));
   --sombra-1: 0 1px 0 rgb(0 0 0 / 0.25);
   --sombra-2: 0 10px 30px rgb(0 0 0 / 0.45);
 
